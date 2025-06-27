@@ -28,6 +28,13 @@
     <tbody id="dividend-table"></tbody>
   </table>
 
+    <!-- 시간 업데이트 표시-->
+  <p id="last-updated" style="margin-top:10px; font-size:0.9em; color:#555;">
+    마지막 업데이트: ⏳
+  </p>
+
+  <!-- 여기까지는 전체틀이고 아래부터는 script를 통해서 채워 넣기 -->
+  
   <script>
     // DOM 요소를 미리 캐싱해 불필요한 조회를 줄입니다.
     const tbody = document.getElementById('dividend-table');
@@ -54,8 +61,17 @@
         headers.forEach(th => th.classList.remove('sorted-asc', 'sorted-desc'));
         document.querySelector('th[data-key="dividend_yield"]').classList.add('sorted-desc');
         renderTable(tableData);
+
+        // 추가된 부분: 마지막 업데이트 시각을 현재 시각으로 설정
+        const updatedElem = document.getElementById('last-updated');
+        const now = new Date();
+        updatedElem.textContent = `마지막 업데이트: ${now.toLocaleString('ko-KR')}`;
       })
-      .catch(e => tbody.innerHTML = "<tr><td colspan='5'>데이터 로드 실패</td></tr>");
+      .catch(e => {
+        tbody.innerHTML = "<tr><td colspan='5'>데이터 로드 실패</td></tr>";
+        // 실패 시에도 메시지를 바꿔 주고 싶다면:
+        document.getElementById('last-updated').textContent = '업데이트 실패';
+      });
 
     function renderTable(data) {
       // DocumentFragment로 한 번에 렌더링하여 재플로우 횟수를 최소화합니다.
