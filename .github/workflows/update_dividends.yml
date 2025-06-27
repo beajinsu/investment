@@ -17,6 +17,9 @@ on:
     - cron:  '0 11 * * 1-5'
   workflow_dispatch:
 
+permissions:
+  contents: write  # ✅ PUSH 권한 부여
+
 jobs:
   update:
     runs-on: ubuntu-latest
