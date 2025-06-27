@@ -2,32 +2,47 @@ name: Update dividends every hour (KST 8am-8pm)
 
 on:
   schedule:
-    - cron: '0 23-11 * * 1-5' # 매시 정각, KST 08:00~20:00 (UTC 기준 23~11시), 평일만
+    - cron:  '0 23 * * 1-5'
+    - cron:  '0 0 * * 1-5'
+    - cron:  '0 1 * * 1-5'
+    - cron:  '0 2 * * 1-5'
+    - cron:  '0 3 * * 1-5'
+    - cron:  '0 4 * * 1-5'
+    - cron:  '0 5 * * 1-5'
+    - cron:  '0 6 * * 1-5'
+    - cron:  '0 7 * * 1-5'
+    - cron:  '0 8 * * 1-5'
+    - cron:  '0 9 * * 1-5'
+    - cron:  '0 10 * * 1-5'
+    - cron:  '0 11 * * 1-5'
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
 
+    env:
+      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: pip install requests
+      - name: Install requests
+        run: pip install requests
 
-    - name: Run script
-      run: python scripts/fetch_dividends.py
+      - name: Fetch dividend data
+        run: python scripts/fetch_dividends.py
 
-    - name: Commit and push
-      run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-        git add data/dividends.json
-        git commit -m "🔁 Update dividends.json" || echo "No changes"
-        git push
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'beajinsu'
+          git config --global user.email 'your-email@example.com'
+          git add data/dividends.json
+          git commit -m "🔄 자동 업데이트: 배당수익률" || echo "No changes"
+          git push

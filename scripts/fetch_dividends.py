@@ -1,8 +1,9 @@
+import os
 import requests
 import json
 from datetime import datetime
 
-API_KEY = "d1cl6p1r01qic6led760d1cl6p1r01qic6led76g"
+API_KEY = os.environ.get("FINNHUB_API_KEY")  # 🔐 Secrets에서 환경변수로 읽기
 STOCKS = {
     "SCHD": "SCHD",
     "TLT": "TLT",
