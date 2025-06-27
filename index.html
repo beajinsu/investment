@@ -6,8 +6,10 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-    th { background-color: #f2f2f2; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; cursor: default; }
+    th { background-color: #f2f2f2; user-select: none; cursor: pointer; }
+    th.sorted-asc::after  { content: " ▲"; }
+    th.sorted-desc::after { content: " ▼"; }
   </style>
 </head>
 <body>
@@ -16,11 +18,11 @@
   <table>
     <thead>
       <tr>
-        <th>종목명</th>
-        <th>현재가</th>
-        <th>배당수익률</th>
-        <th>최근 배당금</th>
-        <th>1일 수익률</th>
+        <th data-key="name" onclick="sortTable(this)">종목명</th>
+        <th data-key="price" onclick="sortTable(this)">현재가</th>
+        <th data-key="dividend_yield" onclick="sortTable(this)">배당수익률</th>
+        <th data-key="dividend_rate" onclick="sortTable(this)">최근 배당금</th>
+        <th data-key="price_change_percent" onclick="sortTable(this)">1일 수익률</th>
       </tr>
     </thead>
     <tbody id="dividend-table">
@@ -28,27 +30,74 @@
   </table>
 
   <script>
+    let tableData = [];
+    const sortDirections = {
+      name:  'asc',
+      price: 'asc',
+      dividend_yield: 'asc',
+      dividend_rate: 'asc',
+      price_change_percent: 'asc'
+    };
+
+    // 데이터 로드 및 렌더링
     fetch('data/dividends.json')
       .then(response => response.json())
       .then(data => {
-        const table = document.getElementById('dividend-table');
-        for (const [name, info] of Object.entries(data)) {
-          const row = `
-            <tr>
-              <td>${name}</td>
-              <td>${info.price !== null ? info.price.toLocaleString() : 'N/A'}</td>
-              <td>${info.dividend_yield || 'N/A'}</td>
-              <td>${info.dividend_rate !== null ? info.dividend_rate.toLocaleString() : 'N/A'}</td>
-              <td>${info.price_change_percent !== undefined ? info.price_change_percent : 'N/A'}</td>
-            </tr>
-          `;
-          table.innerHTML += row;
-        }
+        tableData = Object.entries(data).map(([name, info]) => ({
+          name,
+          price: info.price,
+          dividend_yield: parseFloat(info.dividend_yield)  || 0,
+          dividend_rate: info.dividend_rate,
+          price_change_percent: parseFloat(info.price_change_percent) || 0,
+          raw: info
+        }));
+        renderTable(tableData);
       })
       .catch(error => {
         console.error("데이터 불러오기 실패:", error);
-        document.getElementById('dividend-table').innerHTML = "<tr><td colspan='5'>데이터 로드 실패</td></tr>";
+        document.getElementById('dividend-table').innerHTML =
+          "<tr><td colspan='5'>데이터 로드 실패</td></tr>";
       });
+
+    // 테이블 바디 렌더링
+    function renderTable(data) {
+      const tbody = document.getElementById('dividend-table');
+      tbody.innerHTML = '';
+      data.forEach(row => {
+        const info = row.raw;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row.name}</td>
+          <td>${info.price !== null ? info.price.toLocaleString() : 'N/A'}</td>
+          <td>${info.dividend_yield || 'N/A'}</td>
+          <td>${info.dividend_rate !== null ? info.dividend_rate.toLocaleString() : 'N/A'}</td>
+          <td>${info.price_change_percent !== undefined ? info.price_change_percent : 'N/A'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // 헤더 클릭 시 정렬
+    function sortTable(header) {
+      const key = header.getAttribute('data-key');
+      const dir = sortDirections[key];
+      // 정렬
+      tableData.sort((a, b) => {
+        if (a[key] < b[key]) return dir === 'asc' ? -1 : 1;
+        if (a[key] > b[key]) return dir === 'asc' ? 1  : -1;
+        return 0;
+      });
+      // 방향 토글
+      sortDirections[key] = dir === 'asc' ? 'desc' : 'asc';
+
+      // 헤더 화살표 업데이트
+      document.querySelectorAll('th').forEach(th => {
+        th.classList.remove('sorted-asc', 'sorted-desc');
+      });
+      header.classList.add(dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+
+      renderTable(tableData);
+    }
   </script>
 </body>
 </html>

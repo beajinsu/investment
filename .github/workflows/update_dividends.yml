@@ -2,19 +2,7 @@ name: Update dividends every hour (KST 8am-8pm)
 
 on:
   schedule:
-    - cron:  '0 23 * * 1-5'
-    - cron:  '0 0 * * 1-5'
-    - cron:  '0 1 * * 1-5'
-    - cron:  '0 2 * * 1-5'
-    - cron:  '0 3 * * 1-5'
-    - cron:  '0 4 * * 1-5'
-    - cron:  '0 5 * * 1-5'
-    - cron:  '0 6 * * 1-5'
-    - cron:  '0 7 * * 1-5'
-    - cron:  '0 8 * * 1-5'
-    - cron:  '0 9 * * 1-5'
-    - cron:  '0 10 * * 1-5'
-    - cron:  '0 11 * * 1-5'
+    - cron: '0 23,0-11 * * 1-5'  # 매주 월요일부터 금요일까지, KST 기준으로 오전 8시부터 오후 8시까지 매시간 실행
   workflow_dispatch:
 
 permissions:
