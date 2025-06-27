@@ -6,7 +6,7 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; cursor: default; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
     th { background-color: #f2f2f2; user-select: none; cursor: pointer; }
     th.sorted-asc::after  { content: " ▲"; }
     th.sorted-desc::after { content: " ▼"; }
@@ -18,84 +18,73 @@
   <table>
     <thead>
       <tr>
-        <th data-key="name" onclick="sortTable(this)">종목명</th>
-        <th data-key="price" onclick="sortTable(this)">현재가</th>
-        <th data-key="dividend_yield" onclick="sortTable(this)">배당수익률</th>
-        <th data-key="dividend_rate" onclick="sortTable(this)">최근 배당금</th>
-        <th data-key="price_change_percent" onclick="sortTable(this)">1일 수익률</th>
+        <th data-key="name">종목명</th>
+        <th data-key="price">현재가</th>
+        <th data-key="dividend_yield">배당수익률</th>
+        <th data-key="dividend_rate">최근 배당금</th>
+        <th data-key="price_change_percent">1일 수익률</th>
       </tr>
     </thead>
-    <tbody id="dividend-table">
-    </tbody>
+    <tbody id="dividend-table"></tbody>
   </table>
 
   <script>
+    // DOM 요소를 미리 캐싱해 불필요한 조회를 줄입니다.
+    const tbody = document.getElementById('dividend-table');
+    const headers = document.querySelectorAll('th[data-key]');
     let tableData = [];
-    const sortDirections = {
-      name:  'asc',
-      price: 'asc',
-      dividend_yield: 'asc',
-      dividend_rate: 'asc',
-      price_change_percent: 'asc'
-    };
+    const sortDirections = { name: 'asc', price: 'asc', dividend_yield: 'desc', dividend_rate: 'asc', price_change_percent: 'asc' };
 
-    // 데이터 로드 및 렌더링
+    // 이벤트 핸들러는 addEventListener로 일괄 설정해 HTML 구조와 로직을 분리합니다.
+    headers.forEach(th => th.addEventListener('click', () => sortTable(th)));
+
     fetch('data/dividends.json')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
         tableData = Object.entries(data).map(([name, info]) => ({
           name,
           price: info.price,
-          dividend_yield: parseFloat(info.dividend_yield)  || 0,
+          // '%' 제거 후 수치 비교에 사용합니다.
+          dividend_yield: parseFloat(info.dividend_yield) || 0,
           dividend_rate: info.dividend_rate,
           price_change_percent: parseFloat(info.price_change_percent) || 0,
           raw: info
         }));
+        tableData.sort((a, b) => b.dividend_yield - a.dividend_yield);
+        headers.forEach(th => th.classList.remove('sorted-asc', 'sorted-desc'));
+        document.querySelector('th[data-key="dividend_yield"]').classList.add('sorted-desc');
         renderTable(tableData);
       })
-      .catch(error => {
-        console.error("데이터 불러오기 실패:", error);
-        document.getElementById('dividend-table').innerHTML =
-          "<tr><td colspan='5'>데이터 로드 실패</td></tr>";
-      });
+      .catch(e => tbody.innerHTML = "<tr><td colspan='5'>데이터 로드 실패</td></tr>");
 
-    // 테이블 바디 렌더링
     function renderTable(data) {
-      const tbody = document.getElementById('dividend-table');
-      tbody.innerHTML = '';
+      // DocumentFragment로 한 번에 렌더링하여 재플로우 횟수를 최소화합니다.
+      const frag = document.createDocumentFragment();
       data.forEach(row => {
-        const info = row.raw;
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${row.name}</td>
-          <td>${info.price !== null ? info.price.toLocaleString() : 'N/A'}</td>
-          <td>${info.dividend_yield || 'N/A'}</td>
-          <td>${info.dividend_rate !== null ? info.dividend_rate.toLocaleString() : 'N/A'}</td>
-          <td>${info.price_change_percent !== undefined ? info.price_change_percent : 'N/A'}</td>
+          <td>${row.raw.price != null ? row.raw.price.toLocaleString() : 'N/A'}</td>
+          <td>${row.dividend_yield ? row.dividend_yield.toFixed(2) + '%' : 'N/A'}</td>
+          <td>${row.raw.dividend_rate != null ? row.raw.dividend_rate.toLocaleString() : 'N/A'}</td>
+          <td>${row.raw.price_change_percent ?? 'N/A'}</td>
         `;
-        tbody.appendChild(tr);
+        frag.appendChild(tr);
       });
+      tbody.innerHTML = '';
+      tbody.appendChild(frag);
     }
 
-    // 헤더 클릭 시 정렬
-    function sortTable(header) {
-      const key = header.getAttribute('data-key');
+    function sortTable(th) {
+      const key = th.dataset.key;
       const dir = sortDirections[key];
-      // 정렬
       tableData.sort((a, b) => {
-        if (a[key] < b[key]) return dir === 'asc' ? -1 : 1;
-        if (a[key] > b[key]) return dir === 'asc' ? 1  : -1;
-        return 0;
+        if (key === 'name') return dir === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+        return dir === 'asc' ? a[key] - b[key] : b[key] - a[key];
       });
-      // 방향 토글
       sortDirections[key] = dir === 'asc' ? 'desc' : 'asc';
-
-      // 헤더 화살표 업데이트
-      document.querySelectorAll('th').forEach(th => {
-        th.classList.remove('sorted-asc', 'sorted-desc');
-      });
-      header.classList.add(dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
-
+      headers.forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
+      th.classList.add(dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
       renderTable(tableData);
     }
   </script>
