@@ -39,7 +39,7 @@
               <td>${info.price !== null ? info.price.toLocaleString() : 'N/A'}</td>
               <td>${info.dividend_yield || 'N/A'}</td>
               <td>${info.dividend_rate !== null ? info.dividend_rate.toLocaleString() : 'N/A'}</td>
-              <td>${info.price_change !== undefined ? info.price_change : 'N/A'}</td>
+              <td>${info.price_change_percent !== undefined ? info.price_change_percent : 'N/A'}</td>
             </tr>
           `;
           table.innerHTML += row;
