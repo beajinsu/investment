@@ -1,47 +1,54 @@
-import os
-import requests
+import yfinance as yf
 import json
 from datetime import datetime
 
-API_KEY = os.environ.get("FINNHUB_API_KEY")  # 🔐 Secrets에서 환경변수로 읽기
 STOCKS = {
     "SCHD": "SCHD",
     "TLT": "TLT",
-    "하나금융지주": "086790.KQ",
-    "우리금융지주": "316140.KQ",
-    "삼성카드": "029780.KQ",
-    "현대차2우B": "005387.KQ",
-    "SK텔레콤": "017670.KQ",
-    "삼섬화재우": "000815.KQ",
-    "BNK 금융지주": "138930.KQ",
-    "NH투자증권우": "005945.KQ",
-    "삼성생명": "032830.KQ",
-    "LG유플러스": "032640.KQ",
-    "HD현대": "267250.KQ",
-    "KT": "030200.KQ",
-    "im금융지주": "279130.KQ",
-    "KT&G": "033780.KQ",
-    "삼성증권": "016360.KQ",
-    "삼성전자": "005930.KQ"
+    "하나금융지주": "086790.KS",
+    "우리금융지주": "316140.KS",
+    "삼성카드": "029780.KS",
+    "현대차2우B": "005387.KS",
+    "SK텔레콤": "017670.KS",
+    "삼성화재우": "000815.KS",
+    "BNK 금융지주": "138930.KS",
+    "NH투자증권우": "005945.KS",
+    "삼성생명": "032830.KS",
+    "LG유플러스": "032640.KS",
+    "HD현대": "267250.KS",
+    "KT": "030200.KS",
+    "JB금융지주": "175330.KS",
+    "KT&G": "033780.KS",
+    "삼성증권": "016360.KS",
+    "삼성전자": "005930.KS"
 }
-
-def fetch_dividend_yield(symbol):
-    url = f"https://finnhub.io/api/v1/stock/metric?symbol={symbol}&metric=all&token={API_KEY}"
-    try:
-        res = requests.get(url)
-        res.raise_for_status()
-        data = res.json()
-        yield_val = data.get("metric", {}).get("dividendYieldTTM")
-        if yield_val is not None:
-            return f"{(yield_val * 100):.2f}%"
-        else:
-            return "N/A"
-    except:
-        return "N/A"
 
 results = {}
 for name, symbol in STOCKS.items():
-    results[name] = fetch_dividend_yield(symbol)
+    try:
+        ticker = yf.Ticker(symbol)
+        info = ticker.info
+
+        price = info.get("currentPrice") or info.get("previousClose") or None
+        prev_close = info.get("previousClose") or None
+        dy = info.get("dividendYield")
+        dr = info.get("dividendRate", "N/A")
+
+        # 수익률 계산
+        if price and prev_close and prev_close != 0:
+            change_percent = ((price - prev_close) / prev_close) * 100
+            change_str = f"{change_percent:.2f}%"
+        else:
+            change_str = "N/A"
+
+        results[name] = {
+            "price": int(price) if symbol.endswith(".KS") and price else price,
+            "dividend_yield": f"{dy:.2f}%" if dy else "N/A",
+            "dividend_rate": int(dr) if symbol.endswith(".KS") and isinstance(dr, (int, float)) else dr,
+            "price_change_percent": change_str
+        }
+    except Exception as e:
+        results[name] = {"error": str(e)}
 
 with open("data/dividends.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)

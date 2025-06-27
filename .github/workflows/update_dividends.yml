@@ -24,9 +24,6 @@ jobs:
   update:
     runs-on: ubuntu-latest
 
-    env:
-      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -36,8 +33,9 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install requests
-        run: pip install requests
+      - name: Install dependencies
+        run: |
+          pip install yfinance
 
       - name: Fetch dividend data
         run: python scripts/fetch_dividends.py
@@ -47,5 +45,5 @@ jobs:
           git config --global user.name 'beajinsu'
           git config --global user.email 'your-email@example.com'
           git add data/dividends.json
-          git commit -m "🔄 자동 업데이트: 배당수익률" || echo "No changes"
+          git commit -m "🔄 자동 업데이트: yfinance 배당 수익률" || echo "No changes"
           git push

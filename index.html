@@ -6,18 +6,21 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
     th { background-color: #f2f2f2; }
   </style>
 </head>
 <body>
-  <h1>실시간 배당수익률</h1>
+  <h1>📊 실시간 배당수익률</h1>
   <p>※ 매시간 GitHub Actions를 통해 업데이트됩니다. (<code>data/dividends.json</code> 기반)</p>
   <table>
     <thead>
       <tr>
         <th>종목명</th>
+        <th>현재가</th>
         <th>배당수익률</th>
+        <th>최근 배당금</th>
+        <th>1일 수익률</th>
       </tr>
     </thead>
     <tbody id="dividend-table">
@@ -29,14 +32,22 @@
       .then(response => response.json())
       .then(data => {
         const table = document.getElementById('dividend-table');
-        for (const [name, dividend] of Object.entries(data)) {
-          const row = `<tr><td>${name}</td><td>${dividend}</td></tr>`;
+        for (const [name, info] of Object.entries(data)) {
+          const row = `
+            <tr>
+              <td>${name}</td>
+              <td>${info.price !== null ? info.price.toLocaleString() : 'N/A'}</td>
+              <td>${info.dividend_yield || 'N/A'}</td>
+              <td>${info.dividend_rate !== null ? info.dividend_rate.toLocaleString() : 'N/A'}</td>
+              <td>${info.price_change !== undefined ? info.price_change : 'N/A'}</td>
+            </tr>
+          `;
           table.innerHTML += row;
         }
       })
       .catch(error => {
         console.error("데이터 불러오기 실패:", error);
-        document.getElementById('dividend-table').innerHTML = "<tr><td colspan='2'>데이터 로드 실패</td></tr>";
+        document.getElementById('dividend-table').innerHTML = "<tr><td colspan='5'>데이터 로드 실패</td></tr>";
       });
   </script>
 </body>
