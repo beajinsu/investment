@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>실시간 배당수익률</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h1>실시간 배당수익률</h1>
+  <p>※ 매시간 GitHub Actions를 통해 업데이트됩니다. (<code>data/dividends.json</code> 기반)</p>
+  <table>
+    <thead>
+      <tr>
+        <th>종목명</th>
+        <th>배당수익률</th>
+      </tr>
+    </thead>
+    <tbody id="dividend-table">
+    </tbody>
+  </table>
+
+  <script>
+    fetch('data/dividends.json')
+      .then(response => response.json())
+      .then(data => {
+        const table = document.getElementById('dividend-table');
+        for (const [name, dividend] of Object.entries(data)) {
+          const row = `<tr><td>${name}</td><td>${dividend}</td></tr>`;
+          table.innerHTML += row;
+        }
+      })
+      .catch(error => {
+        console.error("데이터 불러오기 실패:", error);
+        document.getElementById('dividend-table').innerHTML = "<tr><td colspan='2'>데이터 로드 실패</td></tr>";
+      });
+  </script>
+</body>
+</html>

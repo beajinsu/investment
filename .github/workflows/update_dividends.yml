@@ -1,0 +1,33 @@
+name: Update dividends every hour (KST 8am-8pm)
+
+on:
+  schedule:
+    - cron: '0 23-11 * * 1-5' # 매시 정각, KST 08:00~20:00 (UTC 기준 23~11시), 평일만
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install requests
+
+    - name: Run script
+      run: python scripts/fetch_dividends.py
+
+    - name: Commit and push
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add data/dividends.json
+        git commit -m "🔁 Update dividends.json" || echo "No changes"
+        git push
