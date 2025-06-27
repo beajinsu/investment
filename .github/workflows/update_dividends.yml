@@ -1,37 +1,46 @@
-name: Update dividends every hour (KST 8am-8pm)
+  name: Update dividends every hour (KST 8am-8pm)
 
-on:
-  schedule:
-    - cron: '0 23,0-11 * * 1-5'  # 매주 월요일부터 금요일까지, KST 기준으로 오전 8시부터 오후 8시까지 매시간 실행
-  workflow_dispatch:
+  on:
+    schedule:
+      - cron: '0 23,0-11 * * 1-5'  # 매주 월요일부터 금요일까지, KST 기준으로 오전 8시부터 오후 8시까지 매시간 실행
+    workflow_dispatch:
 
-permissions:
-  contents: write  # ✅ PUSH 권한 부여
+  permissions:
+    contents: write  # ✅ PUSH 권한 부여
 
-jobs:
-  update:
-    runs-on: ubuntu-latest
+  jobs:
+    update:
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+        - name: Set up Python
+          uses: actions/setup-python@v4
+          with:
+            python-version: '3.10'
 
-      - name: Install dependencies
-        run: |
-          pip install yfinance
+        - name: Install dependencies
+          run: |
+            pip install yfinance
 
-      - name: Fetch dividend data
-        run: python scripts/fetch_dividends.py
+        - name: Fetch dividend data
+          run: python scripts/fetch_dividends.py
 
-      - name: Commit and push changes
-        run: |
-          git config --global user.name 'beajinsu'
-          git config --global user.email 'your-email@example.com'
-          git add data/dividends.json
-          git commit -m "🔄 자동 업데이트: yfinance 배당 수익률" || echo "No changes"
-          git push
+        # 여기에 추가: data/dividends.json 에 updated_at 필드를 붙이는 스텝
+        - name: Add update timestamp to JSON
+          run: |
+            # UTC 기준 ISO 8601 타임스탬프 생성
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            # 기존 JSON에 updated_at 필드 병합
+            jq '. + { updated_at: "'$TIMESTAMP'" }' data/dividends.json > tmp.json
+            mv tmp.json data/dividends.json
+
+        - name: Commit and push changes
+          run: |
+            git config --global user.name 'beajinsu'
+            git config --global user.email 'your-email@example.com'
+            git add data/dividends.json
+            git commit -m "🔄 자동 업데이트: yfinance 배당 수익률" || echo "No changes"
+            git push

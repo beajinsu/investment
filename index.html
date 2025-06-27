@@ -64,13 +64,18 @@
 
         // 추가된 부분: 마지막 업데이트 시각을 현재 시각으로 설정
         const updatedElem = document.getElementById('last-updated');
-        const now = new Date();
-        updatedElem.textContent = `마지막 업데이트: ${now.toLocaleString('ko-KR')}`;
+        //    Date 객체로 변환한 뒤
+        const updatedAt = new Date(data.updated_at);
+              //    `ko-KR` 형식으로 포맷해서 텍스트로 뿌립니다.
+        updatedElem.textContent = 
+        `마지막 업데이트: ${updatedAt.toLocaleString('ko-KR')}`;
       })
-      .catch(e => {
-        tbody.innerHTML = "<tr><td colspan='5'>데이터 로드 실패</td></tr>";
-        // 실패 시에도 메시지를 바꿔 주고 싶다면:
-        document.getElementById('last-updated').textContent = '업데이트 실패';
+      .catch(err => {
+        // 실패 처리
+        document.getElementById('dividend-table')
+                .innerHTML = "<tr><td colspan='5'>데이터 로드 실패</td></tr>";
+        document.getElementById('last-updated')
+                .textContent = '업데이트 실패';
       });
 
     function renderTable(data) {
