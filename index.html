@@ -48,27 +48,30 @@
     fetch('data/dividends.json')
       .then(res => res.json())
       .then(data => {
-        tableData = Object.entries(data).map(([name, info]) => ({
+        // (1) updated_at 키는 빼고 종목 데이터만 뽑아냅니다.
+        const stockEntries = Object.entries(data)
+          .filter(([key, _]) => key !== 'updated_at');
+
+        // (2) 그걸로 tableData 구성
+        tableData = stockEntries.map(([name, info]) => ({
           name,
           price: info.price,
-          // '%' 제거 후 수치 비교에 사용합니다.
           dividend_yield: parseFloat(info.dividend_yield) || 0,
           dividend_rate: info.dividend_rate,
           price_change_percent: parseFloat(info.price_change_percent) || 0,
           raw: info
         }));
+
+        // (3) 기존 로직 그대로
         tableData.sort((a, b) => b.dividend_yield - a.dividend_yield);
         headers.forEach(th => th.classList.remove('sorted-asc', 'sorted-desc'));
         document.querySelector('th[data-key="dividend_yield"]').classList.add('sorted-desc');
         renderTable(tableData);
 
-        // 추가된 부분: 마지막 업데이트 시각을 현재 시각으로 설정
+        // (4) footer 업데이트 시각 표시
         const updatedElem = document.getElementById('last-updated');
-        //    Date 객체로 변환한 뒤
         const updatedAt = new Date(data.updated_at);
-              //    `ko-KR` 형식으로 포맷해서 텍스트로 뿌립니다.
-        updatedElem.textContent = 
-        `마지막 업데이트: ${updatedAt.toLocaleString('ko-KR')}`;
+        updatedElem.textContent = `마지막 업데이트: ${updatedAt.toLocaleString('ko-KR')}`;
       })
       .catch(err => {
         // 실패 처리

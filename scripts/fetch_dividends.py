@@ -1,6 +1,6 @@
 import yfinance as yf
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 STOCKS = {
     "SCHD": "SCHD",
@@ -50,7 +50,10 @@ for name, symbol in STOCKS.items():
     except Exception as e:
         results[name] = {"error": str(e)}
 
+# UTC 기준 현재 시각을 ISO 8601 형식으로 만들어 넣습니다.
+results["updated_at"] = datetime.now(timezone.utc).isoformat()
+
 with open("data/dividends.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 
-print("✅ dividends.json updated at", datetime.now().isoformat())
+print(f"✅ dividends.json updated at {results['updated_at']}")

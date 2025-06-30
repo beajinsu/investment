@@ -28,15 +28,6 @@
         - name: Fetch dividend data
           run: python scripts/fetch_dividends.py
 
-        # 여기에 추가: data/dividends.json 에 updated_at 필드를 붙이는 스텝
-        - name: Add update timestamp to JSON
-          run: |
-            # UTC 기준 ISO 8601 타임스탬프 생성
-            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-            # 기존 JSON에 updated_at 필드 병합
-            jq '. + { updated_at: "'$TIMESTAMP'" }' data/dividends.json > tmp.json
-            mv tmp.json data/dividends.json
-
         - name: Commit and push changes
           run: |
             git config --global user.name 'beajinsu'
