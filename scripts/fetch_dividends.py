@@ -51,8 +51,7 @@ for name, symbol in STOCKS.items():
         results[name] = {"error": str(e)}
 
 # UTC 기준 현재 시각을 ISO 8601 형식으로 만들어 넣습니다.
-results["updated_at"] = datetime.now(timezone.utc).isoformat()
-
+results["updated_at"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 with open("data/dividends.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 

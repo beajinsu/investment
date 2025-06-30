@@ -5,5 +5,5 @@ echo "✅ 완료!"
 
 
 git add .
-git commit -m "💾 최신 배당 정보 수집 및 웹페이지 반영"
+git commit -m "updated_at 삭제"
 git push -f

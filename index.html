@@ -50,7 +50,7 @@
       .then(data => {
         // (1) updated_at 키는 빼고 종목 데이터만 뽑아냅니다.
         const stockEntries = Object.entries(data)
-          .filter(([key, _]) => key !== 'updated_at');
+          .filter(([key]) => key !== 'updated_at');
 
         // (2) 그걸로 tableData 구성
         tableData = stockEntries.map(([name, info]) => ({
@@ -70,8 +70,14 @@
 
         // (4) footer 업데이트 시각 표시
         const updatedElem = document.getElementById('last-updated');
-        const updatedAt = new Date(data.updated_at);
-        updatedElem.textContent = `마지막 업데이트: ${updatedAt.toLocaleString('ko-KR')}`;
+        // (microsecond 제거를 안 했다면 여기서 strip 해도 됩니다)
+        let ts = data.updated_at.replace(/\.\d+/, ''); 
+        const updatedAt = new Date(ts);
+        if (!isNaN(updatedAt)) {
+          updatedElem.textContent = `마지막 업데이트: ${updatedAt.toLocaleString('ko-KR')}`;
+        } else {
+          updatedElem.textContent = '마지막 업데이트: 알 수 없음';
+        }
       })
       .catch(err => {
         // 실패 처리
