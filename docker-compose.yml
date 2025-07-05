@@ -1,0 +1,10 @@
+# 파일명: docker-compose.yml
+services:
+  web:
+    image: nginx:alpine         # 가벼운 nginx
+    # ── 외부 4000번 포트 → 컨테이너 80번 포트 매핑 ──
+    ports:
+      - "4000:80"
+    # ── 현재 디렉터리(HTML/JS/CSS 등)를 컨테이너 웹루트로 마운트 ──
+    volumes:
+      - ./:/usr/share/nginx/html:ro
