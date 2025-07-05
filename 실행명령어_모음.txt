@@ -3,7 +3,14 @@ python scripts/fetch_dividends.py
 echo "✅ 완료!"
 
 
-
+## 강제 푸쉬 하기 
 git add .
 git commit -m "updated_at 삭제"
 git push -f
+
+
+## docker에 올리기
+docker compose up
+
+
+
