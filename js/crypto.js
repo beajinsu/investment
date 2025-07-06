@@ -13,22 +13,25 @@
 
   async function loadCrypto() {
     try {
-      // 1) 글로벌 가격 + 24h 변동 (CoinGecko)
+      // 1) 글로벌 가격 + 24h 변동 (CoinGecko) via proxy
       const ids = COINS.map(c => c.id).join(',');
-      const geoUrl =
+      const geoRawUrl =
         `https://api.coingecko.com/api/v3/simple/price?ids=${ids}` +
         `&vs_currencies=krw&include_24hr_change=true`;
-      const geoRes = await fetch(geoUrl);
+      const geoProxyUrl = 'https://thingproxy.freeboard.io/fetch/' + geoRawUrl;
+      const geoRes = await fetch(geoProxyUrl);
+      if (!geoRes.ok) throw new Error(`CoinGecko proxy error ${geoRes.status}`);
       const geoData = await geoRes.json();
 
-      // 2) 업비트 시세 (KRW) - ThingProxy CORS 프록시 사용
+      // 2) 업비트 시세 (KRW) via proxy
       const markets = COINS.map(c => c.market).join(',');
-      const upbitUrl = `https://api.upbit.com/v1/ticker?markets=${markets}`;
-      const proxyUrl = 'https://thingproxy.freeboard.io/fetch/' + upbitUrl;
-      const upRes = await fetch(proxyUrl);
+      const upbitRawUrl = `https://api.upbit.com/v1/ticker?markets=${markets}`;
+      const upbitProxyUrl = 'https://thingproxy.freeboard.io/fetch/' + upbitRawUrl;
+      const upRes = await fetch(upbitProxyUrl);
       if (!upRes.ok) throw new Error(`Upbit proxy error ${upRes.status}`);
       const upData = await upRes.json();
 
+      // 3) 테이블 렌더링
       cryptoTbody.innerHTML = '';
       COINS.forEach((coin, i) => {
         const globalPrice = geoData[coin.id].krw;
