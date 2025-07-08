@@ -68,3 +68,24 @@
       th.classList.add(dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
       renderTable(tableData);
     }
+
+    // ===== 컬럼 토글 기능 =====
+const toggles = document.querySelectorAll('#column-toggles input[type=checkbox]');
+toggles.forEach(chk => {
+  chk.addEventListener('change', () => {
+    const key = chk.dataset.key;
+    // 1) 해당 key를 가진 th의 순번(index) 찾기
+    const allTh = Array.from(document.querySelectorAll('table thead th'));
+    const idx = allTh.findIndex(th => th.dataset.key === key);
+    if (idx === -1) return;
+
+    // 2) 그 nth-child(idx+1)의 th/td를 토글
+    const display = chk.checked ? '' : 'none';
+    // 헤더
+    allTh[idx].style.display = display;
+    // 바디 셀
+    document.querySelectorAll(`table tbody tr`).forEach(tr => {
+      tr.children[idx].style.display = display;
+    });
+  });
+});

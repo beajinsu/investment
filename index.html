@@ -61,13 +61,21 @@
       <section id="dividends" class="tab-panel active">
         <h1>📊 실시간 배당수익률</h1>
         <p>※ 매시간 GitHub Actions를 통해 업데이트됩니다. (<code>data/dividends.json</code> 기반)</p>
+              <!-- 컬럼 토글 UI -->
+        <div id="column-toggles" style="margin-bottom: 10px;">
+          <label><input type="checkbox" data-key="price" checked> 현재가</label>
+          <label><input type="checkbox" data-key="dividend_rate" checked> 최근 1년 배당금</label>
+          <label><input type="checkbox" data-key="dividend_yield" checked> 배당수익률 (API)</label>
+          <label><input type="checkbox" data-key="real_time_yield" checked> 실시간 배당수익</label>
+          <label><input type="checkbox" data-key="price_change_percent" checked> 1일 수익률</label>
+        </div>       
         <table>
           <thead>
             <tr>
               <th data-key="name">종목명</th>
               <th data-key="price">현재가</th>
               <th data-key="dividend_rate">최근 1년 배당금</th>
-              <th data-key="dividend_yield">배당수익률</th>
+              <th data-key="dividend_yield">배당수익률(API)</th>
               <th data-key="real_time_yield">실시간 배당수익률</th>
               <th data-key="price_change_percent">1일 수익률</th>
             </tr>
@@ -127,6 +135,26 @@
 
   <!-- 배당수익률 데이터 로드 스크립트 별개 파일에서 관리 --> 
   <script src="js/dividends.js"></script>
+
+  <!-- 4) 컬럼 토글 스크립트 -->
+  <script>
+    const toggles = document.querySelectorAll('#column-toggles input[type="checkbox"]');
+    toggles.forEach(chk => {
+      chk.addEventListener('change', () => {
+        const key = chk.dataset.key;
+        const allTh = Array.from(document.querySelectorAll('table thead th'));
+        const idx = allTh.findIndex(th => th.dataset.key === key);
+        if (idx === -1) return;
+        const display = chk.checked ? '' : 'none';
+        allTh[idx].style.display = display;
+        document.querySelectorAll('table tbody tr').forEach(tr => {
+          tr.children[idx].style.display = display;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
 
   <!-- 코인 시세 로직 불러오기 -->
   <script src="js/crypto.js"></script>
