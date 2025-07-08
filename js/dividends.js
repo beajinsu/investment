@@ -43,9 +43,9 @@
         tr.innerHTML = `
           <td>${row.name}</td>
           <td>${row.raw.price != null ? row.raw.price.toLocaleString() : 'N/A'}</td>
-          <td>${row.dividend_yield ? row.dividend_yield.toFixed(2) + '%' : 'N/A'}</td>
           <td>${row.raw.dividend_rate != null ? row.raw.dividend_rate.toLocaleString() : 'N/A'}</td>
-          <td>${row.real_time_yield?row.real_time_yield.toFixed(2)+'%':'N/A'}</td>
+          <td>${row.dividend_yield ? row.dividend_yield.toFixed(2) + '%' : 'N/A'}</td>
+          <td>${row.real_time_yield ? row.real_time_yield.toFixed(2) + '%' : 'N/A'}</td>
           <td>${row.raw.price_change_percent ?? 'N/A'}</td>
         `;
         frag.appendChild(tr);
