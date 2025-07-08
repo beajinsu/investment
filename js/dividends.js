@@ -1,7 +1,7 @@
     const tbody = document.getElementById('dividend-table');
     const headers = document.querySelectorAll('th[data-key]');
     let tableData = [];
-    const sortDirections = { name: 'asc', price: 'asc', dividend_yield: 'desc', dividend_rate: 'asc', price_change_percent: 'asc' };
+    const sortDirections = { name: 'asc', price: 'asc', dividend_yield: 'desc', dividend_rate: 'asc', real_time_yield: 'asc', price_change_percent: 'asc' };
 
     headers.forEach(th => th.addEventListener('click', () => sortTable(th)));
 
@@ -14,12 +14,13 @@
           price: info.price,
           dividend_yield: parseFloat(info.dividend_yield) || 0,
           dividend_rate: info.dividend_rate,
+          real_time_yield: parseFloat(info.real_time_yield) || 0,
           price_change_percent: parseFloat(info.price_change_percent) || 0,
           raw: info
         }));
-        tableData.sort((a, b) => b.dividend_yield - a.dividend_yield);
+        tableData.sort((a, b) => b.real_time_yield - a.real_time_yield);
         headers.forEach(th => th.classList.remove('sorted-asc', 'sorted-desc'));
-        document.querySelector('th[data-key="dividend_yield"]').classList.add('sorted-desc');
+        document.querySelector('th[data-key="real_time_yield"]').classList.add('sorted-desc');
         renderTable(tableData);
 
         // 업데이트 시각 표시
@@ -44,6 +45,7 @@
           <td>${row.raw.price != null ? row.raw.price.toLocaleString() : 'N/A'}</td>
           <td>${row.dividend_yield ? row.dividend_yield.toFixed(2) + '%' : 'N/A'}</td>
           <td>${row.raw.dividend_rate != null ? row.raw.dividend_rate.toLocaleString() : 'N/A'}</td>
+          <td>${row.real_time_yield?row.real_time_yield.toFixed(2)+'%':'N/A'}</td>
           <td>${row.raw.price_change_percent ?? 'N/A'}</td>
         `;
         frag.appendChild(tr);

@@ -1,65 +1,82 @@
 // js/crypto.js
-// 실시간 코인 시세: CoinGecko 글로벌가 + Upbit KRW가 + 김치프리미엄
+// 빗썸(Bithumb) vs 바이낸스(Binance) 가격 비교 + 김치 프리미엄
 
 (() => {
-  const cryptoTbody = document.getElementById('crypto-table-body');
-  const lastUpdatedElem = document.getElementById('last-updated-crypto');
+  const tbody = document.getElementById('crypto-table-body');
+  const lastUpdated = document.getElementById('last-updated-crypto');
 
+  // 비교할 코인 설정
   const COINS = [
-    { id: 'bitcoin',  name: '비트코인',  market: 'KRW-BTC' },
-    { id: 'ethereum', name: '이더리움',  market: 'KRW-ETH' },
-    { id: 'ripple',   name: '리플',      market: 'KRW-XRP' }
+    { name: '비트코인',   binSymbol: 'BTCUSDT', bithumbPair: 'BTC_KRW' },
+    { name: '이더리움',   binSymbol: 'ETHUSDT', bithumbPair: 'ETH_KRW' },
+    { name: '리플',       binSymbol: 'XRPUSDT', bithumbPair: 'XRP_KRW' }
   ];
+
+  // CORS 프록시
+  const PROXY = 'https://thingproxy.freeboard.io/fetch/';
 
   async function loadCrypto() {
     try {
-      // 1) 글로벌 가격 + 24h 변동 (CoinGecko) via proxy
-      const ids = COINS.map(c => c.id).join(',');
-      const geoRawUrl =
-        `https://api.coingecko.com/api/v3/simple/price?ids=${ids}` +
-        `&vs_currencies=krw&include_24hr_change=true`;
-      const geoProxyUrl = 'https://thingproxy.freeboard.io/fetch/' + geoRawUrl;
-      const geoRes = await fetch(geoProxyUrl);
-      if (!geoRes.ok) throw new Error(`CoinGecko proxy error ${geoRes.status}`);
-      const geoData = await geoRes.json();
+      // 1) USDT → KRW 환율 (CoinGecko, 프록시 우회)
+      const rateUrl = 
+        'https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=krw';
+      const rateRes = await fetch(PROXY + rateUrl);
+      if (!rateRes.ok) throw new Error(`환율 호출 실패: ${rateRes.status}`);
+      const rateData = await rateRes.json();
+      const usdtToKrw = rateData.tether.krw;
 
-      // 2) 업비트 시세 (KRW) via proxy
-      const markets = COINS.map(c => c.market).join(',');
-      const upbitRawUrl = `https://api.upbit.com/v1/ticker?markets=${markets}`;
-      const upbitProxyUrl = 'https://thingproxy.freeboard.io/fetch/' + upbitRawUrl;
-      const upRes = await fetch(upbitProxyUrl);
-      if (!upRes.ok) throw new Error(`Upbit proxy error ${upRes.status}`);
-      const upData = await upRes.json();
+      // 2) Binance 가격(USDT) 직접 호출
+      const binPromises = COINS.map(c =>
+        fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${c.binSymbol}`)
+          .then(res => {
+            if (!res.ok) throw new Error(`Binance ${c.name} 호출 실패`);
+            return res.json();
+          })
+      );
 
-      // 3) 테이블 렌더링
-      cryptoTbody.innerHTML = '';
-      COINS.forEach((coin, i) => {
-        const globalPrice = geoData[coin.id].krw;
-        const change24    = geoData[coin.id].krw_24h_change;
-        const upbitPrice  = upData[i].trade_price;
-        const kimchi = ((upbitPrice - globalPrice) / globalPrice) * 100;
+      // 3) Bithumb 가격(KRW) 프록시 우회 호출
+      const bithPromises = COINS.map(c => {
+        const url = `https://api.bithumb.com/public/ticker/${c.bithumbPair}`;
+        return fetch(PROXY + encodeURIComponent(url))
+          .then(res => {
+            if (!res.ok) throw new Error(`Bithumb ${c.name} 호출 실패`);
+            return res.json();
+          });
+      });
+
+      const binData   = await Promise.all(binPromises);
+      const bithData  = await Promise.all(bithPromises);
+
+      // 4) 테이블 렌더링
+      tbody.innerHTML = '';
+      COINS.forEach((c, i) => {
+        const priceUsdt      = parseFloat(binData[i].price);
+        const priceBinKrw    = priceUsdt * usdtToKrw;
+        const priceBithumb   = parseFloat(bithData[i].data.closing_price);
+        const kimchiPremium  = ((priceBithumb - priceBinKrw) / priceBinKrw) * 100;
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${coin.name}</td>
-          <td>${globalPrice.toLocaleString()}원</td>
-          <td>${upbitPrice.toLocaleString()}원</td>
-          <td>${kimchi.toFixed(2)}%</td>
-          <td>${change24 != null ? change24.toFixed(2) + '%' : 'N/A'}</td>
+          <td>${c.name}</td>
+          <td>${priceBinKrw.toLocaleString(undefined, { maximumFractionDigits: 0 })}원</td>
+          <td>${priceBithumb.toLocaleString()}원</td>
+          <td>${kimchiPremium.toFixed(2)}%</td>
         `;
-        cryptoTbody.appendChild(tr);
+        tbody.appendChild(tr);
       });
 
-      // 업데이트 시각 표시
-      if (lastUpdatedElem) {
-        lastUpdatedElem.textContent = `마지막 업데이트: ${new Date().toLocaleTimeString('ko-KR')}`;
+      // 5) 최종 업데이트 시각
+      if (lastUpdated) {
+        lastUpdated.textContent = `마지막 업데이트: ${new Date().toLocaleTimeString('ko-KR')}`;
       }
+
     } catch (e) {
       console.error('Crypto load error:', e);
-      cryptoTbody.innerHTML = '<tr><td colspan="5">코인 시세 로드 실패</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="4">코인 시세 로드 실패</td></tr>';
     }
   }
 
+  // 초기 로드 + 1분마다 갱신
   loadCrypto();
   setInterval(loadCrypto, 60 * 1000);
 })();

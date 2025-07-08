@@ -45,7 +45,13 @@ for name, symbol in STOCKS.items():
             "price": int(price) if symbol.endswith(".KS") and price else price,
             "dividend_yield": f"{dy:.2f}%" if dy else "N/A",
             "dividend_rate": int(dr) if symbol.endswith(".KS") and isinstance(dr, (int, float)) else dr,
-            "price_change_percent": change_str
+            "price_change_percent": change_str,
+            # ▶ 실시간 배당수익 = (연간 배당금 ÷ 현재가) × 100
+            "real_time_yield": (
+                f"{(dr/price*100):.2f}%"
+                if price and isinstance(dr, (int, float)) and price != 0
+                else "N/A"
+            )
         }
     except Exception as e:
         results[name] = {"error": str(e)}
