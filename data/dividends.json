@@ -1,13 +1,13 @@
 {
   "SCHD": {
-    "price": 27.32,
+    "price": 27.29,
     "dividend_yield": "3.97%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "TLT": {
-    "price": 86.03,
+    "price": 86.93,
     "dividend_yield": "4.39%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
@@ -125,5 +125,5 @@
     "price_change_percent": "0.99%",
     "real_time_yield": "2.38%"
   },
-  "updated_at": "2025-07-10T11:19:00+00:00"
+  "updated_at": "2025-07-10T23:20:44+00:00"
 }
