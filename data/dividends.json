@@ -125,5 +125,12 @@
     "price_change_percent": "1.92%",
     "real_time_yield": "2.28%"
   },
-  "updated_at": "2025-07-15T09:30:32+00:00"
+  "삼성전자우": {
+    "price": 53000,
+    "dividend_yield": "2.93%",
+    "dividend_rate": 1451,
+    "price_change_percent": "1.73%",
+    "real_time_yield": "2.74%"
+  },
+  "updated_at": "2025-07-15T10:24:13+00:00"
 }
