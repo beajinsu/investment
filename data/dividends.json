@@ -14,53 +14,53 @@
     "real_time_yield": "N/A"
   },
   "하나금융지주": {
-    "price": 95400,
+    "price": 96000,
     "dividend_yield": "4.53%",
     "dividend_rate": 3906,
-    "price_change_percent": "-0.21%",
-    "real_time_yield": "4.09%"
+    "price_change_percent": "0.42%",
+    "real_time_yield": "4.07%"
   },
   "우리금융지주": {
-    "price": 26950,
+    "price": 26700,
     "dividend_yield": "5.43%",
     "dividend_rate": 1220,
-    "price_change_percent": "0.94%",
-    "real_time_yield": "4.53%"
+    "price_change_percent": "0.00%",
+    "real_time_yield": "4.57%"
   },
   "삼성카드": {
-    "price": 58100,
+    "price": 57400,
     "dividend_yield": "5.67%",
     "dividend_rate": 2800,
-    "price_change_percent": "-0.51%",
-    "real_time_yield": "4.82%"
+    "price_change_percent": "-1.71%",
+    "real_time_yield": "4.88%"
   },
   "현대차2우B": {
-    "price": 164800,
+    "price": 163600,
     "dividend_yield": "7.93%",
     "dividend_rate": 12600,
-    "price_change_percent": "-1.44%",
-    "real_time_yield": "7.65%"
+    "price_change_percent": "-2.15%",
+    "real_time_yield": "7.70%"
   },
   "SK텔레콤": {
-    "price": 56100,
+    "price": 56200,
     "dividend_yield": "6.24%",
     "dividend_rate": 3540,
-    "price_change_percent": "-0.71%",
-    "real_time_yield": "6.31%"
+    "price_change_percent": "-0.53%",
+    "real_time_yield": "6.30%"
   },
   "삼성화재우": {
-    "price": 368000,
+    "price": 366000,
     "dividend_yield": "5.87%",
     "dividend_rate": 19005,
-    "price_change_percent": "-2.52%",
-    "real_time_yield": "5.16%"
+    "price_change_percent": "-3.05%",
+    "real_time_yield": "5.19%"
   },
   "BNK 금융지주": {
-    "price": 15780,
+    "price": 15900,
     "dividend_yield": "6.18%",
     "dividend_rate": 770,
-    "price_change_percent": "-0.50%",
-    "real_time_yield": "4.88%"
+    "price_change_percent": "0.25%",
+    "real_time_yield": "4.84%"
   },
   "NH투자증권우": {
     "price": 20000,
@@ -70,60 +70,60 @@
     "real_time_yield": "5.00%"
   },
   "삼성생명": {
-    "price": 138800,
+    "price": 138500,
     "dividend_yield": "3.53%",
     "dividend_rate": 4500,
-    "price_change_percent": "-1.35%",
-    "real_time_yield": "3.24%"
+    "price_change_percent": "-1.56%",
+    "real_time_yield": "3.25%"
   },
   "LG유플러스": {
-    "price": 15110,
+    "price": 14970,
     "dividend_yield": "4.55%",
     "dividend_rate": 650,
-    "price_change_percent": "0.40%",
-    "real_time_yield": "4.30%"
+    "price_change_percent": "-0.53%",
+    "real_time_yield": "4.34%"
   },
   "HD현대": {
-    "price": 139700,
+    "price": 139600,
     "dividend_yield": "2.78%",
     "dividend_rate": 3600,
-    "price_change_percent": "1.01%",
+    "price_change_percent": "0.94%",
     "real_time_yield": "2.58%"
   },
   "KT": {
-    "price": 57900,
+    "price": 58100,
     "dividend_yield": "4.31%",
     "dividend_rate": 2400,
-    "price_change_percent": "0.17%",
-    "real_time_yield": "4.15%"
+    "price_change_percent": "0.52%",
+    "real_time_yield": "4.13%"
   },
   "JB금융지주": {
-    "price": 24550,
+    "price": 24800,
     "dividend_yield": "5.11%",
     "dividend_rate": 1050,
-    "price_change_percent": "-2.96%",
-    "real_time_yield": "4.28%"
+    "price_change_percent": "-1.98%",
+    "real_time_yield": "4.23%"
   },
   "KT&G": {
-    "price": 140600,
+    "price": 139300,
     "dividend_yield": "4.23%",
     "dividend_rate": 5400,
-    "price_change_percent": "-0.07%",
-    "real_time_yield": "3.84%"
+    "price_change_percent": "-1.00%",
+    "real_time_yield": "3.88%"
   },
   "삼성증권": {
-    "price": 80400,
+    "price": 79500,
     "dividend_yield": "4.76%",
     "dividend_rate": 3500,
-    "price_change_percent": "-0.25%",
-    "real_time_yield": "4.35%"
+    "price_change_percent": "-1.36%",
+    "real_time_yield": "4.40%"
   },
   "삼성전자": {
-    "price": 62800,
+    "price": 63100,
     "dividend_yield": "2.42%",
     "dividend_rate": 1450,
-    "price_change_percent": "0.48%",
-    "real_time_yield": "2.31%"
+    "price_change_percent": "0.96%",
+    "real_time_yield": "2.30%"
   },
-  "updated_at": "2025-07-15T01:55:58+00:00"
+  "updated_at": "2025-07-15T03:39:53+00:00"
 }
