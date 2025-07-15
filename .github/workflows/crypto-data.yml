@@ -19,8 +19,10 @@ jobs:
       with:
         node-version: '20'
         
-    - name: Setup ESM module
-      run: npm pkg set type=module
+    - name: Initialize package.json and set ESM
+      run: |
+        npm init -y
+        npm pkg set type=module
         
     - name: Fetch crypto data
       run: |
