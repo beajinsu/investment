@@ -1,91 +1,142 @@
-    const tbody = document.getElementById('dividend-table');
-    const headers = document.querySelectorAll('th[data-key]');
-    let tableData = [];
-    const sortDirections = { name: 'asc', price: 'asc', dividend_yield: 'desc', dividend_rate: 'asc', real_time_yield: 'asc', price_change_percent: 'asc' };
+// js/dividends.js - 배당수익률 관련 기능
 
-    headers.forEach(th => th.addEventListener('click', () => sortTable(th)));
-
-    fetch('data/dividends.json')
-      .then(res => res.json())
-      .then(data => {
-        const stockEntries = Object.entries(data).filter(([key]) => key !== 'updated_at');
-        tableData = stockEntries.map(([name, info]) => ({
-          name,
-          price: info.price,
-          dividend_yield: parseFloat(info.dividend_yield) || 0,
-          dividend_rate: info.dividend_rate,
-          real_time_yield: parseFloat(info.real_time_yield) || 0,
-          price_change_percent: parseFloat(info.price_change_percent) || 0,
-          raw: info
-        }));
-        tableData.sort((a, b) => b.real_time_yield - a.real_time_yield);
-        headers.forEach(th => th.classList.remove('sorted-asc', 'sorted-desc'));
-        document.querySelector('th[data-key="real_time_yield"]').classList.add('sorted-desc');
-        renderTable(tableData);
-
-        // 업데이트 시각 표시
-        const updatedElem = document.getElementById('last-updated');
-        const ts = data.updated_at.replace(/\.\d+/, '');
-        const updatedAt = new Date(ts);
-        updatedElem.textContent = isNaN(updatedAt)
-          ? '마지막 업데이트: 알 수 없음'
-          : `마지막 업데이트: ${updatedAt.toLocaleString('ko-KR')}`;
-      })
-      .catch(err => {
-        tbody.innerHTML = "<tr><td colspan='5'>데이터 로드 실패</td></tr>";
-        document.getElementById('last-updated').textContent = '업데이트 실패';
-      });
-
-    function renderTable(data) {
-      const frag = document.createDocumentFragment();
-      data.forEach(row => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${row.name}</td>
-          <td>${row.raw.price != null ? row.raw.price.toLocaleString() : 'N/A'}</td>
-          <td>${row.raw.dividend_rate != null ? row.raw.dividend_rate.toLocaleString() : 'N/A'}</td>
-          <td>${row.dividend_yield ? row.dividend_yield.toFixed(2) + '%' : 'N/A'}</td>
-          <td>${row.real_time_yield ? row.real_time_yield.toFixed(2) + '%' : 'N/A'}</td>
-          <td>${row.raw.price_change_percent ?? 'N/A'}</td>
-        `;
-        frag.appendChild(tr);
-      });
-      tbody.innerHTML = '';
-      tbody.appendChild(frag);
-    }
-
-    function sortTable(th) {
-      const key = th.dataset.key;
-      const dir = sortDirections[key];
-      tableData.sort((a, b) => {
-        if (key === 'name') return dir === 'asc'
-          ? a.name.localeCompare(b.name)
-          : b.name.localeCompare(a.name);
-        return dir === 'asc' ? a[key] - b[key] : b[key] - a[key];
-      });
-      sortDirections[key] = dir === 'asc' ? 'desc' : 'asc';
-      headers.forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
-      th.classList.add(dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
-      renderTable(tableData);
-    }
-
-    // ===== 컬럼 토글 기능 =====
-const toggles = document.querySelectorAll('#column-toggles input[type=checkbox]');
-toggles.forEach(chk => {
-  chk.addEventListener('change', () => {
-    const key = chk.dataset.key;
-    // 1) 해당 key를 가진 th의 순번(index) 찾기
-    const allTh = Array.from(document.querySelectorAll('table thead th'));
-    const idx = allTh.findIndex(th => th.dataset.key === key);
-    if (idx === -1) return;
-
-    // 2) 그 nth-child(idx+1)의 th/td를 토글
-    const display = chk.checked ? '' : 'none';
-    // 헤더
-    allTh[idx].style.display = display;
-    // 바디 셀
-    document.querySelectorAll(`table tbody tr`).forEach(tr => {
-      tr.children[idx].style.display = display;
+class DividendManager {
+  constructor() {
+    this.tbody = document.getElementById('dividend-table');
+    this.updatedElem = document.getElementById('dividend-last-updated');
+    this.tableController = null;
+    this.sortDirections = { 
+      name: 'asc', 
+      price: 'asc', 
+      dividend_yield: 'desc', 
+      dividend_rate: 'asc', 
+      real_time_yield: 'desc', 
+      price_change_percent: 'asc' 
+    };
+    
+    this.init();
+  }
+  
+  init() {
+    // 컬럼 토글 초기화
+    initializeColumnToggle('dividend-column-toggles', 'dividend-table-wrapper');
+    
+    // 정렬 가능한 테이블 초기화
+    this.tableController = createSortableTable('dividend-table-wrapper', this.sortDirections);
+    
+    // 테이블 정렬 이벤트 리스너
+    const table = document.getElementById('dividend-table-wrapper');
+    table.addEventListener('tableSorted', (e) => {
+      this.renderTable(e.detail.data);
     });
-  });
+    
+    // 데이터 로드
+    this.loadData();
+  }
+  
+  async loadData() {
+    try {
+      const response = await fetch('data/dividends.json');
+      if (!response.ok) throw new Error('네트워크 오류');
+      
+      const data = await response.json();
+      this.processData(data);
+    } catch (error) {
+      console.error('배당 데이터 로드 실패:', error);
+      this.showError('데이터 로드 실패');
+    }
+  }
+  
+  processData(data) {
+    const stockEntries = Object.entries(data).filter(([key]) => key !== 'updated_at');
+    
+    const tableData = stockEntries.map(([name, info]) => ({
+      name,
+      price: info.price,
+      dividend_yield: parseFloat(info.dividend_yield) || 0,
+      dividend_rate: info.dividend_rate,
+      real_time_yield: parseFloat(info.real_time_yield) || 0,
+      price_change_percent: parseFloat(info.price_change_percent) || 0,
+      raw: info
+    }));
+    
+    // 테이블 컨트롤러에 데이터 설정
+    this.tableController.setData(tableData);
+    
+    // 기본 정렬 (실시간 배당수익률 기준 내림차순)
+    const sortedData = this.tableController.sortBy('real_time_yield');
+    this.renderTable(sortedData);
+    
+    // 업데이트 시간 표시
+    this.updateTimestamp(data.updated_at);
+  }
+  
+  renderTable(data) {
+    if (!this.tbody) return;
+    
+    const fragment = document.createDocumentFragment();
+    
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${row.name}</td>
+        <td>${this.formatPrice(row.raw.price)}</td>
+        <td>${this.formatPrice(row.raw.dividend_rate)}</td>
+        <td>${this.formatPercentage(row.dividend_yield)}</td>
+        <td>${this.formatPercentage(row.real_time_yield)}</td>
+        <td>${this.formatChangePercentage(row.raw.price_change_percent)}</td>
+      `;
+      fragment.appendChild(tr);
+    });
+    
+    this.tbody.innerHTML = '';
+    this.tbody.appendChild(fragment);
+  }
+  
+  formatPrice(value) {
+    return value != null ? value.toLocaleString() : 'N/A';
+  }
+  
+  formatPercentage(value) {
+    return value ? value.toFixed(2) + '%' : 'N/A';
+  }
+  
+  formatChangePercentage(value) {
+    if (value == null) return 'N/A';
+    
+    const num = parseFloat(value);
+    const color = num > 0 ? 'red' : num < 0 ? 'blue' : 'black';
+    const sign = num > 0 ? '+' : '';
+    
+    return `<span style="color: ${color};">${sign}${num.toFixed(2)}%</span>`;
+  }
+  
+  updateTimestamp(timestamp) {
+    if (!this.updatedElem) return;
+    
+    try {
+      const ts = timestamp.replace(/\.\d+/, '');
+      const updatedAt = new Date(ts);
+      
+      this.updatedElem.textContent = isNaN(updatedAt)
+        ? '마지막 업데이트: 알 수 없음'
+        : `마지막 업데이트: ${updatedAt.toLocaleString('ko-KR')}`;
+    } catch (error) {
+      this.updatedElem.textContent = '업데이트 시간 파싱 실패';
+    }
+  }
+  
+  showError(message) {
+    if (this.tbody) {
+      this.tbody.innerHTML = `<tr><td colspan="6">${message}</td></tr>`;
+    }
+    if (this.updatedElem) {
+      this.updatedElem.textContent = '업데이트 실패';
+    }
+  }
+}
+
+// 페이지 로드 시 배당 매니저 초기화
+document.addEventListener('DOMContentLoaded', () => {
+  new DividendManager();
 });
