@@ -1,4 +1,4 @@
-// js/crypto.js - 코인 시세 관련 기능 (실제 API 연동)
+// js/crypto.js - CORS 프록시를 사용한 코인 시세 관리
 
 class CryptoManager {
   constructor() {
@@ -14,7 +14,8 @@ class CryptoManager {
       change_24h: 'desc' 
     };
     
-    // API 설정
+    // CORS 프록시 사용
+    this.CORS_PROXY = 'https://api.allorigins.win/raw?url=';
     this.COINGECKO_API = 'https://api.coingecko.com/api/v3';
     this.UPBIT_API = 'https://api.upbit.com/v1';
     this.EXCHANGE_RATE_API = 'https://api.exchangerate-api.com/v4/latest/USD';
@@ -38,58 +39,88 @@ class CryptoManager {
     // 초기 데이터 로드
     this.loadData();
     
-    // 1분마다 자동 갱신
+    // 2분마다 자동 갱신 (API 부하 고려)
     this.updateInterval = setInterval(() => {
       this.loadData();
-    }, 60000);
+    }, 120000);
   }
   
   async loadData() {
     try {
-      // 실제 API 호출
-      const [globalData, upbitData, exchangeRate] = await Promise.all([
-        this.fetchGlobalPrices(),
-        this.fetchUpbitPrices(),
-        this.fetchExchangeRate()
-      ]);
+      // 순차적으로 API 호출 (프록시 서버 부하 고려)
+      console.log('글로벌 시세 조회 중...');
+      const globalData = await this.fetchGlobalPrices();
+      
+      console.log('업비트 시세 조회 중...');
+      const upbitData = await this.fetchUpbitPrices();
+      
+      console.log('환율 정보 조회 중...');
+      const exchangeRate = await this.fetchExchangeRate();
       
       this.processRealData(globalData, upbitData, exchangeRate);
     } catch (error) {
       console.error('코인 데이터 로드 실패:', error);
-      // API 실패 시 에러 메시지만 표시
       this.showAPIError(error.message);
     }
   }
   
   async fetchGlobalPrices() {
     const coins = ['bitcoin', 'ethereum', 'ripple', 'cardano', 'solana'];
-    const response = await fetch(
-      `${this.COINGECKO_API}/simple/price?ids=${coins.join(',')}&vs_currencies=usd&include_24hr_change=true`
-    );
-    if (!response.ok) {
-      throw new Error(`CoinGecko API 오류: ${response.status}`);
+    const url = `${this.COINGECKO_API}/simple/price?ids=${coins.join(',')}&vs_currencies=usd&include_24hr_change=true`;
+    
+    try {
+      const response = await fetch(`${this.CORS_PROXY}${encodeURIComponent(url)}`);
+      if (!response.ok) {
+        throw new Error(`CoinGecko API 오류: ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      // 프록시 실패 시 직접 시도
+      const directResponse = await fetch(url);
+      if (!directResponse.ok) {
+        throw new Error(`CoinGecko API 오류: ${directResponse.status}`);
+      }
+      return await directResponse.json();
     }
-    return await response.json();
   }
   
   async fetchUpbitPrices() {
     const markets = ['KRW-BTC', 'KRW-ETH', 'KRW-XRP', 'KRW-ADA', 'KRW-SOL'];
-    const response = await fetch(
-      `${this.UPBIT_API}/ticker?markets=${markets.join(',')}`
-    );
-    if (!response.ok) {
-      throw new Error(`Upbit API 오류: ${response.status}`);
+    const url = `${this.UPBIT_API}/ticker?markets=${markets.join(',')}`;
+    
+    try {
+      const response = await fetch(`${this.CORS_PROXY}${encodeURIComponent(url)}`);
+      if (!response.ok) {
+        throw new Error(`Upbit API 오류: ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      // 프록시 실패 시 직접 시도
+      const directResponse = await fetch(url);
+      if (!directResponse.ok) {
+        throw new Error(`Upbit API 오류: ${directResponse.status}`);
+      }
+      return await directResponse.json();
     }
-    return await response.json();
   }
   
   async fetchExchangeRate() {
-    const response = await fetch(this.EXCHANGE_RATE_API);
-    if (!response.ok) {
-      throw new Error(`환율 API 오류: ${response.status}`);
+    try {
+      const response = await fetch(`${this.CORS_PROXY}${encodeURIComponent(this.EXCHANGE_RATE_API)}`);
+      if (!response.ok) {
+        throw new Error(`환율 API 오류: ${response.status}`);
+      }
+      const data = await response.json();
+      return data.rates.KRW;
+    } catch (error) {
+      // 프록시 실패 시 직접 시도
+      const directResponse = await fetch(this.EXCHANGE_RATE_API);
+      if (!directResponse.ok) {
+        throw new Error(`환율 API 오류: ${directResponse.status}`);
+      }
+      const data = await directResponse.json();
+      return data.rates.KRW;
     }
-    const data = await response.json();
-    return data.rates.KRW;
   }
   
   processRealData(globalData, upbitData, exchangeRate) {
@@ -127,19 +158,6 @@ class CryptoManager {
     
     // 테이블 컨트롤러에 데이터 설정
     this.tableController.setData(tableData);
-    
-    // 기본 정렬 (김치프리미엄 기준 내림차순)
-    const sortedData = this.tableController.sortBy('kimchi_premium');
-    this.renderTable(sortedData);
-    
-    // 업데이트 시간 표시
-    this.updateTimestamp(new Date().toISOString());
-  }
-  
-  
-  processData(data) {
-    // 테이블 컨트롤러에 데이터 설정
-    this.tableController.setData(data);
     
     // 기본 정렬 (김치프리미엄 기준 내림차순)
     const sortedData = this.tableController.sortBy('kimchi_premium');
@@ -193,16 +211,17 @@ class CryptoManager {
   formatKimchiPremium(value) {
     if (value == null) return 'N/A';
     
-    const color = value > 0 ? 'red' : value < 0 ? 'blue' : 'black';
+    const color = value > 0 ? '#e74c3c' : value < 0 ? '#3498db' : '#2c3e50';
     const sign = value > 0 ? '+' : '';
+    const fontWeight = Math.abs(value) > 3 ? 'bold' : 'normal';
     
-    return `<span style="color: ${color}; font-weight: bold;">${sign}${value.toFixed(2)}%</span>`;
+    return `<span style="color: ${color}; font-weight: ${fontWeight};">${sign}${value.toFixed(2)}%</span>`;
   }
   
   formatChange24h(value) {
     if (value == null) return 'N/A';
     
-    const color = value > 0 ? 'red' : value < 0 ? 'blue' : 'black';
+    const color = value > 0 ? '#e74c3c' : value < 0 ? '#3498db' : '#2c3e50';
     const sign = value > 0 ? '+' : '';
     
     return `<span style="color: ${color};">${sign}${value.toFixed(2)}%</span>`;
@@ -228,8 +247,10 @@ class CryptoManager {
           <td colspan="5" style="text-align: center; color: #e74c3c; font-weight: bold; padding: 30px;">
             ⚠️ API 연결 실패<br>
             <small style="color: #7f8c8d; font-weight: normal;">
-              CoinGecko 또는 Upbit API에 연결할 수 없습니다.<br>
+              코인 시세 API에 연결할 수 없습니다.<br>
               ${errorMessage ? `오류: ${errorMessage}` : ''}
+              <br><br>
+              <strong>CORS 정책으로 인한 제한일 수 있습니다.</strong>
             </small><br>
             <button onclick="cryptoManager.retryAPI()" style="margin-top: 15px; padding: 8px 16px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer;">
               🔄 다시 시도
@@ -248,7 +269,8 @@ class CryptoManager {
       this.tbody.innerHTML = `
         <tr>
           <td colspan="5" style="text-align: center; padding: 30px;">
-            🔄 API 재연결 시도 중...
+            🔄 API 재연결 시도 중...<br>
+            <small style="color: #7f8c8d;">프록시 서버를 통해 연결을 시도합니다.</small>
           </td>
         </tr>
       `;
@@ -257,15 +279,6 @@ class CryptoManager {
       this.updatedElem.textContent = '재연결 시도 중...';
     }
     this.loadData();
-  }
-  
-  showError(message) {
-    if (this.tbody) {
-      this.tbody.innerHTML = `<tr><td colspan="5">${message}</td></tr>`;
-    }
-    if (this.updatedElem) {
-      this.updatedElem.textContent = '업데이트 실패';
-    }
   }
   
   destroy() {
