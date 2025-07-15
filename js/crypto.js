@@ -4,12 +4,14 @@ class CryptoManager {
   constructor() {
     this.tbody = document.getElementById('crypto-table-body');
     this.updatedElem = document.getElementById('crypto-last-updated');
+    this.exchangeRateElem = document.getElementById('crypto-exchange-rate');
     this.tableController = null;
     this.updateInterval = null;
     this.sortDirections = { 
       coin: 'asc', 
-      global_price: 'desc', 
-      upbit_price: 'desc', 
+      global_price_usd: 'desc',
+      global_price_krw: 'desc', 
+      upbit_price: 'desc',
       kimchi_premium: 'desc', 
       change_24h: 'desc' 
     };
@@ -69,6 +71,9 @@ class CryptoManager {
     
     // 업데이트 시간 표시
     this.updateTimestamp(data.updated_at);
+    
+    // 환율 정보 표시
+    this.updateExchangeRate(data.exchange_rate);
   }
   
   renderTable(data) {
@@ -80,7 +85,8 @@ class CryptoManager {
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${row.coin}</td>
-        <td>${this.formatKRW(row.global_price)}</td>
+        <td>${this.formatUSD(row.global_price_usd)}</td>
+        <td>${this.formatKRW(row.global_price_krw)}</td>
         <td>${this.formatKRW(row.upbit_price)}</td>
         <td>${this.formatKimchiPremium(row.kimchi_premium)}</td>
         <td>${this.formatChange24h(row.change_24h)}</td>
@@ -90,6 +96,17 @@ class CryptoManager {
     
     this.tbody.innerHTML = '';
     this.tbody.appendChild(fragment);
+  }
+  
+  formatUSD(value) {
+    if (value == null) return 'N/A';
+    
+    return new Intl.NumberFormat('en-US', { 
+      style: 'currency', 
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: value < 1 ? 6 : 2
+    }).format(value);
   }
   
   formatKRW(value) {
@@ -156,11 +173,26 @@ class CryptoManager {
     }
   }
   
+  updateExchangeRate(exchangeRateInfo) {
+    if (!this.exchangeRateElem || !exchangeRateInfo) return;
+    
+    try {
+      const rate = exchangeRateInfo.usd_to_krw;
+      const source = exchangeRateInfo.source || 'Unknown';
+      const lastUpdated = new Date(exchangeRateInfo.last_updated);
+      
+      this.exchangeRateElem.textContent = 
+        `환율: 1 USD = ${rate.toLocaleString('ko-KR')} KRW (출처: ${source})`;
+    } catch (error) {
+      this.exchangeRateElem.textContent = '환율 정보 파싱 실패';
+    }
+  }
+  
   showJSONError() {
     if (this.tbody) {
       this.tbody.innerHTML = `
         <tr>
-          <td colspan="5" style="text-align: center; color: #e74c3c; font-weight: bold; padding: 30px;">
+          <td colspan="6" style="text-align: center; color: #e74c3c; font-weight: bold; padding: 30px;">
             📁 데이터 파일 없음<br>
             <small style="color: #7f8c8d; font-weight: normal;">
               <code>data/crypto.json</code> 파일이 없습니다.<br>
@@ -177,13 +209,16 @@ class CryptoManager {
     if (this.updatedElem) {
       this.updatedElem.textContent = '데이터 파일 없음';
     }
+    if (this.exchangeRateElem) {
+      this.exchangeRateElem.textContent = '환율 정보 없음';
+    }
   }
   
   retryLoad() {
     if (this.tbody) {
       this.tbody.innerHTML = `
         <tr>
-          <td colspan="5" style="text-align: center; padding: 30px;">
+          <td colspan="6" style="text-align: center; padding: 30px;">
             🔄 데이터 파일 다시 읽는 중...
           </td>
         </tr>

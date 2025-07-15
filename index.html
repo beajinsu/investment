@@ -95,29 +95,32 @@
       <!-- 코인 시세 탭 -->
       <section id="crypto" class="tab-panel">
         <h1>💰 실시간 코인 시세</h1>
-        <p>※ CoinGecko API 기반, 1분마다 자동 갱신</p>
+        <p>※ CoinGecko API 기반, 10분마다 자동 갱신</p>
         
         <!-- 코인 컬럼 토글 UI -->
         <div id="crypto-column-toggles" class="column-toggles">
-          <label><input type="checkbox" data-key="global_price" checked> 글로벌가 (KRW)</label>
+          <label><input type="checkbox" data-key="global_price_usd" checked> 글로벌가 (USD)</label>
+          <label><input type="checkbox" data-key="global_price_krw" checked> 글로벌가 (KRW)</label>
           <label><input type="checkbox" data-key="upbit_price" checked> 업비트가 (KRW)</label>
           <label><input type="checkbox" data-key="kimchi_premium" checked> 김치프리미엄 (%)</label>
-          <label><input type="checkbox" data-key="change_24h" checked> 24h 변동 (글로벌)</label>
+          <label><input type="checkbox" data-key="change_24h" checked> 24h 변동률</label>
         </div>
         
         <table id="crypto-table-wrapper">
           <thead>
             <tr>
               <th data-key="coin">코인</th>
-              <th data-key="global_price">글로벌가 (KRW)</th>
+              <th data-key="global_price_usd">글로벌가 (USD)</th>
+              <th data-key="global_price_krw">글로벌가 (KRW)</th>
               <th data-key="upbit_price">업비트가 (KRW)</th>
               <th data-key="kimchi_premium">김치프리미엄 (%)</th>
-              <th data-key="change_24h">24h 변동 (글로벌)</th>
+              <th data-key="change_24h">24h 변동률</th>
             </tr>
           </thead>
           <tbody id="crypto-table-body"></tbody>
         </table>
         <p id="crypto-last-updated" class="last-updated">마지막 업데이트: ⏳</p>
+        <p id="crypto-exchange-rate" class="last-updated">환율 정보: ⏳</p>
       </section>
 
       <!-- XX 정보 탭 -->
