@@ -56,9 +56,8 @@ class CryptoManager {
       this.processRealData(globalData, upbitData, exchangeRate);
     } catch (error) {
       console.error('코인 데이터 로드 실패:', error);
-      // API 실패 시 현실적인 더미 데이터 사용
-      const data = this.generateRealisticDummyData();
-      this.processData(data);
+      // API 실패 시 에러 메시지만 표시
+      this.showAPIError(error.message);
     }
   }
   
@@ -67,6 +66,9 @@ class CryptoManager {
     const response = await fetch(
       `${this.COINGECKO_API}/simple/price?ids=${coins.join(',')}&vs_currencies=usd&include_24hr_change=true`
     );
+    if (!response.ok) {
+      throw new Error(`CoinGecko API 오류: ${response.status}`);
+    }
     return await response.json();
   }
   
@@ -75,11 +77,17 @@ class CryptoManager {
     const response = await fetch(
       `${this.UPBIT_API}/ticker?markets=${markets.join(',')}`
     );
+    if (!response.ok) {
+      throw new Error(`Upbit API 오류: ${response.status}`);
+    }
     return await response.json();
   }
   
   async fetchExchangeRate() {
     const response = await fetch(this.EXCHANGE_RATE_API);
+    if (!response.ok) {
+      throw new Error(`환율 API 오류: ${response.status}`);
+    }
     const data = await response.json();
     return data.rates.KRW;
   }
@@ -128,66 +136,6 @@ class CryptoManager {
     this.updateTimestamp(new Date().toISOString());
   }
   
-  generateRealisticDummyData() {
-    // 실제 시세에 가까운 더미 데이터 (2024년 기준)
-    const coins = [
-      { 
-        id: 'bitcoin', 
-        name: 'Bitcoin', 
-        symbol: 'BTC',
-        basePrice: 45000000, // 4500만원 기준
-        volatility: 0.05
-      },
-      { 
-        id: 'ethereum', 
-        name: 'Ethereum', 
-        symbol: 'ETH',
-        basePrice: 3000000, // 300만원 기준
-        volatility: 0.07
-      },
-      { 
-        id: 'ripple', 
-        name: 'XRP', 
-        symbol: 'XRP',
-        basePrice: 800, // 800원 기준
-        volatility: 0.10
-      },
-      { 
-        id: 'cardano', 
-        name: 'Cardano', 
-        symbol: 'ADA',
-        basePrice: 650, // 650원 기준
-        volatility: 0.08
-      },
-      { 
-        id: 'solana', 
-        name: 'Solana', 
-        symbol: 'SOL',
-        basePrice: 120000, // 12만원 기준
-        volatility: 0.12
-      }
-    ];
-    
-    return coins.map(coin => {
-      const priceVariation = (Math.random() - 0.5) * 2 * coin.volatility;
-      const globalPrice = coin.basePrice * (1 + priceVariation);
-      const upbitPremium = (Math.random() - 0.3) * 0.1; // -3% ~ +7% 프리미엄
-      const upbitPrice = globalPrice * (1 + upbitPremium);
-      
-      return {
-        coin: `${coin.name} (${coin.symbol})`,
-        global_price: globalPrice,
-        upbit_price: upbitPrice,
-        kimchi_premium: upbitPremium * 100,
-        change_24h: (Math.random() - 0.5) * 20, // -10% ~ +10%
-        raw: {
-          id: coin.id,
-          name: coin.name,
-          symbol: coin.symbol
-        }
-      };
-    });
-  }
   
   processData(data) {
     // 테이블 컨트롤러에 데이터 설정
@@ -273,6 +221,44 @@ class CryptoManager {
     }
   }
   
+  showAPIError(errorMessage = '') {
+    if (this.tbody) {
+      this.tbody.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align: center; color: #e74c3c; font-weight: bold; padding: 30px;">
+            ⚠️ API 연결 실패<br>
+            <small style="color: #7f8c8d; font-weight: normal;">
+              CoinGecko 또는 Upbit API에 연결할 수 없습니다.<br>
+              ${errorMessage ? `오류: ${errorMessage}` : ''}
+            </small><br>
+            <button onclick="cryptoManager.retryAPI()" style="margin-top: 15px; padding: 8px 16px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer;">
+              🔄 다시 시도
+            </button>
+          </td>
+        </tr>
+      `;
+    }
+    if (this.updatedElem) {
+      this.updatedElem.textContent = '업데이트 실패 - API 연결 오류';
+    }
+  }
+  
+  retryAPI() {
+    if (this.tbody) {
+      this.tbody.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 30px;">
+            🔄 API 재연결 시도 중...
+          </td>
+        </tr>
+      `;
+    }
+    if (this.updatedElem) {
+      this.updatedElem.textContent = '재연결 시도 중...';
+    }
+    this.loadData();
+  }
+  
   showError(message) {
     if (this.tbody) {
       this.tbody.innerHTML = `<tr><td colspan="5">${message}</td></tr>`;
@@ -290,6 +276,7 @@ class CryptoManager {
 }
 
 // 페이지 로드 시 코인 매니저 초기화
+let cryptoManager;
 document.addEventListener('DOMContentLoaded', () => {
-  new CryptoManager();
+  cryptoManager = new CryptoManager();
 });
