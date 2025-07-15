@@ -6,7 +6,7 @@
   <style>
     /* 레이아웃 설정 */
     body { margin: 0; font-family: Arial, sans-serif; }
-    .container { display: flex; height: 100vh; }
+    .container { display: flex; height: calc(100vh - 60px); }
     .sidebar {
       width: 200px;
       background: #f7f7f7;
@@ -49,6 +49,13 @@
   </style>
 </head>
 <body>
+  <!-- 간단한 상단 링크 -->
+  <div style="padding: 15px 20px; border-bottom: 1px solid #ddd; background: #f9f9f9;">
+    <a href="https://beajinsu.github.io/blog/" style="text-decoration: none; color: #333; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+      ← Jinsoo Bae's Blog
+    </a>
+  </div>
+
   <div class="container">
     <!-- 사이드바 -->
     <nav class="sidebar">
@@ -134,6 +141,7 @@
         <h1>YY 정보</h1>
         <p>YY 정보를 여기에 추가하세요.</p>
       </section>
+    </div>
     </div>
   </div>
 

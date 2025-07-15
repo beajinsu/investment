@@ -132,20 +132,21 @@ class CryptoManager {
   formatKimchiPremium(value) {
     if (value == null) return 'N/A';
     
-    const color = value > 0 ? '#e74c3c' : value < 0 ? '#3498db' : '#2c3e50';
-    const sign = value > 0 ? '+' : '';
-    const fontWeight = Math.abs(value) > 3 ? 'bold' : 'normal';
+    const num = parseFloat(value);
+    const color = num > 0 ? 'red' : num < 0 ? 'blue' : 'black';
+    const sign = num > 0 ? '+' : '';
     
-    return `<span style="color: ${color}; font-weight: ${fontWeight};">${sign}${value.toFixed(2)}%</span>`;
+    return `<span style="color: ${color};">${sign}${num.toFixed(2)}%</span>`;
   }
   
   formatChange24h(value) {
     if (value == null) return 'N/A';
     
-    const color = value > 0 ? '#e74c3c' : value < 0 ? '#3498db' : '#2c3e50';
-    const sign = value > 0 ? '+' : '';
+    const num = parseFloat(value);
+    const color = num > 0 ? 'red' : num < 0 ? 'blue' : 'black';
+    const sign = num > 0 ? '+' : '';
     
-    return `<span style="color: ${color};">${sign}${value.toFixed(2)}%</span>`;
+    return `<span style="color: ${color};">${sign}${num.toFixed(2)}%</span>`;
   }
   
   updateTimestamp(timestamp) {
