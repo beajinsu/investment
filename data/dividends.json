@@ -14,25 +14,25 @@
     "real_time_yield": "N/A"
   },
   "하나금융지주": {
-    "price": 93200,
+    "price": 92900,
     "dividend_yield": "4.53%",
     "dividend_rate": 3906,
-    "price_change_percent": "-3.42%",
-    "real_time_yield": "4.19%"
+    "price_change_percent": "-3.73%",
+    "real_time_yield": "4.20%"
   },
   "우리금융지주": {
-    "price": 25400,
+    "price": 25150,
     "dividend_yield": "5.43%",
     "dividend_rate": 1220,
-    "price_change_percent": "-5.05%",
-    "real_time_yield": "4.80%"
+    "price_change_percent": "-5.98%",
+    "real_time_yield": "4.85%"
   },
   "삼성카드": {
-    "price": 56600,
+    "price": 56200,
     "dividend_yield": "5.67%",
     "dividend_rate": 2800,
-    "price_change_percent": "-1.39%",
-    "real_time_yield": "4.95%"
+    "price_change_percent": "-2.09%",
+    "real_time_yield": "4.98%"
   },
   "현대차2우B": {
     "price": 163000,
@@ -42,53 +42,53 @@
     "real_time_yield": "7.73%"
   },
   "SK텔레콤": {
-    "price": 56000,
+    "price": 56100,
     "dividend_yield": "6.24%",
     "dividend_rate": 3540,
-    "price_change_percent": "0.00%",
-    "real_time_yield": "6.32%"
+    "price_change_percent": "0.18%",
+    "real_time_yield": "6.31%"
   },
   "삼성화재우": {
-    "price": 359000,
+    "price": 358500,
     "dividend_yield": "5.87%",
     "dividend_rate": 19005,
-    "price_change_percent": "-2.45%",
-    "real_time_yield": "5.29%"
+    "price_change_percent": "-2.58%",
+    "real_time_yield": "5.30%"
   },
   "BNK 금융지주": {
-    "price": 15660,
+    "price": 15690,
     "dividend_yield": "6.18%",
     "dividend_rate": 770,
-    "price_change_percent": "-1.82%",
-    "real_time_yield": "4.92%"
+    "price_change_percent": "-1.63%",
+    "real_time_yield": "4.91%"
   },
   "NH투자증권우": {
-    "price": 19030,
+    "price": 18990,
     "dividend_yield": "5.62%",
     "dividend_rate": 1000,
-    "price_change_percent": "-5.09%",
-    "real_time_yield": "5.25%"
+    "price_change_percent": "-5.29%",
+    "real_time_yield": "5.27%"
   },
   "삼성생명": {
-    "price": 136500,
+    "price": 136700,
     "dividend_yield": "3.53%",
     "dividend_rate": 4500,
-    "price_change_percent": "-1.44%",
-    "real_time_yield": "3.30%"
+    "price_change_percent": "-1.30%",
+    "real_time_yield": "3.29%"
   },
   "LG유플러스": {
-    "price": 14800,
+    "price": 14820,
     "dividend_yield": "4.55%",
     "dividend_rate": 650,
-    "price_change_percent": "-1.27%",
+    "price_change_percent": "-1.13%",
     "real_time_yield": "4.39%"
   },
   "HD현대": {
-    "price": 138000,
+    "price": 138200,
     "dividend_yield": "2.78%",
     "dividend_rate": 3600,
-    "price_change_percent": "-0.72%",
-    "real_time_yield": "2.61%"
+    "price_change_percent": "-0.58%",
+    "real_time_yield": "2.60%"
   },
   "KT": {
     "price": 58500,
@@ -98,32 +98,32 @@
     "real_time_yield": "4.10%"
   },
   "JB금융지주": {
-    "price": 24000,
+    "price": 23950,
     "dividend_yield": "5.11%",
     "dividend_rate": 1050,
-    "price_change_percent": "-2.83%",
+    "price_change_percent": "-3.04%",
     "real_time_yield": "4.38%"
   },
   "KT&G": {
-    "price": 139400,
+    "price": 140000,
     "dividend_yield": "4.23%",
     "dividend_rate": 5400,
-    "price_change_percent": "-0.78%",
-    "real_time_yield": "3.87%"
+    "price_change_percent": "-0.36%",
+    "real_time_yield": "3.86%"
   },
   "삼성증권": {
-    "price": 76200,
+    "price": 75900,
     "dividend_yield": "4.76%",
     "dividend_rate": 3500,
-    "price_change_percent": "-4.39%",
-    "real_time_yield": "4.59%"
+    "price_change_percent": "-4.77%",
+    "real_time_yield": "4.61%"
   },
   "삼성전자": {
-    "price": 64550,
+    "price": 64250,
     "dividend_yield": "2.42%",
     "dividend_rate": 1450,
-    "price_change_percent": "1.33%",
-    "real_time_yield": "2.25%"
+    "price_change_percent": "0.86%",
+    "real_time_yield": "2.26%"
   },
   "삼성전자우": {
     "price": 53600,
@@ -132,5 +132,5 @@
     "price_change_percent": "1.13%",
     "real_time_yield": "2.71%"
   },
-  "updated_at": "2025-07-16T03:37:16+00:00"
+  "updated_at": "2025-07-16T04:39:03+00:00"
 }
