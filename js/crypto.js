@@ -34,11 +34,6 @@ class CryptoManager {
     
     // 초기 데이터 로드
     this.loadData();
-    
-    // 30초마다 JSON 파일 체크
-    this.updateInterval = setInterval(() => {
-      this.loadData();
-    }, 30000);
   }
   
   async loadData() {
@@ -248,12 +243,6 @@ class CryptoManager {
       `;
     }
     this.loadData();
-  }
-  
-  destroy() {
-    if (this.updateInterval) {
-      clearInterval(this.updateInterval);
-    }
   }
 }
 
