@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>배당수익률 - 실시간 정보 대시보드</title>
+  <style>
+    body { 
+      margin: 0; 
+      font-family: Arial, sans-serif; 
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    /* 테이블 스타일 */
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; user-select: none; cursor: pointer; }
+    th.sorted-asc::after  { content: " ▲"; }
+    th.sorted-desc::after { content: " ▼"; }
+
+    /* 업데이트 텍스트 스타일 */
+    .last-updated { margin-top: 10px; font-size: 0.9em; color: #555; }
+
+    /* 컬럼 토글 UI */
+    .column-toggles { margin-bottom: 10px; }
+    .column-toggles label { margin-right: 15px; cursor: pointer; }
+    .column-toggles input[type="checkbox"] { margin-right: 5px; }
+    
+    h1 { margin-top: 0; }
+  </style>
+</head>
+<body>
+  <h1>📊 실시간 배당수익률</h1>
+  <p>※ 매시간 GitHub Actions를 통해 업데이트됩니다. (<code>data/dividends.json</code> 기반)</p>
+  
+  <!-- 컬럼 토글 UI -->
+  <div id="dividend-column-toggles" class="column-toggles">
+    <label><input type="checkbox" data-key="price" checked> 현재가</label>
+    <label><input type="checkbox" data-key="dividend_rate" checked> 최근 1년 배당금</label>
+    <label><input type="checkbox" data-key="dividend_yield" checked> 배당수익률 (API)</label>
+    <label><input type="checkbox" data-key="real_time_yield" checked> 실시간 배당수익</label>
+    <label><input type="checkbox" data-key="price_change_percent" checked> 1일 수익률</label>
+  </div>       
+  
+  <table id="dividend-table-wrapper">
+    <thead>
+      <tr>
+        <th data-key="name">종목명</th>
+        <th data-key="price">현재가</th>
+        <th data-key="dividend_rate">최근 1년 배당금</th>
+        <th data-key="dividend_yield">배당수익률(API)</th>
+        <th data-key="real_time_yield">실시간 배당수익률</th>
+        <th data-key="price_change_percent">1일 수익률</th>
+      </tr>
+    </thead>
+    <tbody id="dividend-table"></tbody>
+  </table>
+  <p id="dividend-last-updated" class="last-updated">마지막 업데이트: ⏳</p>
+
+  <!-- JavaScript 파일들 -->
+  <script src="js/common.js"></script>
+  <script src="js/dividends.js"></script>
+</body>
+</html>

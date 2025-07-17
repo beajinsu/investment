@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>코인 시세 - 실시간 정보 대시보드</title>
+  <style>
+    body { 
+      margin: 0; 
+      font-family: Arial, sans-serif; 
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    /* 테이블 스타일 */
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; user-select: none; cursor: pointer; }
+    th.sorted-asc::after  { content: " ▲"; }
+    th.sorted-desc::after { content: " ▼"; }
+
+    /* 업데이트 텍스트 스타일 */
+    .last-updated { margin-top: 10px; font-size: 0.9em; color: #555; }
+
+    /* 컬럼 토글 UI */
+    .column-toggles { margin-bottom: 10px; }
+    .column-toggles label { margin-right: 15px; cursor: pointer; }
+    .column-toggles input[type="checkbox"] { margin-right: 5px; }
+    
+    h1 { margin-top: 0; }
+  </style>
+</head>
+<body>
+  <h1>💰 실시간 코인 시세</h1>
+  <p>※ CoinGecko API 기반, 10분마다 자동 갱신</p>
+  
+  <!-- 코인 컬럼 토글 UI -->
+  <div id="crypto-column-toggles" class="column-toggles">
+    <label><input type="checkbox" data-key="global_price_usd" checked> 글로벌가 (USD)</label>
+    <label><input type="checkbox" data-key="global_price_krw" checked> 글로벌가 (KRW)</label>
+    <label><input type="checkbox" data-key="upbit_price" checked> 업비트가 (KRW)</label>
+    <label><input type="checkbox" data-key="kimchi_premium" checked> 김치프리미엄 (%)</label>
+    <label><input type="checkbox" data-key="change_24h" checked> 24h 변동률</label>
+  </div>
+  
+  <table id="crypto-table-wrapper">
+    <thead>
+      <tr>
+        <th data-key="coin">코인</th>
+        <th data-key="global_price_usd">글로벌가 (USD)</th>
+        <th data-key="global_price_krw">글로벌가 (KRW)</th>
+        <th data-key="upbit_price">업비트가 (KRW)</th>
+        <th data-key="kimchi_premium">김치프리미엄 (%)</th>
+        <th data-key="change_24h">24h 변동률</th>
+      </tr>
+    </thead>
+    <tbody id="crypto-table-body"></tbody>
+  </table>
+  <p id="crypto-last-updated" class="last-updated">마지막 업데이트: ⏳</p>
+  <p id="crypto-exchange-rate" class="last-updated">환율 정보: ⏳</p>
+  <p>※ 실시간 김치프리미엄은 <a href="https://scolkg.com/" target="_blank" style="color: #007bff; text-decoration: none;">외부홈페이지(scolkg.com)</a>를 이용하세요</p>
+
+  <!-- JavaScript 파일들 -->
+  <script src="js/common.js"></script>
+  <script src="js/crypto.js"></script>
+</body>
+</html>
