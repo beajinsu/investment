@@ -50,6 +50,18 @@ class CryptoManager {
       }
       
       const data = await response.json();
+      
+      // exchange_rate_cache.json도 로드
+      try {
+        const cacheResponse = await fetch(`data/exchange_rate_cache.json?t=${Date.now()}`);
+        if (cacheResponse.ok) {
+          const cacheData = await cacheResponse.json();
+          data.exchange_rate.cache_timestamp = cacheData.timestamp;
+        }
+      } catch (error) {
+        console.warn('환율 캐시 파일 로드 실패:', error);
+      }
+      
       this.processJSONData(data);
     } catch (error) {
       console.error('로컬 JSON 파일 로드 실패:', error);
@@ -180,10 +192,20 @@ class CryptoManager {
     try {
       const rate = exchangeRateInfo.usd_to_krw;
       const source = exchangeRateInfo.source || 'Unknown';
-      const lastUpdated = new Date(exchangeRateInfo.last_updated);
       
-      this.exchangeRateElem.textContent = 
-        `환율: 1 USD = ${rate.toLocaleString('ko-KR')} KRW (출처: ${source})`;
+      // 환율 캐시 파일의 실제 타임스탬프 사용
+      const timestamp = exchangeRateInfo.cache_timestamp;
+      if (timestamp) {
+        const lastUpdated = new Date(timestamp);
+        const exchangeUpdated = lastUpdated.toLocaleString('ko-KR');
+        
+        this.exchangeRateElem.textContent = 
+          `환율: 1 USD = ${rate.toLocaleString('ko-KR')} KRW (출처: ${source}, 업데이트: ${exchangeUpdated})`;
+      } else {
+        // 캐시 타임스탬프가 없는 경우
+        this.exchangeRateElem.textContent = 
+          `환율: 1 USD = ${rate.toLocaleString('ko-KR')} KRW (출처: ${source})`;
+      }
     } catch (error) {
       this.exchangeRateElem.textContent = '환율 정보 파싱 실패';
     }
