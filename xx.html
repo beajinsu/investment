@@ -55,19 +55,18 @@
     <p>여기에 원하는 콘텐츠를 추가하세요.</p>
   </div>
   
+  <!-- ✅ 중요: 새로운 테마 매니저 사용 -->
+  <script src="js/theme-manager.js"></script>
   <script>
-    // 부모 창에서 테마 변경 메시지 수신
-    window.addEventListener('message', function(event) {
-      if (event.data.type === 'theme-change') {
-        document.documentElement.setAttribute('data-theme', event.data.theme);
-      }
-    });
-
-    // 페이지 로드 시 부모 창에 테마 요청
+    // 페이지 로드 시 서브페이지용 테마 매니저 초기화
+    let themeManager;
     window.addEventListener('load', function() {
-      if (window.parent !== window) {
-        window.parent.postMessage({ type: 'request-theme' }, '*');
-      }
+      themeManager = createThemeManager({ isMainPage: false });
+      
+      // 테마 변경 시 추가 작업이 필요하다면 여기에 추가
+      themeManager.onThemeChange((theme) => {
+        console.log('XX 페이지 테마 변경:', theme);
+      });
     });
   </script>
 </body>

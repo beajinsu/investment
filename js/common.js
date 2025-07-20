@@ -1,4 +1,4 @@
-// js/common.js - 공통 유틸리티 함수들
+// js/common.js - 공통 유틸리티 함수들 (테마 매니저 연동)
 
 // 탭 전환 기능
 function initializeTabs() {
@@ -106,7 +106,60 @@ function createSortableTable(tableId, sortDirections = {}) {
   };
 }
 
+// 테마 인식 유틸리티 함수들
+const CommonUtils = {
+  // 현재 테마 확인
+  getCurrentTheme() {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  },
+  
+  // 다크모드 여부 확인
+  isDarkMode() {
+    return this.getCurrentTheme() === 'dark';
+  },
+  
+  // 테마별 조건부 값 반환
+  getThemeValue(lightValue, darkValue) {
+    return this.isDarkMode() ? darkValue : lightValue;
+  },
+  
+  // CSS 변수 값 가져오기
+  getCSSVariable(varName) {
+    return getComputedStyle(document.documentElement)
+      .getPropertyValue(varName).trim();
+  },
+  
+  // 테마별 색상 팔레트 반환
+  getColorPalette() {
+    const isDark = this.isDarkMode();
+    return {
+      primary: isDark ? '#4da6ff' : '#007bff',
+      success: isDark ? '#2ecc71' : '#27ae60',
+      warning: isDark ? '#f39c12' : '#e67e22',
+      danger: isDark ? '#e74c3c' : '#c0392b',
+      text: this.getCSSVariable('--text-color'),
+      background: this.getCSSVariable('--bg-color'),
+      border: this.getCSSVariable('--border-color')
+    };
+  }
+};
+
+// 전역 테마 변경 감지 (다른 모듈에서 사용 가능)
+function onGlobalThemeChange(callback) {
+  window.addEventListener('themeChanged', (event) => {
+    callback(event.detail.theme);
+  });
+}
+
 // 페이지 로드 시 공통 기능 초기화
 document.addEventListener('DOMContentLoaded', () => {
   initializeTabs();
+  
+  // 전역 테마 변경 감지 설정
+  onGlobalThemeChange((theme) => {
+    console.log('Common.js: 테마 변경 감지됨:', theme);
+    
+    // 여기에 테마 변경 시 공통으로 처리할 로직 추가
+    // 예: 차트 라이브러리 테마 업데이트, 커스텀 컴포넌트 색상 변경 등
+  });
 });
