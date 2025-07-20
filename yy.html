@@ -4,19 +4,40 @@
   <meta charset="UTF-8">
   <title>YY 정보 - 실시간 정보 대시보드</title>
   <style>
+    /* CSS 변수로 테마 색상 정의 */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --secondary-text: #666;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --secondary-text: #aaa;
+    }
+
     body { 
       margin: 0; 
       font-family: Arial, sans-serif; 
       padding: 20px;
       box-sizing: border-box;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     
-    h1 { margin-top: 0; }
+    h1 { 
+      margin-top: 0;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
     
     .placeholder-content {
       text-align: center;
       margin-top: 50px;
-      color: #666;
+      color: var(--secondary-text);
+      transition: color 0.3s ease;
     }
     
     .placeholder-content .icon {
@@ -33,5 +54,21 @@
     <p>YY 정보 페이지입니다.</p>
     <p>여기에 원하는 콘텐츠를 추가하세요.</p>
   </div>
+  
+  <script>
+    // 부모 창에서 테마 변경 메시지 수신
+    window.addEventListener('message', function(event) {
+      if (event.data.type === 'theme-change') {
+        document.documentElement.setAttribute('data-theme', event.data.theme);
+      }
+    });
+
+    // 페이지 로드 시 부모 창에 테마 요청
+    window.addEventListener('load', function() {
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'request-theme' }, '*');
+      }
+    });
+  </script>
 </body>
 </html>

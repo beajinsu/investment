@@ -4,17 +4,57 @@
   <meta charset="UTF-8">
   <title>실시간 정보 대시보드</title>
   <style>
+    /* CSS 변수로 테마 색상 정의 */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --sidebar-bg: #f7f7f7;
+      --sidebar-border: #ddd;
+      --sidebar-hover: #e8e8e8;
+      --sidebar-active-bg: #007bff;
+      --sidebar-active-text: #ffffff;
+      --header-bg: #f9f9f9;
+      --header-border: #ddd;
+      --toggle-bg: #ddd;
+      --toggle-active: #4caf50;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --sidebar-bg: #2d2d2d;
+      --sidebar-border: #444;
+      --sidebar-hover: #3a3a3a;
+      --sidebar-active-bg: #0066cc;
+      --sidebar-active-text: #ffffff;
+      --header-bg: #2d2d2d;
+      --header-border: #444;
+      --toggle-bg: #555;
+      --toggle-active: #4caf50;
+    }
+
     /* 레이아웃 설정 */
-    body { margin: 0; font-family: Arial, sans-serif; }
+    body { 
+      margin: 0; 
+      font-family: Arial, sans-serif; 
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
     .container { display: flex; height: calc(100vh - 60px); }
+    
     .sidebar {
       width: 200px;
-      background: #f7f7f7;
-      border-right: 1px solid #ddd;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
       padding: 10px;
       box-sizing: border-box;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
     }
+    
     .sidebar ul { list-style: none; padding: 0; margin: 0; }
+    
     .sidebar li {
       padding: 8px 10px;
       margin-bottom: 4px;
@@ -22,8 +62,14 @@
       border-radius: 4px;
       transition: background-color 0.2s;
     }
-    .sidebar li:hover { background: #e8e8e8; }
-    .sidebar li.active { background: #007bff; color: white; }
+    
+    .sidebar li:hover { background: var(--sidebar-hover); }
+    
+    .sidebar li.active { 
+      background: var(--sidebar-active-bg); 
+      color: var(--sidebar-active-text); 
+    }
+    
     .sidebar li a {
       text-decoration: none;
       color: inherit;
@@ -43,6 +89,69 @@
       border: none;
     }
 
+    /* 헤더 스타일 */
+    .header {
+      padding: 15px 20px; 
+      border-bottom: 1px solid var(--header-border); 
+      background: var(--header-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .header a {
+      text-decoration: none; 
+      color: var(--text-color); 
+      font-size: 16px; 
+      display: flex; 
+      align-items: center; 
+      gap: 8px;
+      transition: color 0.3s ease;
+    }
+
+    /* 다크모드 토글 스위치 */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 25px;
+      background: var(--toggle-bg);
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-switch::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 21px;
+      height: 21px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-switch.active {
+      background: var(--toggle-active);
+    }
+
+    .toggle-switch.active::before {
+      transform: translateX(25px);
+    }
+
+    .theme-label {
+      font-size: 14px;
+      user-select: none;
+    }
+
     /* 로딩 스타일 */
     .loading {
       display: flex;
@@ -55,11 +164,17 @@
   </style>
 </head>
 <body>
-  <!-- 간단한 상단 링크 -->
-  <div style="padding: 15px 20px; border-bottom: 1px solid #ddd; background: #f9f9f9;">
-    <a href="https://beajinsu.github.io/blog/" style="text-decoration: none; color: #333; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+  <!-- 헤더 영역 -->
+  <div class="header">
+    <a href="https://beajinsu.github.io/blog/">
       ← Jinsoo Bae's Blog
     </a>
+    
+    <div class="theme-toggle">
+      <span class="theme-label">🌙</span>
+      <div class="toggle-switch" id="theme-toggle"></div>
+      <span class="theme-label">☀️</span>
+    </div>
   </div>
 
   <div class="container">
@@ -88,6 +203,65 @@
   </div>
 
   <script>
+    // 테마 관리 클래스
+    class ThemeManager {
+      constructor() {
+        this.toggleButton = document.getElementById('theme-toggle');
+        this.currentTheme = localStorage.getItem('theme') || 'light';
+        
+        this.init();
+      }
+      
+      init() {
+        // 저장된 테마 적용
+        this.applyTheme(this.currentTheme);
+        
+        // 토글 버튼 이벤트
+        this.toggleButton.addEventListener('click', () => {
+          this.toggleTheme();
+        });
+        
+        // iframe 로드 시 테마 전달
+        this.setupIframeTheme();
+      }
+      
+      applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        this.toggleButton.classList.toggle('active', theme === 'dark');
+        localStorage.setItem('theme', theme);
+        this.currentTheme = theme;
+        
+        // iframe에도 테마 전달
+        this.sendThemeToIframe();
+      }
+      
+      toggleTheme() {
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.applyTheme(newTheme);
+      }
+      
+      setupIframeTheme() {
+        const iframe = document.getElementById('content-frame');
+        iframe.addEventListener('load', () => {
+          this.sendThemeToIframe();
+        });
+      }
+      
+      sendThemeToIframe() {
+        const iframe = document.getElementById('content-frame');
+        try {
+          if (iframe.contentWindow && iframe.contentWindow.postMessage) {
+            iframe.contentWindow.postMessage({
+              type: 'theme-change',
+              theme: this.currentTheme
+            }, '*');
+          }
+        } catch (error) {
+          // iframe 접근 권한 문제는 무시
+        }
+      }
+    }
+
     function loadPage(page, element) {
       // 로딩 표시
       const iframe = document.getElementById('content-frame');
@@ -101,8 +275,12 @@
       window.location.hash = page.replace('.html', '');
     }
     
-    // 페이지 로드 시 URL 해시 확인
+    // 페이지 로드 시 URL 해시 확인 및 테마 매니저 초기화
     window.addEventListener('load', function() {
+      // 테마 매니저 초기화
+      new ThemeManager();
+      
+      // URL 해시 처리
       const hash = window.location.hash.substring(1);
       if (hash) {
         const page = hash + '.html';

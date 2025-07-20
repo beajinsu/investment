@@ -4,29 +4,128 @@
   <meta charset="UTF-8">
   <title>코인 시세 - 실시간 정보 대시보드</title>
   <style>
+    /* CSS 변수로 테마 색상 정의 */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --border-color: #ccc;
+      --header-bg: #f2f2f2;
+      --hover-bg: #f5f5f5;
+      --link-color: #007bff;
+      --secondary-text: #555;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #e0e0e0;
+      --border-color: #444;
+      --header-bg: #2d2d2d;
+      --hover-bg: #2a2a2a;
+      --link-color: #4da6ff;
+      --secondary-text: #aaa;
+    }
+
     body { 
       margin: 0; 
       font-family: Arial, sans-serif; 
       padding: 20px;
       box-sizing: border-box;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     
     /* 테이블 스타일 */
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-    th { background-color: #f2f2f2; user-select: none; cursor: pointer; }
+    table { 
+      border-collapse: collapse; 
+      width: 100%; 
+      background-color: var(--bg-color);
+      transition: background-color 0.3s ease;
+    }
+    
+    th, td { 
+      border: 1px solid var(--border-color); 
+      padding: 8px; 
+      text-align: center;
+      transition: border-color 0.3s ease;
+    }
+    
+    th { 
+      background-color: var(--header-bg); 
+      user-select: none; 
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    th:hover {
+      background-color: var(--hover-bg);
+    }
+    
     th.sorted-asc::after  { content: " ▲"; }
     th.sorted-desc::after { content: " ▼"; }
 
     /* 업데이트 텍스트 스타일 */
-    .last-updated { margin-top: 10px; font-size: 0.9em; color: #555; }
+    .last-updated { 
+      margin-top: 10px; 
+      font-size: 0.9em; 
+      color: var(--secondary-text);
+      transition: color 0.3s ease;
+    }
 
     /* 컬럼 토글 UI */
-    .column-toggles { margin-bottom: 10px; }
-    .column-toggles label { margin-right: 15px; cursor: pointer; }
-    .column-toggles input[type="checkbox"] { margin-right: 5px; }
+    .column-toggles { 
+      margin-bottom: 10px; 
+    }
     
-    h1 { margin-top: 0; }
+    .column-toggles label { 
+      margin-right: 15px; 
+      cursor: pointer;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+    
+    .column-toggles input[type="checkbox"] { 
+      margin-right: 5px; 
+    }
+    
+    h1 { 
+      margin-top: 0;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+
+    /* 링크 스타일 */
+    a {
+      color: var(--link-color);
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+
+    /* 버튼 스타일 */
+    button {
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background: #219a52;
+    }
+
+    /* 다크모드에서 버튼 스타일 조정 */
+    [data-theme="dark"] button {
+      background: #2ecc71;
+    }
+
+    [data-theme="dark"] button:hover {
+      background: #27ae60;
+    }
   </style>
 </head>
 <body>
@@ -57,10 +156,26 @@
   </table>
   <p id="crypto-last-updated" class="last-updated">마지막 업데이트: ⏳</p>
   <p id="crypto-exchange-rate" class="last-updated">환율 정보: ⏳</p>
-  <p>※ 실시간 김치프리미엄은 <a href="https://scolkg.com/" target="_blank" style="color: #007bff; text-decoration: none;">외부홈페이지(scolkg.com)</a>를 이용하세요</p>
+  <p>※ 실시간 김치프리미엄은 <a href="https://scolkg.com/" target="_blank">외부홈페이지(scolkg.com)</a>를 이용하세요</p>
 
   <!-- JavaScript 파일들 -->
   <script src="js/common.js"></script>
   <script src="js/crypto.js"></script>
+  
+  <script>
+    // 부모 창에서 테마 변경 메시지 수신
+    window.addEventListener('message', function(event) {
+      if (event.data.type === 'theme-change') {
+        document.documentElement.setAttribute('data-theme', event.data.theme);
+      }
+    });
+
+    // 페이지 로드 시 부모 창에 테마 요청
+    window.addEventListener('load', function() {
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'request-theme' }, '*');
+      }
+    });
+  </script>
 </body>
 </html>
