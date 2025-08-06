@@ -57,7 +57,7 @@
   },
   "BNK 금융지주": {
     "price": 14520,
-    "dividend_yield": "4.90%",
+    "dividend_yield": "4.79%",
     "dividend_rate": 690,
     "price_change_percent": "0.76%",
     "real_time_yield": "4.75%"
@@ -160,5 +160,5 @@
     "price_change_percent": "5.18%",
     "real_time_yield": "6.95%"
   },
-  "updated_at": "2025-08-06T07:27:10+00:00"
+  "updated_at": "2025-08-06T08:32:00+00:00"
 }
