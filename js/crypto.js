@@ -13,7 +13,8 @@ class CryptoManager {
       global_price_krw: 'desc', 
       upbit_price: 'desc',
       kimchi_premium: 'desc', 
-      change_24h: 'desc' 
+      change_24h: 'desc' ,
+      market_cap: 'desc'
     };
     
     this.init();
@@ -73,7 +74,7 @@ class CryptoManager {
     this.tableController.setData(data.coins);
     
     // 기본 정렬 (김치프리미엄 기준 내림차순)
-    const sortedData = this.tableController.sortBy('kimchi_premium');
+    const sortedData = this.tableController.sortBy('market_cap');
     this.renderTable(sortedData);
     
     // 업데이트 시간 표시
@@ -97,6 +98,7 @@ class CryptoManager {
         <td>${this.formatKRW(row.upbit_price)}</td>
         <td>${this.formatKimchiPremium(row.kimchi_premium)}</td>
         <td>${this.formatChange24h(row.change_24h)}</td>
+        <td>${this.formatUSD(row.market_cap)}</td>
       `;
       fragment.appendChild(tr);
     });
@@ -155,7 +157,17 @@ class CryptoManager {
     
     return `<span style="color: ${color};">${sign}${num.toFixed(2)}%</span>`;
   }
-  
+
+  formatCompactUSD(value) {
+  if (value == null) return 'N/A';
+  return new Intl.NumberFormat('en-US', { 
+    notation: 'compact', 
+    style: 'currency', 
+    currency: 'USD', 
+    maximumFractionDigits: 2 
+  }).format(value);
+  }
+
   updateTimestamp(timestamp) {
     if (!this.updatedElem) return;
     

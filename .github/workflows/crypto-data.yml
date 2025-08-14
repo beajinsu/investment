@@ -45,7 +45,7 @@ jobs:
             // CoinGecko API 호출
             console.log('Fetching global prices...');
             const globalResponse = await fetch(
-              'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,cardano,solana,tether&vs_currencies=usd&include_24hr_change=true'
+              'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,cardano,solana,tether&vs_currencies=usd&include_24hr_change=true&include_market_cap=true'
             );
             
             if (!globalResponse.ok) {
@@ -103,6 +103,7 @@ jobs:
                 upbit_price: upbitPriceKRW,
                 kimchi_premium: kimchiPremium,
                 change_24h: globalPrice.usd_24h_change,
+                market_cap: globalPrice.usd_market_cap,   // ✅ 시가총액(USD) 추가
                 raw: {
                   global: globalPrice,
                   upbit: upbitPrice,
