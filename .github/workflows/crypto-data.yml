@@ -45,7 +45,7 @@ jobs:
             // CoinGecko API 호출
             console.log('Fetching global prices...');
             const globalResponse = await fetch(
-              'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,cardano,solana,tether&vs_currencies=usd&include_24hr_change=true&include_market_cap=true'
+              'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple,cardano,solana,tether,binancecoin,shiba-inu,mantle&vs_currencies=usd&include_24hr_change=true&include_market_cap=true'
             );
             
             if (!globalResponse.ok) {
@@ -57,7 +57,7 @@ jobs:
             // Upbit API 호출
             console.log('Fetching Upbit prices...');
             const upbitResponse = await fetch(
-              'https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-ETH,KRW-XRP,KRW-ADA,KRW-SOL,KRW-USDT'
+             'https://api.upbit.com/v1/ticker?markets=KRW-BTC,KRW-ETH,KRW-XRP,KRW-ADA,KRW-SOL,KRW-USDT,KRW-BNB,KRW-SHIB,KRW-MNT'
             );
             
             if (!upbitResponse.ok) {
@@ -72,12 +72,15 @@ jobs:
             
             // 데이터 처리
             const coinMapping = {
-              'bitcoin': { upbit: 'KRW-BTC', name: 'Bitcoin', symbol: 'BTC' },
-              'ethereum': { upbit: 'KRW-ETH', name: 'Ethereum', symbol: 'ETH' },
-              'ripple': { upbit: 'KRW-XRP', name: 'XRP', symbol: 'XRP' },
-              'cardano': { upbit: 'KRW-ADA', name: 'Cardano', symbol: 'ADA' },
-              'solana': { upbit: 'KRW-SOL', name: 'Solana', symbol: 'SOL' },
-              'tether': { upbit: 'KRW-USDT', name: 'Tether', symbol: 'USDT' }
+            'bitcoin': { upbit: 'KRW-BTC', name: 'Bitcoin', symbol: 'BTC' },
+            'ethereum': { upbit: 'KRW-ETH', name: 'Ethereum', symbol: 'ETH' },
+            'ripple': { upbit: 'KRW-XRP', name: 'XRP', symbol: 'XRP' },
+            'cardano': { upbit: 'KRW-ADA', name: 'Cardano', symbol: 'ADA' },
+            'solana': { upbit: 'KRW-SOL', name: 'Solana', symbol: 'SOL' },
+            'tether': { upbit: 'KRW-USDT', name: 'Tether', symbol: 'USDT' },
+            'binancecoin': { upbit: 'KRW-BNB', name: 'BNB', symbol: 'BNB' },
+            'shiba-inu': { upbit: 'KRW-SHIB', name: 'Shiba Inu', symbol: 'SHIB' },
+            'mantle': { upbit: 'KRW-MNT', name: 'Mantle', symbol: 'MNT' }
             };
             
             const coins = Object.entries(coinMapping).map(([coinId, info]) => {
