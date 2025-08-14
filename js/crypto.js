@@ -98,7 +98,7 @@ class CryptoManager {
         <td>${this.formatKRW(row.upbit_price)}</td>
         <td>${this.formatKimchiPremium(row.kimchi_premium)}</td>
         <td>${this.formatChange24h(row.change_24h)}</td>
-        <td>${this.formatUSD(row.market_cap)}</td>
+        <td class="num">${this.formatCompactUSD(row.market_cap)}</td>
       `;
       fragment.appendChild(tr);
     });
