@@ -141,7 +141,7 @@
   },
   "버라이즌": {
     "price": 43.5,
-    "dividend_yield": "6.20%",
+    "dividend_yield": "6.23%",
     "dividend_rate": 2.71,
     "price_change_percent": "-0.48%",
     "real_time_yield": "6.23%"
@@ -155,10 +155,10 @@
   },
   "화이자": {
     "price": 25.11,
-    "dividend_yield": "6.84%",
+    "dividend_yield": "6.85%",
     "dividend_rate": 1.72,
     "price_change_percent": "-0.20%",
     "real_time_yield": "6.85%"
   },
-  "updated_at": "2025-08-15T03:22:37+00:00"
+  "updated_at": "2025-08-15T04:32:19+00:00"
 }
