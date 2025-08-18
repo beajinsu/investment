@@ -1,13 +1,13 @@
 {
   "SCHD": {
-    "price": 27.34,
+    "price": 27.33,
     "dividend_yield": "3.87%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "TLT": {
-    "price": 87.02,
+    "price": 86.4,
     "dividend_yield": "4.41%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
@@ -133,32 +133,32 @@
     "real_time_yield": "2.54%"
   },
   "알트리아": {
-    "price": 65.82,
+    "price": 65.99,
     "dividend_yield": "6.20%",
     "dividend_rate": 4.08,
-    "price_change_percent": "0.41%",
-    "real_time_yield": "6.20%"
+    "price_change_percent": "0.26%",
+    "real_time_yield": "6.18%"
   },
   "버라이즌": {
-    "price": 44.24,
+    "price": 44.39,
     "dividend_yield": "6.13%",
     "dividend_rate": 2.71,
-    "price_change_percent": "1.70%",
-    "real_time_yield": "6.13%"
+    "price_change_percent": "0.34%",
+    "real_time_yield": "6.10%"
   },
   "리얼티 인컴": {
-    "price": 58.48,
+    "price": 57.87,
     "dividend_yield": "5.52%",
     "dividend_rate": 3.23,
-    "price_change_percent": "1.14%",
-    "real_time_yield": "5.52%"
+    "price_change_percent": "-1.04%",
+    "real_time_yield": "5.58%"
   },
   "화이자": {
-    "price": 25.14,
+    "price": 25.07,
     "dividend_yield": "6.84%",
     "dividend_rate": 1.72,
-    "price_change_percent": "0.12%",
-    "real_time_yield": "6.84%"
+    "price_change_percent": "-0.28%",
+    "real_time_yield": "6.86%"
   },
-  "updated_at": "2025-08-18T11:19:39+00:00"
+  "updated_at": "2025-08-18T23:19:28+00:00"
 }
