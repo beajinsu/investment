@@ -14,32 +14,32 @@
     "real_time_yield": "N/A"
   },
   "하나금융지주": {
-    "price": 82600,
+    "price": 82700,
     "dividend_yield": "4.43%",
     "dividend_rate": 3652,
-    "price_change_percent": "0.12%",
+    "price_change_percent": "0.24%",
     "real_time_yield": "4.42%"
   },
   "우리금융지주": {
-    "price": 24850,
+    "price": 24800,
     "dividend_yield": "3.24%",
     "dividend_rate": 800,
-    "price_change_percent": "0.61%",
-    "real_time_yield": "3.22%"
+    "price_change_percent": "0.40%",
+    "real_time_yield": "3.23%"
   },
   "삼성카드": {
-    "price": 49800,
+    "price": 49900,
     "dividend_yield": "5.60%",
     "dividend_rate": 2800,
-    "price_change_percent": "-0.40%",
-    "real_time_yield": "5.62%"
+    "price_change_percent": "-0.20%",
+    "real_time_yield": "5.61%"
   },
   "현대차2우B": {
-    "price": 170300,
+    "price": 169600,
     "dividend_yield": "5.90%",
     "dividend_rate": 10000,
-    "price_change_percent": "0.47%",
-    "real_time_yield": "5.87%"
+    "price_change_percent": "0.06%",
+    "real_time_yield": "5.90%"
   },
   "SK텔레콤": {
     "price": 55900,
@@ -49,53 +49,53 @@
     "real_time_yield": "5.94%"
   },
   "삼성화재우": {
-    "price": 338500,
+    "price": 336500,
     "dividend_yield": "5.57%",
     "dividend_rate": 19005,
-    "price_change_percent": "-0.73%",
-    "real_time_yield": "5.61%"
+    "price_change_percent": "-1.32%",
+    "real_time_yield": "5.65%"
   },
   "BNK 금융지주": {
-    "price": 14460,
+    "price": 14480,
     "dividend_yield": "4.74%",
     "dividend_rate": 690,
-    "price_change_percent": "-0.75%",
+    "price_change_percent": "-0.62%",
     "real_time_yield": "4.77%"
   },
   "NH투자증권우": {
-    "price": 16700,
+    "price": 16680,
     "dividend_yield": "5.97%",
     "dividend_rate": 1000,
-    "price_change_percent": "-0.24%",
-    "real_time_yield": "5.99%"
+    "price_change_percent": "-0.36%",
+    "real_time_yield": "6.00%"
   },
   "삼성생명": {
-    "price": 129500,
+    "price": 129800,
     "dividend_yield": "3.49%",
     "dividend_rate": 4500,
-    "price_change_percent": "0.39%",
+    "price_change_percent": "0.62%",
     "real_time_yield": "3.47%"
   },
   "LG유플러스": {
-    "price": 14990,
+    "price": 15010,
     "dividend_yield": "4.22%",
     "dividend_rate": 650,
-    "price_change_percent": "-2.66%",
-    "real_time_yield": "4.34%"
+    "price_change_percent": "-2.53%",
+    "real_time_yield": "4.33%"
   },
   "HD현대": {
-    "price": 127000,
+    "price": 128500,
     "dividend_yield": "2.80%",
     "dividend_rate": 3600,
-    "price_change_percent": "-1.32%",
-    "real_time_yield": "2.83%"
+    "price_change_percent": "-0.16%",
+    "real_time_yield": "2.80%"
   },
   "KT": {
-    "price": 55500,
+    "price": 55700,
     "dividend_yield": "4.33%",
     "dividend_rate": 2400,
-    "price_change_percent": "0.18%",
-    "real_time_yield": "4.32%"
+    "price_change_percent": "0.54%",
+    "real_time_yield": "4.31%"
   },
   "JB금융지주": {
     "price": 22800,
@@ -105,32 +105,32 @@
     "real_time_yield": "2.81%"
   },
   "KT&G": {
-    "price": 137200,
+    "price": 136500,
     "dividend_yield": "4.19%",
     "dividend_rate": 5600,
-    "price_change_percent": "2.69%",
-    "real_time_yield": "4.08%"
+    "price_change_percent": "2.17%",
+    "real_time_yield": "4.10%"
   },
   "삼성증권": {
-    "price": 67400,
+    "price": 67300,
     "dividend_yield": "5.15%",
     "dividend_rate": 3500,
-    "price_change_percent": "-0.88%",
-    "real_time_yield": "5.19%"
+    "price_change_percent": "-1.03%",
+    "real_time_yield": "5.20%"
   },
   "삼성전자": {
-    "price": 70550,
+    "price": 70500,
     "dividend_yield": "2.08%",
     "dividend_rate": 1456,
-    "price_change_percent": "0.79%",
-    "real_time_yield": "2.06%"
+    "price_change_percent": "0.71%",
+    "real_time_yield": "2.07%"
   },
   "삼성전자우": {
-    "price": 57800,
+    "price": 57700,
     "dividend_yield": "2.54%",
     "dividend_rate": 1457,
-    "price_change_percent": "0.70%",
-    "real_time_yield": "2.52%"
+    "price_change_percent": "0.52%",
+    "real_time_yield": "2.53%"
   },
   "알트리아": {
     "price": 66.56,
@@ -160,5 +160,5 @@
     "price_change_percent": "1.00%",
     "real_time_yield": "6.79%"
   },
-  "updated_at": "2025-08-20T06:32:20+00:00"
+  "updated_at": "2025-08-20T07:20:41+00:00"
 }
