@@ -25,7 +25,10 @@ STOCKS = {
     "알트리아": "MO",
     "버라이즌": "VZ",
     "리얼티 인컴": "O",
-    "화이자": "PFE"
+    "화이자": "PFE",
+    "IAU": "IAU",     # iShares Gold Trust
+    "GLD": "GLD",     # SPDR Gold Shares
+    "BITO": "BITO"    # ProShares Bitcoin Strategy ETF
 }
 
 results = {}
