@@ -22,7 +22,7 @@
   },
   "우리금융지주": {
     "price": 24300,
-    "dividend_yield": "3.23%",
+    "dividend_yield": "3.29%",
     "dividend_rate": 800,
     "price_change_percent": "-0.21%",
     "real_time_yield": "3.29%"
@@ -181,5 +181,5 @@
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
-  "updated_at": "2025-09-05T10:21:23+00:00"
+  "updated_at": "2025-09-05T11:16:09+00:00"
 }
