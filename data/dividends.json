@@ -43,7 +43,7 @@
   },
   "SK텔레콤": {
     "price": 54800,
-    "dividend_yield": "6.10%",
+    "dividend_yield": "6.07%",
     "dividend_rate": 3320,
     "price_change_percent": "0.18%",
     "real_time_yield": "6.06%"
@@ -92,7 +92,7 @@
   },
   "KT": {
     "price": 53500,
-    "dividend_yield": "4.59%",
+    "dividend_yield": "4.54%",
     "dividend_rate": 2400,
     "price_change_percent": "1.13%",
     "real_time_yield": "4.49%"
@@ -120,7 +120,7 @@
   },
   "삼성전자": {
     "price": 69500,
-    "dividend_yield": "2.09%",
+    "dividend_yield": "2.08%",
     "dividend_rate": 1456,
     "price_change_percent": "-0.86%",
     "real_time_yield": "2.09%"
@@ -134,7 +134,7 @@
   },
   "알트리아": {
     "price": 66.59,
-    "dividend_yield": "6.36%",
+    "dividend_yield": "6.37%",
     "dividend_rate": 4.24,
     "price_change_percent": "-0.06%",
     "real_time_yield": "6.37%"
@@ -181,5 +181,5 @@
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
-  "updated_at": "2025-09-05T09:21:06+00:00"
+  "updated_at": "2025-09-05T10:21:23+00:00"
 }
