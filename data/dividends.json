@@ -1,13 +1,13 @@
 {
   "SCHD": {
-    "price": 27.34,
+    "price": 27.41,
     "dividend_yield": "3.79%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "TLT": {
-    "price": 89.55,
+    "price": 89.38,
     "dividend_yield": "4.33%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
@@ -133,53 +133,53 @@
     "real_time_yield": "2.08%"
   },
   "알트리아": {
-    "price": 65.73,
+    "price": 65.37,
     "dividend_yield": "6.45%",
     "dividend_rate": 4.24,
-    "price_change_percent": "-0.03%",
-    "real_time_yield": "6.45%"
+    "price_change_percent": "-0.55%",
+    "real_time_yield": "6.49%"
   },
   "버라이즌": {
-    "price": 43.67,
-    "dividend_yield": "6.36%",
+    "price": 41.44,
+    "dividend_yield": "6.32%",
     "dividend_rate": 2.76,
-    "price_change_percent": "0.62%",
-    "real_time_yield": "6.32%"
+    "price_change_percent": "-5.11%",
+    "real_time_yield": "6.66%"
   },
   "리얼티 인컴": {
-    "price": 60.4,
-    "dividend_yield": "5.33%",
+    "price": 59.9,
+    "dividend_yield": "5.31%",
     "dividend_rate": 3.21,
-    "price_change_percent": "0.53%",
-    "real_time_yield": "5.31%"
+    "price_change_percent": "-0.83%",
+    "real_time_yield": "5.36%"
   },
   "화이자": {
-    "price": 27.37,
-    "dividend_yield": "6.35%",
+    "price": 26.43,
+    "dividend_yield": "6.28%",
     "dividend_rate": 1.72,
-    "price_change_percent": "1.07%",
-    "real_time_yield": "6.28%"
+    "price_change_percent": "-3.43%",
+    "real_time_yield": "6.51%"
   },
   "IAU": {
-    "price": 72.65,
+    "price": 73.22,
     "dividend_yield": "N/A",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "GLD": {
-    "price": 354.79,
+    "price": 357.64,
     "dividend_yield": "N/A",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "BITO": {
-    "price": 20.01,
+    "price": 20.29,
     "dividend_yield": "53.88%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
-  "updated_at": "2025-10-06T11:16:50+00:00"
+  "updated_at": "2025-10-06T23:18:28+00:00"
 }
