@@ -1,14 +1,14 @@
 {
   "SCHD": {
     "price": 27.34,
-    "dividend_yield": "3.67%",
+    "dividend_yield": "3.79%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "TLT": {
     "price": 89.55,
-    "dividend_yield": "4.45%",
+    "dividend_yield": "4.33%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
@@ -176,10 +176,10 @@
   },
   "BITO": {
     "price": 20.01,
-    "dividend_yield": "56.05%",
+    "dividend_yield": "53.88%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
-  "updated_at": "2025-10-03T23:17:32+00:00"
+  "updated_at": "2025-10-06T01:36:56+00:00"
 }
