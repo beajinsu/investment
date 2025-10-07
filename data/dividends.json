@@ -1,13 +1,13 @@
 {
   "SCHD": {
-    "price": 27.41,
+    "price": 27.34,
     "dividend_yield": "3.79%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "TLT": {
-    "price": 89.38,
+    "price": 88.67,
     "dividend_yield": "4.33%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
@@ -133,53 +133,53 @@
     "real_time_yield": "2.08%"
   },
   "알트리아": {
-    "price": 65.37,
+    "price": 66.65,
     "dividend_yield": "6.49%",
     "dividend_rate": 4.24,
-    "price_change_percent": "-0.55%",
-    "real_time_yield": "6.49%"
+    "price_change_percent": "1.96%",
+    "real_time_yield": "6.36%"
   },
   "버라이즌": {
-    "price": 41.44,
+    "price": 41.4,
     "dividend_yield": "6.66%",
     "dividend_rate": 2.76,
-    "price_change_percent": "-5.11%",
-    "real_time_yield": "6.66%"
+    "price_change_percent": "-0.10%",
+    "real_time_yield": "6.67%"
   },
   "리얼티 인컴": {
-    "price": 59.9,
+    "price": 59.63,
     "dividend_yield": "5.35%",
     "dividend_rate": 3.21,
-    "price_change_percent": "-0.83%",
-    "real_time_yield": "5.36%"
+    "price_change_percent": "-0.45%",
+    "real_time_yield": "5.38%"
   },
   "화이자": {
-    "price": 26.43,
+    "price": 26.27,
     "dividend_yield": "6.51%",
     "dividend_rate": 1.72,
-    "price_change_percent": "-3.43%",
-    "real_time_yield": "6.51%"
+    "price_change_percent": "-0.61%",
+    "real_time_yield": "6.55%"
   },
   "IAU": {
-    "price": 73.22,
+    "price": 74.62,
     "dividend_yield": "N/A",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "GLD": {
-    "price": 357.64,
+    "price": 364.38,
     "dividend_yield": "N/A",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "BITO": {
-    "price": 20.29,
+    "price": 20.75,
     "dividend_yield": "53.88%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
-  "updated_at": "2025-10-07T11:16:48+00:00"
+  "updated_at": "2025-10-07T23:18:18+00:00"
 }
