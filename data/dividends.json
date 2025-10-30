@@ -1,13 +1,13 @@
 {
   "SCHD": {
-    "price": 27.0,
+    "price": 26.74,
     "dividend_yield": "3.79%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "TLT": {
-    "price": 92.02,
+    "price": 91.09,
     "dividend_yield": "4.33%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
@@ -43,7 +43,7 @@
   },
   "SK텔레콤": {
     "price": 52700,
-    "dividend_yield": "6.14%",
+    "dividend_yield": "6.30%",
     "dividend_rate": 3320,
     "price_change_percent": "-2.59%",
     "real_time_yield": "6.30%"
@@ -92,7 +92,7 @@
   },
   "KT": {
     "price": 49350,
-    "dividend_yield": "4.82%",
+    "dividend_yield": "4.86%",
     "dividend_rate": 2400,
     "price_change_percent": "-0.80%",
     "real_time_yield": "4.86%"
@@ -120,66 +120,66 @@
   },
   "삼성전자": {
     "price": 104100,
-    "dividend_yield": "1.45%",
-    "dividend_rate": 1456,
+    "dividend_yield": "1.42%",
+    "dividend_rate": 1480,
     "price_change_percent": "3.58%",
-    "real_time_yield": "1.40%"
+    "real_time_yield": "1.42%"
   },
   "삼성전자우": {
     "price": 82500,
-    "dividend_yield": "1.82%",
-    "dividend_rate": 1457,
+    "dividend_yield": "1.79%",
+    "dividend_rate": 1480,
     "price_change_percent": "3.25%",
-    "real_time_yield": "1.77%"
+    "real_time_yield": "1.79%"
   },
   "알트리아": {
-    "price": 61.97,
+    "price": 57.13,
     "dividend_yield": "6.84%",
     "dividend_rate": 4.24,
-    "price_change_percent": "-2.07%",
-    "real_time_yield": "6.84%"
+    "price_change_percent": "-7.81%",
+    "real_time_yield": "7.42%"
   },
   "버라이즌": {
-    "price": 40.21,
+    "price": 38.96,
     "dividend_yield": "6.86%",
     "dividend_rate": 2.76,
-    "price_change_percent": "2.26%",
-    "real_time_yield": "6.86%"
+    "price_change_percent": "-3.11%",
+    "real_time_yield": "7.08%"
   },
   "리얼티 인컴": {
-    "price": 58.36,
+    "price": 57.91,
     "dividend_yield": "5.54%",
     "dividend_rate": 3.23,
-    "price_change_percent": "-1.44%",
-    "real_time_yield": "5.53%"
+    "price_change_percent": "-0.77%",
+    "real_time_yield": "5.58%"
   },
   "화이자": {
     "price": 24.29,
     "dividend_yield": "7.08%",
     "dividend_rate": 1.72,
-    "price_change_percent": "-0.86%",
+    "price_change_percent": "0.00%",
     "real_time_yield": "7.08%"
   },
   "IAU": {
-    "price": 74.59,
+    "price": 74.31,
     "dividend_yield": "N/A",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "GLD": {
-    "price": 364.38,
+    "price": 363.0,
     "dividend_yield": "N/A",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "BITO": {
-    "price": 18.72,
+    "price": 18.2,
     "dividend_yield": "53.88%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
-  "updated_at": "2025-10-30T11:18:09+00:00"
+  "updated_at": "2025-10-30T23:18:53+00:00"
 }
