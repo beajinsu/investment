@@ -1,6 +1,8 @@
 import yfinance as yf
+import requests
 import json
-from datetime import datetime, timezone
+import os  
+from datetime import datetime, timezone, timedelta
 
 STOCKS = {
     # [미국 주식]
