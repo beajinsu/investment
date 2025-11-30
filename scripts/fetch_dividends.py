@@ -3,8 +3,18 @@ import json
 from datetime import datetime, timezone
 
 STOCKS = {
-    "SCHD": "SCHD",
+    # [미국 주식]
     "TLT": "TLT",
+    "알트리아": "MO",
+    "버라이즌": "VZ",
+    "리얼티 인컴": "O",
+    "화이자": "PFE",
+
+    # [국내 ETF - 신규 추가]
+    "KODEX 금융고배당": "498410.KS", 
+    "KODEX 200타겟": "498400.KS",
+
+    # [국내 주식 - 기존 유지]
     "하나금융지주": "086790.KS",
     "우리금융지주": "316140.KS",
     "삼성카드": "029780.KS",
@@ -13,22 +23,11 @@ STOCKS = {
     "삼성화재우": "000815.KS",
     "BNK 금융지주": "138930.KS",
     "NH투자증권우": "005945.KS",
-    "삼성생명": "032830.KS",
     "LG유플러스": "032640.KS",
     "HD현대": "267250.KS",
     "KT": "030200.KS",
-    "JB금융지주": "175330.KS",
-    "KT&G": "033780.KS",
-    "삼성증권": "016360.KS",
     "삼성전자": "005930.KS",
     "삼성전자우": "005935.KS",
-    "알트리아": "MO",
-    "버라이즌": "VZ",
-    "리얼티 인컴": "O",
-    "화이자": "PFE",
-    "IAU": "IAU",     # iShares Gold Trust
-    "GLD": "GLD",     # SPDR Gold Shares
-    "BITO": "BITO"    # ProShares Bitcoin Strategy ETF
 }
 
 results = {}
