@@ -26,6 +26,10 @@
             pip install yfinance
 
         - name: Fetch dividend data
+          # Secrets 주입! (이게 없으면 KIS API 부분은 그냥 건너뜁니다)
+          env:
+            KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
+            KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
           run: python scripts/fetch_dividends.py
 
         - name: Commit and push changes
