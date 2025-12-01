@@ -1,38 +1,38 @@
 {
   "TLT": {
-    "price": 90.64,
+    "price": 89.88935,
     "dividend_yield": "433.00%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "433.00%"
   },
   "알트리아": {
-    "price": 59.01,
+    "price": 59.14,
     "dividend_yield": "719.00%",
     "dividend_rate": 4.24,
-    "price_change_percent": "0.55%",
-    "real_time_yield": "7.19%"
+    "price_change_percent": "0.22%",
+    "real_time_yield": "7.17%"
   },
   "버라이즌": {
-    "price": 41.11,
+    "price": 40.74,
     "dividend_yield": "671.00%",
     "dividend_rate": 2.76,
-    "price_change_percent": "0.56%",
-    "real_time_yield": "6.71%"
+    "price_change_percent": "-0.90%",
+    "real_time_yield": "6.77%"
   },
   "리얼티 인컴": {
-    "price": 57.61,
+    "price": 57.43,
     "dividend_yield": "561.00%",
     "dividend_rate": 3.23,
-    "price_change_percent": "1.30%",
-    "real_time_yield": "5.61%"
+    "price_change_percent": "-0.31%",
+    "real_time_yield": "5.62%"
   },
   "화이자": {
-    "price": 25.74,
+    "price": 25.27,
     "dividend_yield": "668.00%",
     "dividend_rate": 1.72,
-    "price_change_percent": "0.12%",
-    "real_time_yield": "6.68%"
+    "price_change_percent": "-1.83%",
+    "real_time_yield": "6.81%"
   },
   "KODEX 금융고배당": {
     "price": 12305,
@@ -64,7 +64,7 @@
   },
   "우리금융지주": {
     "price": 27450,
-    "dividend_yield": "475.00%",
+    "dividend_yield": "459.00%",
     "dividend_rate": 1260,
     "price_change_percent": "3.39%",
     "real_time_yield": "4.59%"
@@ -141,10 +141,10 @@
   },
   "삼성전자우": {
     "price": 76300,
-    "dividend_yield": "197.00%",
+    "dividend_yield": "194.00%",
     "dividend_rate": 1480,
     "price_change_percent": "1.73%",
     "real_time_yield": "1.94%"
   },
-  "updated_at": "2025-12-01T11:20:15+00:00"
+  "updated_at": "2025-12-01T23:20:45+00:00"
 }
