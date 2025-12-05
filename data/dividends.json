@@ -71,7 +71,7 @@
   },
   "삼성카드": {
     "price": 54200,
-    "dividend_yield": "5.15%",
+    "dividend_yield": "5.18%",
     "dividend_rate": 2800,
     "price_change_percent": "0.18%",
     "real_time_yield": "5.17%"
@@ -146,5 +146,5 @@
     "price_change_percent": "1.39%",
     "real_time_yield": "1.85%"
   },
-  "updated_at": "2025-12-05T08:30:29+00:00"
+  "updated_at": "2025-12-05T09:24:01+00:00"
 }
