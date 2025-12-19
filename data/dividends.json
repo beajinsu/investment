@@ -1,38 +1,38 @@
 {
   "TLT": {
-    "price": 87.8,
+    "price": 87.87756,
     "dividend_yield": "4.30%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "알트리아": {
-    "price": 58.39,
+    "price": 58.07,
     "dividend_yield": "7.26%",
     "dividend_rate": 4.24,
-    "price_change_percent": "-1.33%",
-    "real_time_yield": "7.26%"
+    "price_change_percent": "-0.55%",
+    "real_time_yield": "7.30%"
   },
   "버라이즌": {
-    "price": 40.41,
+    "price": 39.82,
     "dividend_yield": "6.83%",
     "dividend_rate": 2.76,
-    "price_change_percent": "-1.15%",
-    "real_time_yield": "6.83%"
+    "price_change_percent": "-1.46%",
+    "real_time_yield": "6.93%"
   },
   "리얼티 인컴": {
-    "price": 56.77,
+    "price": 56.33,
     "dividend_yield": "5.68%",
     "dividend_rate": 3.22,
-    "price_change_percent": "-1.71%",
-    "real_time_yield": "5.67%"
+    "price_change_percent": "-0.78%",
+    "real_time_yield": "5.72%"
   },
   "화이자": {
-    "price": 25.04,
+    "price": 25.19,
     "dividend_yield": "6.87%",
     "dividend_rate": 1.72,
-    "price_change_percent": "0.00%",
-    "real_time_yield": "6.87%"
+    "price_change_percent": "0.60%",
+    "real_time_yield": "6.83%"
   },
   "KODEX 금융고배당": {
     "price": 11955,
@@ -64,7 +64,7 @@
   },
   "우리금융지주": {
     "price": 27750,
-    "dividend_yield": "4.60%",
+    "dividend_yield": "4.54%",
     "dividend_rate": 1260,
     "price_change_percent": "1.28%",
     "real_time_yield": "4.54%"
@@ -85,7 +85,7 @@
   },
   "SK텔레콤": {
     "price": 53500,
-    "dividend_yield": "6.26%",
+    "dividend_yield": "6.21%",
     "dividend_rate": 3320,
     "price_change_percent": "0.94%",
     "real_time_yield": "6.21%"
@@ -127,24 +127,24 @@
   },
   "KT": {
     "price": 53800,
-    "dividend_yield": "4.53%",
+    "dividend_yield": "4.46%",
     "dividend_rate": 2400,
     "price_change_percent": "1.51%",
     "real_time_yield": "4.46%"
   },
   "삼성전자": {
     "price": 106300,
-    "dividend_yield": "1.38%",
+    "dividend_yield": "1.39%",
     "dividend_rate": 1480,
     "price_change_percent": "-1.21%",
     "real_time_yield": "1.39%"
   },
   "삼성전자우": {
     "price": 83300,
-    "dividend_yield": "1.79%",
+    "dividend_yield": "1.78%",
     "dividend_rate": 1480,
     "price_change_percent": "0.73%",
     "real_time_yield": "1.78%"
   },
-  "updated_at": "2025-12-19T11:20:13+00:00"
+  "updated_at": "2025-12-19T23:21:12+00:00"
 }
