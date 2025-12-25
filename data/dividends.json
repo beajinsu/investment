@@ -8,7 +8,7 @@
   },
   "알트리아": {
     "price": 58.98,
-    "dividend_yield": "7.22%",
+    "dividend_yield": "7.19%",
     "dividend_rate": 4.24,
     "price_change_percent": "0.39%",
     "real_time_yield": "7.19%"
@@ -146,5 +146,5 @@
     "price_change_percent": "0.00%",
     "real_time_yield": "1.72%"
   },
-  "updated_at": "2025-12-25T01:50:23+00:00"
+  "updated_at": "2025-12-25T03:37:29+00:00"
 }
