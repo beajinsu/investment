@@ -1,38 +1,38 @@
 {
   "TLT": {
-    "price": 87.5,
+    "price": 88.03,
     "dividend_yield": "4.30%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "알트리아": {
-    "price": 58.98,
+    "price": 57.6,
     "dividend_yield": "7.19%",
     "dividend_rate": 4.24,
-    "price_change_percent": "0.39%",
-    "real_time_yield": "7.19%"
+    "price_change_percent": "-0.55%",
+    "real_time_yield": "7.36%"
   },
   "버라이즌": {
-    "price": 40.32,
+    "price": 40.48,
     "dividend_yield": "6.85%",
     "dividend_rate": 2.76,
-    "price_change_percent": "1.00%",
-    "real_time_yield": "6.85%"
+    "price_change_percent": "0.40%",
+    "real_time_yield": "6.82%"
   },
   "리얼티 인컴": {
-    "price": 56.67,
+    "price": 56.69,
     "dividend_yield": "5.69%",
     "dividend_rate": 3.22,
-    "price_change_percent": "1.32%",
+    "price_change_percent": "0.04%",
     "real_time_yield": "5.68%"
   },
   "화이자": {
-    "price": 25.03,
+    "price": 25.09,
     "dividend_yield": "6.87%",
     "dividend_rate": 1.72,
-    "price_change_percent": "0.60%",
-    "real_time_yield": "6.87%"
+    "price_change_percent": "0.24%",
+    "real_time_yield": "6.86%"
   },
   "KODEX 금융고배당": {
     "price": 12225,
@@ -64,7 +64,7 @@
   },
   "우리금융지주": {
     "price": 28300,
-    "dividend_yield": "4.42%",
+    "dividend_yield": "4.45%",
     "dividend_rate": 1260,
     "price_change_percent": "-0.70%",
     "real_time_yield": "4.45%"
@@ -85,7 +85,7 @@
   },
   "SK텔레콤": {
     "price": 53100,
-    "dividend_yield": "6.22%",
+    "dividend_yield": "6.25%",
     "dividend_rate": 3320,
     "price_change_percent": "-0.56%",
     "real_time_yield": "6.25%"
@@ -134,17 +134,17 @@
   },
   "삼성전자": {
     "price": 117000,
-    "dividend_yield": "1.33%",
+    "dividend_yield": "1.26%",
     "dividend_rate": 1480,
     "price_change_percent": "5.31%",
     "real_time_yield": "1.26%"
   },
   "삼성전자우": {
     "price": 88500,
-    "dividend_yield": "1.72%",
+    "dividend_yield": "1.67%",
     "dividend_rate": 1480,
     "price_change_percent": "3.15%",
     "real_time_yield": "1.67%"
   },
-  "updated_at": "2025-12-26T11:20:20+00:00"
+  "updated_at": "2025-12-26T23:21:32+00:00"
 }
