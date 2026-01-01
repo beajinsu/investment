@@ -22,14 +22,14 @@
   },
   "리얼티 인컴": {
     "price": 56.37,
-    "dividend_yield": "5.65%",
+    "dividend_yield": "5.72%",
     "dividend_rate": 3.22,
     "price_change_percent": "-0.69%",
     "real_time_yield": "5.71%"
   },
   "화이자": {
     "price": 24.9,
-    "dividend_yield": "6.88%",
+    "dividend_yield": "6.91%",
     "dividend_rate": 1.72,
     "price_change_percent": "-0.36%",
     "real_time_yield": "6.91%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-0.67%",
     "real_time_yield": "1.66%"
   },
-  "updated_at": "2026-01-01T04:09:58+00:00"
+  "updated_at": "2026-01-01T05:29:03+00:00"
 }
