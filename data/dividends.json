@@ -8,7 +8,7 @@
   },
   "알트리아": {
     "price": 59.76,
-    "dividend_yield": "6.72%",
+    "dividend_yield": "7.10%",
     "dividend_rate": 4.24,
     "price_change_percent": "-5.34%",
     "real_time_yield": "7.10%"
@@ -134,17 +134,17 @@
   },
   "삼성전자": {
     "price": 160500,
-    "dividend_yield": "0.92%",
-    "dividend_rate": 1480,
+    "dividend_yield": "1.41%",
+    "dividend_rate": 2264,
     "price_change_percent": "-0.12%",
-    "real_time_yield": "0.92%"
+    "real_time_yield": "1.41%"
   },
   "삼성전자우": {
     "price": 117400,
-    "dividend_yield": "1.28%",
-    "dividend_rate": 1480,
+    "dividend_yield": "1.96%",
+    "dividend_rate": 2268,
     "price_change_percent": "1.56%",
-    "real_time_yield": "1.26%"
+    "real_time_yield": "1.93%"
   },
-  "updated_at": "2026-01-30T08:42:00+00:00"
+  "updated_at": "2026-01-30T09:40:18+00:00"
 }
