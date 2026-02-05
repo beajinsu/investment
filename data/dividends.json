@@ -50,14 +50,14 @@
   },
   "케이카": {
     "price": 15260,
-    "dividend_yield": "7.96%",
+    "dividend_yield": "7.88%",
     "dividend_rate": 1200,
     "price_change_percent": "0.20%",
     "real_time_yield": "7.86%"
   },
   "하나금융지주": {
     "price": 114100,
-    "dividend_yield": "4.96%",
+    "dividend_yield": "4.86%",
     "dividend_rate": 5464,
     "price_change_percent": "1.42%",
     "real_time_yield": "4.79%"
@@ -71,14 +71,14 @@
   },
   "삼성카드": {
     "price": 58200,
-    "dividend_yield": "4.96%",
+    "dividend_yield": "4.90%",
     "dividend_rate": 2800,
     "price_change_percent": "1.75%",
     "real_time_yield": "4.81%"
   },
   "현대차2우B": {
     "price": 257000,
-    "dividend_yield": "3.96%",
+    "dividend_yield": "3.92%",
     "dividend_rate": 10400,
     "price_change_percent": "-3.20%",
     "real_time_yield": "4.05%"
@@ -92,35 +92,35 @@
   },
   "삼성화재우": {
     "price": 384000,
-    "dividend_yield": "5.07%",
+    "dividend_yield": "4.89%",
     "dividend_rate": 19005,
     "price_change_percent": "-1.29%",
     "real_time_yield": "4.95%"
   },
   "BNK 금융지주": {
     "price": 17810,
-    "dividend_yield": "4.63%",
+    "dividend_yield": "4.55%",
     "dividend_rate": 810,
     "price_change_percent": "-0.06%",
     "real_time_yield": "4.55%"
   },
   "NH투자증권우": {
     "price": 22550,
-    "dividend_yield": "4.43%",
+    "dividend_yield": "4.37%",
     "dividend_rate": 1000,
     "price_change_percent": "-1.53%",
     "real_time_yield": "4.43%"
   },
   "LG유플러스": {
     "price": 15680,
-    "dividend_yield": "4.11%",
+    "dividend_yield": "4.07%",
     "dividend_rate": 660,
     "price_change_percent": "-3.39%",
     "real_time_yield": "4.21%"
   },
   "HD현대": {
     "price": 241500,
-    "dividend_yield": "1.54%",
+    "dividend_yield": "1.51%",
     "dividend_rate": 3600,
     "price_change_percent": "1.26%",
     "real_time_yield": "1.49%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-5.81%",
     "real_time_yield": "2.00%"
   },
-  "updated_at": "2026-02-05T09:49:25+00:00"
+  "updated_at": "2026-02-05T10:42:21+00:00"
 }
