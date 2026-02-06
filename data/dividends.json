@@ -50,7 +50,7 @@
   },
   "케이카": {
     "price": 15020,
-    "dividend_yield": "7.86%",
+    "dividend_yield": "7.88%",
     "dividend_rate": 1200,
     "price_change_percent": "-1.57%",
     "real_time_yield": "7.99%"
@@ -113,7 +113,7 @@
   },
   "LG유플러스": {
     "price": 15510,
-    "dividend_yield": "4.21%",
+    "dividend_yield": "4.07%",
     "dividend_rate": 660,
     "price_change_percent": "-1.08%",
     "real_time_yield": "4.26%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-0.97%",
     "real_time_yield": "2.02%"
   },
-  "updated_at": "2026-02-06T07:50:39+00:00"
+  "updated_at": "2026-02-06T08:45:01+00:00"
 }
