@@ -99,10 +99,10 @@
   },
   "BNK 금융지주": {
     "price": 19700,
-    "dividend_yield": "4.38%",
-    "dividend_rate": 810,
+    "dividend_yield": "6.09%",
+    "dividend_rate": 1185,
     "price_change_percent": "1.29%",
-    "real_time_yield": "4.11%"
+    "real_time_yield": "6.02%"
   },
   "NH투자증권우": {
     "price": 23650,
@@ -146,5 +146,5 @@
     "price_change_percent": "-0.78%",
     "real_time_yield": "1.98%"
   },
-  "updated_at": "2026-02-10T07:07:02+00:00"
+  "updated_at": "2026-02-10T08:57:49+00:00"
 }
