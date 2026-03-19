@@ -4,17 +4,20 @@
   <meta charset="UTF-8">
   <title>XX 정보 - 실시간 정보 대시보드</title>
   <style>
-    /* CSS 변수로 테마 색상 정의 */
     :root {
       --bg-color: #ffffff;
       --text-color: #333333;
       --secondary-text: #666;
+      --card-bg: #f8f9fa;
+      --border-color: #e5e5e5;
     }
 
     [data-theme="dark"] {
       --bg-color: #1a1a1a;
       --text-color: #e0e0e0;
       --secondary-text: #aaa;
+      --card-bg: #242424;
+      --border-color: #3a3a3a;
     }
 
     body { 
@@ -30,40 +33,49 @@
     h1 { 
       margin-top: 0;
       color: var(--text-color);
-      transition: color 0.3s ease;
     }
-    
-    .placeholder-content {
-      text-align: center;
-      margin-top: 50px;
+
+    .content-section {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+    }
+
+    .content-section h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .cert-list {
+      margin: 0;
+      padding-left: 20px;
       color: var(--secondary-text);
-      transition: color 0.3s ease;
     }
-    
-    .placeholder-content .icon {
-      font-size: 48px;
-      margin-bottom: 20px;
+
+    .cert-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
   <h1>XX 정보</h1>
   
-  <div class="placeholder-content">
-    <div class="icon">🔧</div>
-    <p>XX 정보 페이지입니다.</p>
-    <p>여기에 원하는 콘텐츠를 추가하세요.</p>
+  <div class="content-section">
+    <h2>금융관련 (for fun)</h2>
+    <ul class="cert-list">
+      <li>국내외 레버리지 ETP Guide 수강</li>
+    </ul>
   </div>
   
-  <!-- ✅ 중요: 새로운 테마 매니저 사용 -->
   <script src="js/theme-manager.js"></script>
   <script>
-    // 페이지 로드 시 서브페이지용 테마 매니저 초기화
     let themeManager;
     window.addEventListener('load', function() {
       themeManager = createThemeManager({ isMainPage: false });
-      
-      // 테마 변경 시 추가 작업이 필요하다면 여기에 추가
+
       themeManager.onThemeChange((theme) => {
         console.log('XX 페이지 테마 변경:', theme);
       });
