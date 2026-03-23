@@ -1,38 +1,38 @@
 {
   "TLT": {
-    "price": 87.490005,
+    "price": 85.83,
     "dividend_yield": "4.28%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "알트리아": {
-    "price": 64.47,
+    "price": 64.39,
     "dividend_yield": "6.58%",
     "dividend_rate": 4.24,
-    "price_change_percent": "-0.92%",
+    "price_change_percent": "-0.12%",
     "real_time_yield": "6.58%"
   },
   "버라이즌": {
-    "price": 49.98,
+    "price": 50.58,
     "dividend_yield": "5.66%",
     "dividend_rate": 2.83,
-    "price_change_percent": "1.01%",
-    "real_time_yield": "5.66%"
+    "price_change_percent": "1.20%",
+    "real_time_yield": "5.60%"
   },
   "리얼티 인컴": {
-    "price": 60.95,
+    "price": 60.85,
     "dividend_yield": "5.30%",
     "dividend_rate": 3.23,
-    "price_change_percent": "-2.70%",
-    "real_time_yield": "5.30%"
+    "price_change_percent": "-0.16%",
+    "real_time_yield": "5.31%"
   },
   "화이자": {
-    "price": 26.97,
+    "price": 26.77,
     "dividend_yield": "6.38%",
     "dividend_rate": 1.72,
-    "price_change_percent": "-1.61%",
-    "real_time_yield": "6.38%"
+    "price_change_percent": "-0.74%",
+    "real_time_yield": "6.43%"
   },
   "KODEX 금융고배당": {
     "price": 13395,
@@ -50,101 +50,101 @@
   },
   "케이카": {
     "price": 14100,
-    "dividend_yield": "8.34%",
+    "dividend_yield": "8.51%",
     "dividend_rate": 1200,
     "price_change_percent": "-1.95%",
     "real_time_yield": "8.51%"
   },
   "하나금융지주": {
     "price": 106000,
-    "dividend_yield": "4.83%",
+    "dividend_yield": "5.15%",
     "dividend_rate": 5464,
     "price_change_percent": "-6.36%",
     "real_time_yield": "5.15%"
   },
   "우리금융지주": {
     "price": 31700,
-    "dividend_yield": "4.01%",
+    "dividend_yield": "4.29%",
     "dividend_rate": 1360,
     "price_change_percent": "-6.49%",
     "real_time_yield": "4.29%"
   },
   "삼성카드": {
     "price": 59000,
-    "dividend_yield": "4.69%",
+    "dividend_yield": "4.75%",
     "dividend_rate": 2800,
     "price_change_percent": "-1.17%",
     "real_time_yield": "4.75%"
   },
   "현대차2우B": {
     "price": 248500,
-    "dividend_yield": "3.93%",
+    "dividend_yield": "4.19%",
     "dividend_rate": 10400,
     "price_change_percent": "-6.05%",
     "real_time_yield": "4.19%"
   },
   "SK텔레콤": {
     "price": 74200,
-    "dividend_yield": "4.21%",
+    "dividend_yield": "4.47%",
     "dividend_rate": 3320,
     "price_change_percent": "-5.84%",
     "real_time_yield": "4.47%"
   },
   "삼성화재우": {
     "price": 380000,
-    "dividend_yield": "4.94%",
+    "dividend_yield": "5.13%",
     "dividend_rate": 19505,
     "price_change_percent": "-3.80%",
     "real_time_yield": "5.13%"
   },
   "BNK 금융지주": {
     "price": 17710,
-    "dividend_yield": "6.29%",
+    "dividend_yield": "6.69%",
     "dividend_rate": 1185,
     "price_change_percent": "-6.05%",
     "real_time_yield": "6.69%"
   },
   "NH투자증권우": {
     "price": 26400,
-    "dividend_yield": "4.94%",
+    "dividend_yield": "5.11%",
     "dividend_rate": 1350,
     "price_change_percent": "-3.47%",
     "real_time_yield": "5.11%"
   },
   "LG유플러스": {
     "price": 15130,
-    "dividend_yield": "4.17%",
+    "dividend_yield": "4.36%",
     "dividend_rate": 660,
     "price_change_percent": "-4.36%",
     "real_time_yield": "4.36%"
   },
   "HD현대": {
     "price": 240500,
-    "dividend_yield": "1.96%",
+    "dividend_yield": "2.16%",
     "dividend_rate": 5200,
     "price_change_percent": "-9.42%",
     "real_time_yield": "2.16%"
   },
   "KT": {
     "price": 57800,
-    "dividend_yield": "4.78%",
+    "dividend_yield": "5.02%",
     "dividend_rate": 2900,
     "price_change_percent": "-4.78%",
     "real_time_yield": "5.02%"
   },
   "삼성전자": {
     "price": 186300,
-    "dividend_yield": "1.14%",
+    "dividend_yield": "1.22%",
     "dividend_rate": 2264,
     "price_change_percent": "-6.57%",
     "real_time_yield": "1.22%"
   },
   "삼성전자우": {
     "price": 130900,
-    "dividend_yield": "1.63%",
+    "dividend_yield": "1.73%",
     "dividend_rate": 2268,
     "price_change_percent": "-5.96%",
     "real_time_yield": "1.73%"
   },
-  "updated_at": "2026-03-23T11:45:17+00:00"
+  "updated_at": "2026-03-23T23:34:30+00:00"
 }
