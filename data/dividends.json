@@ -50,7 +50,7 @@
   },
   "케이카": {
     "price": 14170,
-    "dividend_yield": "8.42%",
+    "dividend_yield": "8.36%",
     "dividend_rate": 1200,
     "price_change_percent": "-1.32%",
     "real_time_yield": "8.47%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-5.46%",
     "real_time_yield": "1.80%"
   },
-  "updated_at": "2026-03-26T08:59:08+00:00"
+  "updated_at": "2026-03-26T10:08:35+00:00"
 }
