@@ -1,7 +1,7 @@
 {
   "TLT": {
     "price": 86.79,
-    "dividend_yield": "4.28%",
+    "dividend_yield": "4.49%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
@@ -146,5 +146,5 @@
     "price_change_percent": "1.39%",
     "real_time_yield": "1.73%"
   },
-  "updated_at": "2026-04-07T07:20:53+00:00"
+  "updated_at": "2026-04-07T09:05:05+00:00"
 }
