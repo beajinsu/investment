@@ -49,60 +49,60 @@
     "real_time_yield": "N/A"
   },
   "케이카": {
-    "price": 10550,
+    "price": 10580,
     "dividend_yield": "11.44%",
     "dividend_rate": 1200,
-    "price_change_percent": "0.57%",
-    "real_time_yield": "11.37%"
+    "price_change_percent": "0.86%",
+    "real_time_yield": "11.34%"
   },
   "하나금융지주": {
-    "price": 119800,
+    "price": 120900,
     "dividend_yield": "4.57%",
     "dividend_rate": 5464,
-    "price_change_percent": "0.25%",
-    "real_time_yield": "4.56%"
+    "price_change_percent": "1.17%",
+    "real_time_yield": "4.52%"
   },
   "우리금융지주": {
-    "price": 34500,
+    "price": 34850,
     "dividend_yield": "3.90%",
     "dividend_rate": 1360,
-    "price_change_percent": "-1.15%",
-    "real_time_yield": "3.94%"
+    "price_change_percent": "-0.14%",
+    "real_time_yield": "3.90%"
   },
   "삼성카드": {
-    "price": 53800,
+    "price": 54500,
     "dividend_yield": "5.18%",
     "dividend_rate": 2800,
-    "price_change_percent": "-0.55%",
-    "real_time_yield": "5.20%"
+    "price_change_percent": "0.74%",
+    "real_time_yield": "5.14%"
   },
   "현대차2우B": {
-    "price": 254000,
+    "price": 252000,
     "dividend_yield": "4.07%",
     "dividend_rate": 10400,
-    "price_change_percent": "-0.59%",
-    "real_time_yield": "4.09%"
+    "price_change_percent": "-1.37%",
+    "real_time_yield": "4.13%"
   },
   "SK텔레콤": {
-    "price": 97900,
+    "price": 98800,
     "dividend_yield": "3.31%",
     "dividend_rate": 3320,
-    "price_change_percent": "-2.39%",
-    "real_time_yield": "3.39%"
+    "price_change_percent": "-1.50%",
+    "real_time_yield": "3.36%"
   },
   "삼성화재우": {
-    "price": 367500,
+    "price": 371000,
     "dividend_yield": "5.26%",
     "dividend_rate": 19505,
-    "price_change_percent": "-0.81%",
-    "real_time_yield": "5.31%"
+    "price_change_percent": "0.13%",
+    "real_time_yield": "5.26%"
   },
   "BNK 금융지주": {
-    "price": 18740,
+    "price": 18900,
     "dividend_yield": "6.30%",
     "dividend_rate": 1185,
-    "price_change_percent": "-0.32%",
-    "real_time_yield": "6.32%"
+    "price_change_percent": "0.53%",
+    "real_time_yield": "6.27%"
   },
   "NH투자증권우": {
     "price": 27550,
@@ -112,39 +112,39 @@
     "real_time_yield": "4.90%"
   },
   "LG유플러스": {
-    "price": 16690,
+    "price": 16740,
     "dividend_yield": "3.95%",
     "dividend_rate": 660,
-    "price_change_percent": "-0.24%",
-    "real_time_yield": "3.95%"
+    "price_change_percent": "0.06%",
+    "real_time_yield": "3.94%"
   },
   "HD현대": {
-    "price": 278000,
+    "price": 280000,
     "dividend_yield": "1.97%",
     "dividend_rate": 5200,
-    "price_change_percent": "5.10%",
-    "real_time_yield": "1.87%"
+    "price_change_percent": "5.86%",
+    "real_time_yield": "1.86%"
   },
   "KT": {
-    "price": 61600,
+    "price": 62000,
     "dividend_yield": "3.88%",
     "dividend_rate": 2400,
-    "price_change_percent": "-0.32%",
-    "real_time_yield": "3.90%"
+    "price_change_percent": "0.32%",
+    "real_time_yield": "3.87%"
   },
   "삼성전자": {
-    "price": 224000,
+    "price": 224500,
     "dividend_yield": "1.04%",
     "dividend_rate": 2264,
-    "price_change_percent": "2.99%",
+    "price_change_percent": "3.22%",
     "real_time_yield": "1.01%"
   },
   "삼성전자우": {
-    "price": 157200,
+    "price": 156200,
     "dividend_yield": "1.50%",
     "dividend_rate": 2268,
-    "price_change_percent": "3.90%",
-    "real_time_yield": "1.44%"
+    "price_change_percent": "3.24%",
+    "real_time_yield": "1.45%"
   },
-  "updated_at": "2026-04-23T05:32:12+00:00"
+  "updated_at": "2026-04-23T07:57:41+00:00"
 }
