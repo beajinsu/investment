@@ -8,7 +8,7 @@
   },
   "알트리아": {
     "price": 73.41,
-    "dividend_yield": "5.69%",
+    "dividend_yield": "5.78%",
     "dividend_rate": 4.24,
     "price_change_percent": "-1.53%",
     "real_time_yield": "5.78%"
@@ -57,7 +57,7 @@
   },
   "하나금융지주": {
     "price": 126600,
-    "dividend_yield": "3.58%",
+    "dividend_yield": "3.62%",
     "dividend_rate": 4580,
     "price_change_percent": "-1.02%",
     "real_time_yield": "3.62%"
@@ -85,7 +85,7 @@
   },
   "SK텔레콤": {
     "price": 97400,
-    "dividend_yield": "2.62%",
+    "dividend_yield": "2.56%",
     "dividend_rate": 2490,
     "price_change_percent": "2.42%",
     "real_time_yield": "2.56%"
@@ -120,7 +120,7 @@
   },
   "HD현대": {
     "price": 302500,
-    "dividend_yield": "1.67%",
+    "dividend_yield": "1.72%",
     "dividend_rate": 5200,
     "price_change_percent": "-2.58%",
     "real_time_yield": "1.72%"
@@ -146,5 +146,5 @@
     "price_change_percent": "7.14%",
     "real_time_yield": "0.88%"
   },
-  "updated_at": "2026-05-05T08:12:26+00:00"
+  "updated_at": "2026-05-05T10:47:22+00:00"
 }
