@@ -29,10 +29,10 @@
   },
   "화이자": {
     "price": 26.48,
-    "dividend_yield": "N/A",
-    "dividend_rate": "N/A",
+    "dividend_yield": "6.50%",
+    "dividend_rate": 1.72,
     "price_change_percent": "-0.19%",
-    "real_time_yield": "N/A"
+    "real_time_yield": "6.50%"
   },
   "KODEX 금융고배당": {
     "price": 12960,
@@ -57,10 +57,10 @@
   },
   "하나금융지주": {
     "price": 126500,
-    "dividend_yield": "N/A",
-    "dividend_rate": "N/A",
+    "dividend_yield": "3.56%",
+    "dividend_rate": 4580,
     "price_change_percent": "-0.90%",
-    "real_time_yield": "N/A"
+    "real_time_yield": "3.62%"
   },
   "우리금융지주": {
     "price": 32850,
@@ -85,10 +85,10 @@
   },
   "SK텔레콤": {
     "price": 93500,
-    "dividend_yield": "N/A",
-    "dividend_rate": "N/A",
+    "dividend_yield": "2.67%",
+    "dividend_rate": 2490,
     "price_change_percent": "0.32%",
-    "real_time_yield": "N/A"
+    "real_time_yield": "2.66%"
   },
   "삼성화재우": {
     "price": 379000,
@@ -99,10 +99,10 @@
   },
   "BNK 금융지주": {
     "price": 17900,
-    "dividend_yield": "N/A",
-    "dividend_rate": "N/A",
+    "dividend_yield": "4.20%",
+    "dividend_rate": 765,
     "price_change_percent": "-1.65%",
-    "real_time_yield": "N/A"
+    "real_time_yield": "4.27%"
   },
   "NH투자증권우": {
     "price": 28250,
@@ -120,17 +120,17 @@
   },
   "HD현대": {
     "price": 289000,
-    "dividend_yield": "N/A",
-    "dividend_rate": "N/A",
+    "dividend_yield": "1.79%",
+    "dividend_rate": 5200,
     "price_change_percent": "-0.34%",
-    "real_time_yield": "N/A"
+    "real_time_yield": "1.80%"
   },
   "KT": {
     "price": 59300,
-    "dividend_yield": "N/A",
-    "dividend_rate": "N/A",
+    "dividend_yield": "4.03%",
+    "dividend_rate": 2400,
     "price_change_percent": "-0.34%",
-    "real_time_yield": "N/A"
+    "real_time_yield": "4.05%"
   },
   "삼성전자": {
     "price": 268500,
@@ -146,5 +146,5 @@
     "price_change_percent": "-1.46%",
     "real_time_yield": "0.81%"
   },
-  "updated_at": "2026-05-08T09:23:50+00:00"
+  "updated_at": "2026-05-08T11:17:47+00:00"
 }
