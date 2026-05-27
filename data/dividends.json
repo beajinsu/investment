@@ -56,11 +56,7 @@
     "real_time_yield": "12.75%"
   },
   "하나금융지주": {
-    "price": 118400,
-    "dividend_yield": "3.82%",
-    "dividend_rate": 4580,
-    "price_change_percent": "-1.33%",
-    "real_time_yield": "3.87%"
+    "error": "Too Many Requests. Rate limited. Try after a while."
   },
   "우리금융지주": {
     "price": 30650,
@@ -146,5 +142,5 @@
     "price_change_percent": "2.56%",
     "real_time_yield": "0.78%"
   },
-  "updated_at": "2026-05-27T09:53:48+00:00"
+  "updated_at": "2026-05-27T12:53:08+00:00"
 }
