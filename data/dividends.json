@@ -7,32 +7,32 @@
     "real_time_yield": "N/A"
   },
   "알트리아": {
-    "price": 73.2,
+    "price": 71.41,
     "dividend_yield": "5.80%",
     "dividend_rate": 4.24,
-    "price_change_percent": "0.10%",
-    "real_time_yield": "5.79%"
+    "price_change_percent": "-2.35%",
+    "real_time_yield": "5.94%"
   },
   "버라이즌": {
-    "price": 47.93,
+    "price": 46.94,
     "dividend_yield": "6.03%",
     "dividend_rate": 2.83,
-    "price_change_percent": "2.09%",
-    "real_time_yield": "5.90%"
+    "price_change_percent": "-0.02%",
+    "real_time_yield": "6.03%"
   },
   "리얼티 인컴": {
-    "price": 62.695,
+    "price": 61.91,
     "dividend_yield": "5.24%",
     "dividend_rate": 3.25,
-    "price_change_percent": "0.94%",
-    "real_time_yield": "5.18%"
+    "price_change_percent": "-0.32%",
+    "real_time_yield": "5.25%"
   },
   "화이자": {
-    "price": 26.2828,
+    "price": 26.17,
     "dividend_yield": "6.72%",
     "dividend_rate": 1.72,
-    "price_change_percent": "2.67%",
-    "real_time_yield": "6.54%"
+    "price_change_percent": "2.23%",
+    "real_time_yield": "6.57%"
   },
   "KODEX 금융고배당": {
     "price": 11620,
@@ -50,101 +50,101 @@
   },
   "케이카": {
     "price": 8520,
-    "dividend_yield": "14.18%",
+    "dividend_yield": "14.08%",
     "dividend_rate": 1200,
     "price_change_percent": "0.71%",
     "real_time_yield": "14.08%"
   },
   "하나금융지주": {
     "price": 114800,
-    "dividend_yield": "3.88%",
+    "dividend_yield": "3.99%",
     "dividend_rate": 4580,
     "price_change_percent": "-2.63%",
     "real_time_yield": "3.99%"
   },
   "우리금융지주": {
     "price": 30150,
-    "dividend_yield": "4.63%",
+    "dividend_yield": "4.58%",
     "dividend_rate": 1380,
     "price_change_percent": "1.17%",
     "real_time_yield": "4.58%"
   },
   "삼성카드": {
     "price": 47150,
-    "dividend_yield": "6.06%",
+    "dividend_yield": "5.94%",
     "dividend_rate": 2800,
     "price_change_percent": "2.06%",
     "real_time_yield": "5.94%"
   },
   "현대차2우B": {
     "price": 235500,
-    "dividend_yield": "4.24%",
+    "dividend_yield": "4.29%",
     "dividend_rate": 10100,
     "price_change_percent": "-1.05%",
     "real_time_yield": "4.29%"
   },
   "SK텔레콤": {
     "price": 100000,
-    "dividend_yield": "2.36%",
+    "dividend_yield": "2.49%",
     "dividend_rate": 2490,
     "price_change_percent": "-5.39%",
     "real_time_yield": "2.49%"
   },
   "삼성화재우": {
     "price": 406500,
-    "dividend_yield": "4.86%",
+    "dividend_yield": "4.80%",
     "dividend_rate": 19505,
     "price_change_percent": "1.25%",
     "real_time_yield": "4.80%"
   },
   "BNK 금융지주": {
     "price": 16820,
-    "dividend_yield": "4.56%",
+    "dividend_yield": "4.55%",
     "dividend_rate": 765,
     "price_change_percent": "0.30%",
     "real_time_yield": "4.55%"
   },
   "NH투자증권우": {
     "price": 24350,
-    "dividend_yield": "5.61%",
+    "dividend_yield": "5.54%",
     "dividend_rate": 1350,
     "price_change_percent": "1.25%",
     "real_time_yield": "5.54%"
   },
   "LG유플러스": {
     "price": 15390,
-    "dividend_yield": "4.48%",
+    "dividend_yield": "4.29%",
     "dividend_rate": 660,
     "price_change_percent": "4.48%",
     "real_time_yield": "4.29%"
   },
   "HD현대": {
     "price": 245500,
-    "dividend_yield": "2.14%",
+    "dividend_yield": "2.12%",
     "dividend_rate": 5200,
     "price_change_percent": "1.24%",
     "real_time_yield": "2.12%"
   },
   "KT": {
     "price": 60000,
-    "dividend_yield": "4.29%",
+    "dividend_yield": "4.00%",
     "dividend_rate": 2400,
     "price_change_percent": "7.33%",
     "real_time_yield": "4.00%"
   },
   "삼성전자": {
     "price": 299000,
-    "dividend_yield": "0.49%",
+    "dividend_yield": "0.50%",
     "dividend_rate": 1488,
     "price_change_percent": "-1.16%",
     "real_time_yield": "0.50%"
   },
   "삼성전자우": {
     "price": 193500,
-    "dividend_yield": "0.78%",
+    "dividend_yield": "0.77%",
     "dividend_rate": 1488,
     "price_change_percent": "1.04%",
     "real_time_yield": "0.77%"
   },
-  "updated_at": "2026-06-11T14:38:06+00:00"
+  "updated_at": "2026-06-12T00:19:37+00:00"
 }
