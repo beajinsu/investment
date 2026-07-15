@@ -78,7 +78,7 @@
   },
   "현대차2우B": {
     "price": 199100,
-    "dividend_yield": "5.05%",
+    "dividend_yield": "5.06%",
     "dividend_rate": 10100,
     "price_change_percent": "-0.35%",
     "real_time_yield": "5.07%"
@@ -113,7 +113,7 @@
   },
   "LG유플러스": {
     "price": 14200,
-    "dividend_yield": "4.63%",
+    "dividend_yield": "4.54%",
     "dividend_rate": 660,
     "price_change_percent": "-0.35%",
     "real_time_yield": "4.65%"
@@ -146,5 +146,5 @@
     "price_change_percent": "5.38%",
     "real_time_yield": "0.78%"
   },
-  "updated_at": "2026-07-15T10:51:13+00:00"
+  "updated_at": "2026-07-15T12:15:52+00:00"
 }
