@@ -8,28 +8,28 @@
   },
   "알트리아": {
     "price": 72.99,
-    "dividend_yield": "5.68%",
+    "dividend_yield": "5.81%",
     "dividend_rate": 4.24,
     "price_change_percent": "-2.24%",
     "real_time_yield": "5.81%"
   },
   "버라이즌": {
     "price": 43.78,
-    "dividend_yield": "6.51%",
+    "dividend_yield": "6.46%",
     "dividend_rate": 2.83,
     "price_change_percent": "0.64%",
     "real_time_yield": "6.46%"
   },
   "리얼티 인컴": {
     "price": 64.99,
-    "dividend_yield": "4.99%",
+    "dividend_yield": "5.00%",
     "dividend_rate": 3.25,
     "price_change_percent": "-0.29%",
     "real_time_yield": "5.00%"
   },
   "화이자": {
     "price": 24.94,
-    "dividend_yield": "6.95%",
+    "dividend_yield": "6.90%",
     "dividend_rate": 1.72,
     "price_change_percent": "0.77%",
     "real_time_yield": "6.90%"
@@ -146,5 +146,5 @@
     "price_change_percent": "2.27%",
     "real_time_yield": "0.80%"
   },
-  "updated_at": "2026-07-22T08:30:39+00:00"
+  "updated_at": "2026-07-22T11:10:15+00:00"
 }
