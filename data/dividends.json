@@ -8,7 +8,7 @@
   },
   "알트리아": {
     "price": 72.17,
-    "dividend_yield": "5.81%",
+    "dividend_yield": "5.88%",
     "dividend_rate": 4.24,
     "price_change_percent": "-1.12%",
     "real_time_yield": "5.88%"
@@ -29,7 +29,7 @@
   },
   "화이자": {
     "price": 24.82,
-    "dividend_yield": "6.90%",
+    "dividend_yield": "6.93%",
     "dividend_rate": 1.72,
     "price_change_percent": "-0.48%",
     "real_time_yield": "6.93%"
@@ -146,5 +146,5 @@
     "price_change_percent": "3.24%",
     "real_time_yield": "0.78%"
   },
-  "updated_at": "2026-07-23T07:33:16+00:00"
+  "updated_at": "2026-07-23T10:23:53+00:00"
 }
