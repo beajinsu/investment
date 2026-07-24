@@ -1,6 +1,6 @@
 {
   "TLT": {
-    "price": 83.439995,
+    "price": 83.44,
     "dividend_yield": "4.53%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
@@ -29,7 +29,7 @@
   },
   "화이자": {
     "price": 25.01,
-    "dividend_yield": "6.93%",
+    "dividend_yield": "6.88%",
     "dividend_rate": 1.72,
     "price_change_percent": "0.77%",
     "real_time_yield": "6.88%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-7.33%",
     "real_time_yield": "0.84%"
   },
-  "updated_at": "2026-07-24T07:31:57+00:00"
+  "updated_at": "2026-07-24T10:19:16+00:00"
 }
