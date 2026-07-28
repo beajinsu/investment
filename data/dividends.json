@@ -8,14 +8,14 @@
   },
   "알트리아": {
     "price": 72.89,
-    "dividend_yield": "5.81%",
+    "dividend_yield": "5.82%",
     "dividend_rate": 4.24,
     "price_change_percent": "-0.14%",
     "real_time_yield": "5.82%"
   },
   "버라이즌": {
     "price": 47.32,
-    "dividend_yield": "6.10%",
+    "dividend_yield": "5.98%",
     "dividend_rate": 2.83,
     "price_change_percent": "2.03%",
     "real_time_yield": "5.98%"
@@ -29,7 +29,7 @@
   },
   "화이자": {
     "price": 24.67,
-    "dividend_yield": "7.01%",
+    "dividend_yield": "6.97%",
     "dividend_rate": 1.72,
     "price_change_percent": "0.53%",
     "real_time_yield": "6.97%"
@@ -120,7 +120,7 @@
   },
   "HD현대": {
     "price": 194600,
-    "dividend_yield": "2.34%",
+    "dividend_yield": "2.47%",
     "dividend_rate": 5200,
     "price_change_percent": "-7.55%",
     "real_time_yield": "2.67%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-12.01%",
     "real_time_yield": "0.94%"
   },
-  "updated_at": "2026-07-28T07:39:30+00:00"
+  "updated_at": "2026-07-28T10:36:29+00:00"
 }
