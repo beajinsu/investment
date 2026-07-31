@@ -15,21 +15,21 @@
   },
   "버라이즌": {
     "price": 46.11,
-    "dividend_yield": "5.99%",
+    "dividend_yield": "6.14%",
     "dividend_rate": 2.83,
     "price_change_percent": "-2.35%",
     "real_time_yield": "6.14%"
   },
   "리얼티 인컴": {
     "price": 64.43,
-    "dividend_yield": "4.96%",
+    "dividend_yield": "5.05%",
     "dividend_rate": 3.25,
     "price_change_percent": "-1.69%",
     "real_time_yield": "5.04%"
   },
   "화이자": {
     "price": 24.91,
-    "dividend_yield": "6.90%",
+    "dividend_yield": "6.84%",
     "dividend_rate": 1.72,
     "price_change_percent": "-0.95%",
     "real_time_yield": "6.90%"
@@ -134,17 +134,17 @@
   },
   "삼성전자": {
     "price": 262500,
-    "dividend_yield": "0.71%",
-    "dividend_rate": 1488,
+    "dividend_yield": "0.72%",
+    "dividend_rate": 1496,
     "price_change_percent": "26.81%",
     "real_time_yield": "0.57%"
   },
   "삼성전자우": {
     "price": 191000,
-    "dividend_yield": "0.97%",
-    "dividend_rate": 1488,
+    "dividend_yield": "0.99%",
+    "dividend_rate": 1496,
     "price_change_percent": "26.49%",
     "real_time_yield": "0.78%"
   },
-  "updated_at": "2026-07-31T10:40:10+00:00"
+  "updated_at": "2026-07-31T12:56:48+00:00"
 }
