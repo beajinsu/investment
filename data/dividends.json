@@ -1,38 +1,38 @@
 {
   "TLT": {
-    "price": 82.8,
+    "price": 82.25,
     "dividend_yield": "4.53%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "알트리아": {
-    "price": 68.33,
+    "price": 68.32,
     "dividend_yield": "6.21%",
     "dividend_rate": 4.24,
-    "price_change_percent": "0.57%",
+    "price_change_percent": "0.00%",
     "real_time_yield": "6.21%"
   },
   "버라이즌": {
-    "price": 46.81,
+    "price": 47.29,
     "dividend_yield": "6.05%",
     "dividend_rate": 2.83,
-    "price_change_percent": "1.52%",
-    "real_time_yield": "6.05%"
+    "price_change_percent": "1.00%",
+    "real_time_yield": "5.98%"
   },
   "리얼티 인컴": {
-    "price": 63.87,
+    "price": 63.71,
     "dividend_yield": "5.09%",
     "dividend_rate": 3.25,
-    "price_change_percent": "-0.45%",
-    "real_time_yield": "5.09%"
+    "price_change_percent": "-0.27%",
+    "real_time_yield": "5.10%"
   },
   "화이자": {
-    "price": 25.01,
+    "price": 25.1399,
     "dividend_yield": "6.88%",
     "dividend_rate": 1.72,
-    "price_change_percent": "0.40%",
-    "real_time_yield": "6.88%"
+    "price_change_percent": "0.44%",
+    "real_time_yield": "6.84%"
   },
   "KODEX 금융고배당": {
     "price": 11500,
@@ -146,5 +146,5 @@
     "price_change_percent": "-6.81%",
     "real_time_yield": "0.84%"
   },
-  "updated_at": "2026-08-03T10:42:53+00:00"
+  "updated_at": "2026-08-03T13:41:26+00:00"
 }
