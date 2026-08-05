@@ -15,21 +15,21 @@
   },
   "버라이즌": {
     "price": 46.88,
-    "dividend_yield": "6.05%",
+    "dividend_yield": "6.04%",
     "dividend_rate": 2.83,
     "price_change_percent": "-1.01%",
     "real_time_yield": "6.04%"
   },
   "리얼티 인컴": {
     "price": 62.9,
-    "dividend_yield": "5.09%",
+    "dividend_yield": "5.17%",
     "dividend_rate": 3.25,
     "price_change_percent": "-0.91%",
     "real_time_yield": "5.17%"
   },
   "화이자": {
     "price": 25.41,
-    "dividend_yield": "6.87%",
+    "dividend_yield": "6.77%",
     "dividend_rate": 1.72,
     "price_change_percent": "1.52%",
     "real_time_yield": "6.77%"
@@ -50,14 +50,14 @@
   },
   "케이카": {
     "price": 7600,
-    "dividend_yield": "16.42%",
+    "dividend_yield": "15.89%",
     "dividend_rate": 1200,
     "price_change_percent": "0.66%",
     "real_time_yield": "15.79%"
   },
   "하나금융지주": {
     "price": 128600,
-    "dividend_yield": "3.62%",
+    "dividend_yield": "3.64%",
     "dividend_rate": 4620,
     "price_change_percent": "0.78%",
     "real_time_yield": "3.59%"
@@ -85,7 +85,7 @@
   },
   "SK텔레콤": {
     "price": 93000,
-    "dividend_yield": "3.63%",
+    "dividend_yield": "4.05%",
     "dividend_rate": 3320,
     "price_change_percent": "1.75%",
     "real_time_yield": "3.57%"
@@ -99,7 +99,7 @@
   },
   "BNK 금융지주": {
     "price": 14940,
-    "dividend_yield": "3.97%",
+    "dividend_yield": "3.98%",
     "dividend_rate": 600,
     "price_change_percent": "-1.13%",
     "real_time_yield": "4.02%"
@@ -120,14 +120,14 @@
   },
   "HD현대": {
     "price": 219000,
-    "dividend_yield": "2.49%",
+    "dividend_yield": "2.62%",
     "dividend_rate": 5200,
     "price_change_percent": "5.04%",
     "real_time_yield": "2.37%"
   },
   "KT": {
     "price": 52500,
-    "dividend_yield": "4.59%",
+    "dividend_yield": "4.60%",
     "dividend_rate": 2400,
     "price_change_percent": "0.38%",
     "real_time_yield": "4.57%"
@@ -146,5 +146,5 @@
     "price_change_percent": "4.25%",
     "real_time_yield": "0.81%"
   },
-  "updated_at": "2026-08-05T10:36:05+00:00"
+  "updated_at": "2026-08-05T12:53:14+00:00"
 }
