@@ -29,7 +29,7 @@
   },
   "화이자": {
     "price": 26.2,
-    "dividend_yield": "6.66%",
+    "dividend_yield": "6.56%",
     "dividend_rate": 1.72,
     "price_change_percent": "1.51%",
     "real_time_yield": "6.56%"
@@ -85,7 +85,7 @@
   },
   "SK텔레콤": {
     "price": 88200,
-    "dividend_yield": "3.57%",
+    "dividend_yield": "3.64%",
     "dividend_rate": 3320,
     "price_change_percent": "-3.18%",
     "real_time_yield": "3.76%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-1.16%",
     "real_time_yield": "0.88%"
   },
-  "updated_at": "2026-08-07T08:14:35+00:00"
+  "updated_at": "2026-08-07T10:02:03+00:00"
 }
