@@ -1,77 +1,77 @@
 {
-  "updated_at": "2026-08-15T20:07:01.998Z",
+  "updated_at": "2026-08-15T20:43:18.388Z",
   "exchange_rate": {
     "usd_to_krw": 1416.47,
     "source": "OpenExchangeRates",
-    "last_updated": "2026-08-15T20:07:01.996Z"
+    "last_updated": "2026-08-15T20:43:18.387Z"
   },
   "coins": [
     {
       "coin": "Bitcoin (BTC)",
-      "global_price_usd": 63058,
-      "global_price_krw": 89319765.26,
-      "upbit_price": 89261000,
-      "kimchi_premium": -0.06579200004494655,
-      "change_24h": 0.1905069811370347,
-      "market_cap": 1265681504803.109,
+      "global_price_usd": 63017,
+      "global_price_krw": 89261689.99,
+      "upbit_price": 89220000,
+      "kimchi_premium": -0.04670535590875007,
+      "change_24h": 0.25969224154268405,
+      "market_cap": 1264795263928.3574,
       "raw": {
         "global": {
-          "usd": 63058,
-          "usd_market_cap": 1265681504803.109,
-          "usd_24h_change": 0.1905069811370347
+          "usd": 63017,
+          "usd_market_cap": 1264795263928.3574,
+          "usd_24h_change": 0.25969224154268405
         },
         "upbit": {
           "market": "KRW-BTC",
           "trade_date": "20260815",
-          "trade_time": "200700",
+          "trade_time": "204316",
           "trade_date_kst": "20260816",
-          "trade_time_kst": "050700",
-          "trade_timestamp": 1786824420798,
+          "trade_time_kst": "054316",
+          "trade_timestamp": 1786826596353,
           "opening_price": 89141000,
           "high_price": 89342000,
           "low_price": 88973000,
-          "trade_price": 89261000,
+          "trade_price": 89220000,
           "prev_closing_price": 89120000,
           "change": "RISE",
-          "change_price": 141000,
-          "change_rate": 0.0015821364,
-          "signed_change_price": 141000,
-          "signed_change_rate": 0.0015821364,
-          "trade_volume": 0.00022402,
-          "acc_trade_price": 17543344373.58775,
-          "acc_trade_price_24h": 21204070650.89657,
-          "acc_trade_volume": 196.75797129,
-          "acc_trade_volume_24h": 237.8951143,
+          "change_price": 100000,
+          "change_rate": 0.0011220826,
+          "signed_change_price": 100000,
+          "signed_change_rate": 0.0011220826,
+          "trade_volume": 0.01120887,
+          "acc_trade_price": 17773655515.95657,
+          "acc_trade_price_24h": 20982764678.92124,
+          "acc_trade_volume": 199.33855938,
+          "acc_trade_volume_24h": 235.40013251,
           "highest_52_week_price": 179869000,
           "highest_52_week_date": "2025-10-09",
           "lowest_52_week_price": 88342000,
           "lowest_52_week_date": "2026-08-14",
-          "timestamp": 1786824421107
+          "timestamp": 1786826596656
         },
         "exchange_rate": 1416.47
       }
     },
     {
       "coin": "Ethereum (ETH)",
-      "global_price_usd": 1882.54,
-      "global_price_krw": 2666561.4338,
+      "global_price_usd": 1881.16,
+      "global_price_krw": 2664606.7052,
       "upbit_price": 2665000,
-      "kimchi_premium": -0.058556078258999666,
-      "change_24h": 0.16560451787740232,
-      "market_cap": 227190975474.00256,
+      "kimchi_premium": 0.014759956853380342,
+      "change_24h": 0.18633250640731183,
+      "market_cap": 227020704018.5252,
       "raw": {
         "global": {
-          "usd": 1882.54,
-          "usd_market_cap": 227190975474.00256,
-          "usd_24h_change": 0.16560451787740232
+          "usd": 1881.16,
+          "usd_market_cap": 227020704018.5252,
+          "usd_24h_change": 0.18633250640731183
         },
         "upbit": {
           "market": "KRW-ETH",
           "trade_date": "20260815",
-          "trade_time": "200700",
+          "trade_time": "204300",
           "trade_date_kst": "20260816",
-          "trade_time_kst": "050700",
-          "trade_timestamp": 1786824420762,
+          "trade_time_kst": "054300",
+          "trade_timestamp": 1786826580568,
           "opening_price": 2662000,
           "high_price": 2668000,
           "low_price": 2652000,
@@ -82,16 +82,16 @@
           "change_rate": 0.0011269722,
           "signed_change_price": 3000,
           "signed_change_rate": 0.0011269722,
-          "trade_volume": 0.00375234,
-          "acc_trade_price": 9131051822.5743,
-          "acc_trade_price_24h": 10909714381.40158,
-          "acc_trade_volume": 3430.70254729,
-          "acc_trade_volume_24h": 4099.7612761,
+          "trade_volume": 0.00750468,
+          "acc_trade_price": 9145497306.59313,
+          "acc_trade_price_24h": 10659897127.31626,
+          "acc_trade_volume": 3436.1235581,
+          "acc_trade_volume_24h": 4005.73445847,
           "highest_52_week_price": 6845000,
           "highest_52_week_date": "2025-08-24",
           "lowest_52_week_price": 2300000,
           "lowest_52_week_date": "2026-06-06",
-          "timestamp": 1786824421090
+          "timestamp": 1786826596334
         },
         "exchange_rate": 1416.47
       }
@@ -102,21 +102,21 @@
       "global_price_krw": 1420.71941,
       "upbit_price": 1420,
       "kimchi_premium": -0.05063702198591947,
-      "change_24h": 0.5144680658476433,
-      "market_cap": 62877846551.587234,
+      "change_24h": 0.4933943102936672,
+      "market_cap": 62853080279.410416,
       "raw": {
         "global": {
           "usd": 1.003,
-          "usd_market_cap": 62877846551.587234,
-          "usd_24h_change": 0.5144680658476433
+          "usd_market_cap": 62853080279.410416,
+          "usd_24h_change": 0.4933943102936672
         },
         "upbit": {
           "market": "KRW-XRP",
           "trade_date": "20260815",
-          "trade_time": "200700",
+          "trade_time": "204300",
           "trade_date_kst": "20260816",
-          "trade_time_kst": "050700",
-          "trade_timestamp": 1786824420739,
+          "trade_time_kst": "054300",
+          "trade_timestamp": 1786826580562,
           "opening_price": 1413,
           "high_price": 1424,
           "low_price": 1411,
@@ -127,41 +127,41 @@
           "change_rate": 0.0049539986,
           "signed_change_price": 7,
           "signed_change_rate": 0.0049539986,
-          "trade_volume": 7.05218617,
-          "acc_trade_price": 18367034188.782055,
-          "acc_trade_price_24h": 29037060825.39384,
-          "acc_trade_volume": 12952477.39778874,
-          "acc_trade_volume_24h": 20538731.5783201,
+          "trade_volume": 3.52360817,
+          "acc_trade_price": 18468495921.97128,
+          "acc_trade_price_24h": 28674617676.503033,
+          "acc_trade_volume": 13023960.18040603,
+          "acc_trade_volume_24h": 20281479.69095861,
           "highest_52_week_price": 4412,
           "highest_52_week_date": "2025-09-13",
           "lowest_52_week_price": 1397,
           "lowest_52_week_date": "2026-08-11",
-          "timestamp": 1786824421096
+          "timestamp": 1786826591649
         },
         "exchange_rate": 1416.47
       }
     },
     {
       "coin": "Cardano (ADA)",
-      "global_price_usd": 0.178014,
-      "global_price_krw": 252.15149058,
+      "global_price_usd": 0.177892,
+      "global_price_krw": 251.97868124,
       "upbit_price": 252,
-      "kimchi_premium": -0.060079192731140124,
-      "change_24h": -1.0722203312084913,
-      "market_cap": 6649963786.922671,
+      "kimchi_premium": 0.008460541143839342,
+      "change_24h": -0.8110710928615108,
+      "market_cap": 6646005379.209143,
       "raw": {
         "global": {
-          "usd": 0.178014,
-          "usd_market_cap": 6649963786.922671,
-          "usd_24h_change": -1.0722203312084913
+          "usd": 0.177892,
+          "usd_market_cap": 6646005379.209143,
+          "usd_24h_change": -0.8110710928615108
         },
         "upbit": {
           "market": "KRW-ADA",
           "trade_date": "20260815",
-          "trade_time": "200411",
+          "trade_time": "204240",
           "trade_date_kst": "20260816",
-          "trade_time_kst": "050411",
-          "trade_timestamp": 1786824251282,
+          "trade_time_kst": "054240",
+          "trade_timestamp": 1786826560444,
           "opening_price": 254,
           "high_price": 257,
           "low_price": 250,
@@ -172,41 +172,41 @@
           "change_rate": 0.0078740157,
           "signed_change_price": -2,
           "signed_change_rate": -0.0078740157,
-          "trade_volume": 20.23809523,
-          "acc_trade_price": 2220337419.289687,
-          "acc_trade_price_24h": 2493384045.4126835,
-          "acc_trade_volume": 8750911.73730284,
-          "acc_trade_volume_24h": 9828554.48026383,
+          "trade_volume": 19434.7270809,
+          "acc_trade_price": 2236379842.476561,
+          "acc_trade_price_24h": 2496682087.202711,
+          "acc_trade_volume": 8814585.81912568,
+          "acc_trade_volume_24h": 9842014.36204991,
           "highest_52_week_price": 1366,
           "highest_52_week_date": "2025-08-17",
           "lowest_52_week_price": 210,
           "lowest_52_week_date": "2026-06-26",
-          "timestamp": 1786824305043
+          "timestamp": 1786826560566
         },
         "exchange_rate": 1416.47
       }
     },
     {
       "coin": "Solana (SOL)",
-      "global_price_usd": 75.49,
-      "global_price_krw": 106929.32029999999,
+      "global_price_usd": 75.41,
+      "global_price_krw": 106816.0027,
       "upbit_price": 106800,
-      "kimchi_premium": -0.12093998132333787,
-      "change_24h": 0.5369579275736592,
-      "market_cap": 43991250871.30308,
+      "kimchi_premium": -0.01498155669140882,
+      "change_24h": 0.3261803116661311,
+      "market_cap": 43945441590.72365,
       "raw": {
         "global": {
-          "usd": 75.49,
-          "usd_market_cap": 43991250871.30308,
-          "usd_24h_change": 0.5369579275736592
+          "usd": 75.41,
+          "usd_market_cap": 43945441590.72365,
+          "usd_24h_change": 0.3261803116661311
         },
         "upbit": {
           "market": "KRW-SOL",
           "trade_date": "20260815",
-          "trade_time": "200700",
+          "trade_time": "204229",
           "trade_date_kst": "20260816",
-          "trade_time_kst": "050700",
-          "trade_timestamp": 1786824420778,
+          "trade_time_kst": "054229",
+          "trade_timestamp": 1786826549745,
           "opening_price": 106700,
           "high_price": 107100,
           "low_price": 106100,
@@ -217,41 +217,41 @@
           "change_rate": 0.0009372071,
           "signed_change_price": 100,
           "signed_change_rate": 0.0009372071,
-          "trade_volume": 0.23430178,
-          "acc_trade_price": 3315856967.610448,
-          "acc_trade_price_24h": 3982143738.703313,
-          "acc_trade_volume": 31082.31934975,
-          "acc_trade_volume_24h": 37347.3148001,
+          "trade_volume": 0.83299924,
+          "acc_trade_price": 3341222413.992799,
+          "acc_trade_price_24h": 3988412427.158543,
+          "acc_trade_volume": 31319.86347963,
+          "acc_trade_volume_24h": 37404.96792104,
           "highest_52_week_price": 350800,
           "highest_52_week_date": "2025-09-18",
           "lowest_52_week_price": 91800,
           "lowest_52_week_date": "2026-06-06",
-          "timestamp": 1786824421102
+          "timestamp": 1786826580653
         },
         "exchange_rate": 1416.47
       }
     },
     {
       "coin": "Tether (USDT)",
-      "global_price_usd": 0.999114,
-      "global_price_krw": 1415.21500758,
+      "global_price_usd": 0.999108,
+      "global_price_krw": 1415.2065087600001,
       "upbit_price": 1414,
-      "kimchi_premium": -0.08585321477601254,
-      "change_24h": 0.003204062423872562,
-      "market_cap": 183017835390.386,
+      "kimchi_premium": -0.08525319467738125,
+      "change_24h": -0.0019918219970933883,
+      "market_cap": 183015469211.16202,
       "raw": {
         "global": {
-          "usd": 0.999114,
-          "usd_market_cap": 183017835390.386,
-          "usd_24h_change": 0.003204062423872562
+          "usd": 0.999108,
+          "usd_market_cap": 183015469211.16202,
+          "usd_24h_change": -0.0019918219970933883
         },
         "upbit": {
           "market": "KRW-USDT",
           "trade_date": "20260815",
-          "trade_time": "200651",
+          "trade_time": "204307",
           "trade_date_kst": "20260816",
-          "trade_time_kst": "050651",
-          "trade_timestamp": 1786824411467,
+          "trade_time_kst": "054307",
+          "trade_timestamp": 1786826587631,
           "opening_price": 1415,
           "high_price": 1415,
           "low_price": 1413,
@@ -262,16 +262,16 @@
           "change_rate": 0,
           "signed_change_price": 0,
           "signed_change_rate": 0,
-          "trade_volume": 606.21442,
-          "acc_trade_price": 51888030433.99823,
-          "acc_trade_price_24h": 57848614873.859566,
-          "acc_trade_volume": 36689489.6880864,
-          "acc_trade_volume_24h": 40903922.30286739,
+          "trade_volume": 505.4241,
+          "acc_trade_price": 52326235366.64634,
+          "acc_trade_price_24h": 57810261118.72803,
+          "acc_trade_volume": 36999309.25636041,
+          "acc_trade_volume_24h": 40876402.59468854,
           "highest_52_week_price": 1655,
           "highest_52_week_date": "2025-10-10",
           "lowest_52_week_price": 1374,
           "lowest_52_week_date": "2025-08-23",
-          "timestamp": 1786824411776
+          "timestamp": 1786826587879
         },
         "exchange_rate": 1416.47
       }
@@ -282,21 +282,21 @@
       "global_price_krw": 0.0064307738,
       "upbit_price": 0.00643,
       "kimchi_premium": -0.012032766570022916,
-      "change_24h": -0.6757504407120061,
-      "market_cap": 2676806227.2549357,
+      "change_24h": -0.6283660028202819,
+      "market_cap": 2677613505.597272,
       "raw": {
         "global": {
           "usd": 0.00000454,
-          "usd_market_cap": 2676806227.2549357,
-          "usd_24h_change": -0.6757504407120061
+          "usd_market_cap": 2677613505.597272,
+          "usd_24h_change": -0.6283660028202819
         },
         "upbit": {
           "market": "KRW-SHIB",
           "trade_date": "20260815",
-          "trade_time": "200700",
+          "trade_time": "203823",
           "trade_date_kst": "20260816",
-          "trade_time_kst": "050700",
-          "trade_timestamp": 1786824420535,
+          "trade_time_kst": "053823",
+          "trade_timestamp": 1786826303826,
           "opening_price": 0.00654,
           "high_price": 0.00656,
           "low_price": 0.00641,
@@ -307,33 +307,33 @@
           "change_rate": 0.0153139357,
           "signed_change_price": -0.0001,
           "signed_change_rate": -0.0153139357,
-          "trade_volume": 1555209.9533437,
-          "acc_trade_price": 1888148267.0847707,
-          "acc_trade_price_24h": 2447510530.4830203,
-          "acc_trade_volume": 291312206361.6379,
-          "acc_trade_volume_24h": 377686081170.09357,
+          "trade_volume": 1100000,
+          "acc_trade_price": 1892310860.8137634,
+          "acc_trade_price_24h": 2419315835.85875,
+          "acc_trade_volume": 291959868275.8712,
+          "acc_trade_volume_24h": 373321822271.8672,
           "highest_52_week_price": 0.0206,
           "highest_52_week_date": "2025-09-13",
           "lowest_52_week_price": 0.006,
           "lowest_52_week_date": "2026-07-24",
-          "timestamp": 1786824420746
+          "timestamp": 1786826577812
         },
         "exchange_rate": 1416.47
       }
     },
     {
       "coin": "Mantle (MNT)",
-      "global_price_usd": 0.434938,
-      "global_price_krw": 616.07662886,
+      "global_price_usd": 0.434697,
+      "global_price_krw": 615.73525959,
       "upbit_price": 615,
-      "kimchi_premium": -0.17475567316881385,
-      "change_24h": -2.2340050099485835,
-      "market_cap": 1436293105.2009892,
+      "kimchi_premium": -0.11941164299891528,
+      "change_24h": -2.319737373866558,
+      "market_cap": 1435496007.5646358,
       "raw": {
         "global": {
-          "usd": 0.434938,
-          "usd_market_cap": 1436293105.2009892,
-          "usd_24h_change": -2.2340050099485835
+          "usd": 0.434697,
+          "usd_market_cap": 1435496007.5646358,
+          "usd_24h_change": -2.319737373866558
         },
         "upbit": {
           "market": "KRW-MNT",
@@ -354,14 +354,14 @@
           "signed_change_rate": -0.017571885,
           "trade_volume": 107,
           "acc_trade_price": 30432537.78832049,
-          "acc_trade_price_24h": 30798238.88076049,
+          "acc_trade_price_24h": 30748712.06688181,
           "acc_trade_volume": 49024.63958355,
-          "acc_trade_volume_24h": 49607.42442909,
+          "acc_trade_volume_24h": 49528.56007578,
           "highest_52_week_price": 4161,
           "highest_52_week_date": "2025-10-09",
           "lowest_52_week_price": 555,
           "lowest_52_week_date": "2026-07-29",
-          "timestamp": 1786819515780
+          "timestamp": 1786825638511
         },
         "exchange_rate": 1416.47
       }
