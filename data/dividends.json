@@ -15,14 +15,14 @@
   },
   "버라이즌": {
     "price": 48.06,
-    "dividend_yield": "5.84%",
+    "dividend_yield": "5.89%",
     "dividend_rate": 2.83,
     "price_change_percent": "-0.87%",
     "real_time_yield": "5.89%"
   },
   "리얼티 인컴": {
     "price": 62.4,
-    "dividend_yield": "5.18%",
+    "dividend_yield": "5.21%",
     "dividend_rate": 3.25,
     "price_change_percent": "-0.54%",
     "real_time_yield": "5.21%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-3.73%",
     "real_time_yield": "0.79%"
   },
-  "updated_at": "2026-08-18T10:29:05+00:00"
+  "updated_at": "2026-08-18T11:26:04+00:00"
 }
