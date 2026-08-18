@@ -29,7 +29,7 @@
   },
   "화이자": {
     "price": 26.87,
-    "dividend_yield": "6.42%",
+    "dividend_yield": "6.40%",
     "dividend_rate": 1.72,
     "price_change_percent": "0.30%",
     "real_time_yield": "6.40%"
@@ -50,10 +50,10 @@
   },
   "케이카": {
     "price": 6590,
-    "dividend_yield": "15.56%",
-    "dividend_rate": 1200,
+    "dividend_yield": "2.58%",
+    "dividend_rate": 200,
     "price_change_percent": "-15.08%",
-    "real_time_yield": "18.21%"
+    "real_time_yield": "3.03%"
   },
   "하나금융지주": {
     "price": 130700,
@@ -106,7 +106,7 @@
   },
   "NH투자증권우": {
     "price": 24500,
-    "dividend_yield": "5.44%",
+    "dividend_yield": "5.42%",
     "dividend_rate": 1350,
     "price_change_percent": "-1.61%",
     "real_time_yield": "5.51%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-3.73%",
     "real_time_yield": "0.79%"
   },
-  "updated_at": "2026-08-18T08:37:29+00:00"
+  "updated_at": "2026-08-18T09:34:15+00:00"
 }
