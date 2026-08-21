@@ -1,38 +1,38 @@
 {
   "TLT": {
-    "price": 83.02,
+    "price": 82.34,
     "dividend_yield": "4.75%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "알트리아": {
-    "price": 66.94,
+    "price": 66.09,
     "dividend_yield": "6.33%",
     "dividend_rate": 4.24,
-    "price_change_percent": "1.38%",
-    "real_time_yield": "6.33%"
+    "price_change_percent": "-1.27%",
+    "real_time_yield": "6.42%"
   },
   "버라이즌": {
-    "price": 49.19,
+    "price": 49.45,
     "dividend_yield": "5.75%",
     "dividend_rate": 2.83,
-    "price_change_percent": "-0.34%",
-    "real_time_yield": "5.75%"
+    "price_change_percent": "0.53%",
+    "real_time_yield": "5.72%"
   },
   "리얼티 인컴": {
-    "price": 63.17,
+    "price": 62.6,
     "dividend_yield": "5.15%",
     "dividend_rate": 3.25,
-    "price_change_percent": "0.35%",
-    "real_time_yield": "5.14%"
+    "price_change_percent": "-0.90%",
+    "real_time_yield": "5.19%"
   },
   "화이자": {
-    "price": 27.79,
+    "price": 28.07,
     "dividend_yield": "6.19%",
     "dividend_rate": 1.72,
-    "price_change_percent": "-1.59%",
-    "real_time_yield": "6.19%"
+    "price_change_percent": "1.01%",
+    "real_time_yield": "6.13%"
   },
   "KODEX 금융고배당": {
     "price": 11360,
@@ -57,7 +57,7 @@
   },
   "하나금융지주": {
     "price": 128800,
-    "dividend_yield": "3.74%",
+    "dividend_yield": "3.59%",
     "dividend_rate": 4620,
     "price_change_percent": "4.38%",
     "real_time_yield": "3.59%"
@@ -85,7 +85,7 @@
   },
   "SK텔레콤": {
     "price": 102200,
-    "dividend_yield": "3.44%",
+    "dividend_yield": "3.25%",
     "dividend_rate": 3320,
     "price_change_percent": "5.80%",
     "real_time_yield": "3.25%"
@@ -99,7 +99,7 @@
   },
   "BNK 금융지주": {
     "price": 14310,
-    "dividend_yield": "4.20%",
+    "dividend_yield": "4.19%",
     "dividend_rate": 600,
     "price_change_percent": "0.07%",
     "real_time_yield": "4.19%"
@@ -120,14 +120,14 @@
   },
   "HD현대": {
     "price": 213000,
-    "dividend_yield": "2.35%",
+    "dividend_yield": "2.44%",
     "dividend_rate": 5200,
     "price_change_percent": "-3.84%",
     "real_time_yield": "2.44%"
   },
   "KT": {
     "price": 52400,
-    "dividend_yield": "4.61%",
+    "dividend_yield": "4.58%",
     "dividend_rate": 2400,
     "price_change_percent": "0.58%",
     "real_time_yield": "4.58%"
@@ -146,5 +146,5 @@
     "price_change_percent": "8.26%",
     "real_time_yield": "0.72%"
   },
-  "updated_at": "2026-08-21T11:26:45+00:00"
+  "updated_at": "2026-08-21T23:24:37+00:00"
 }
