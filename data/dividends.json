@@ -29,7 +29,7 @@
   },
   "화이자": {
     "price": 27.79,
-    "dividend_yield": "6.09%",
+    "dividend_yield": "6.19%",
     "dividend_rate": 1.72,
     "price_change_percent": "-1.59%",
     "real_time_yield": "6.19%"
@@ -146,5 +146,5 @@
     "price_change_percent": "8.26%",
     "real_time_yield": "0.72%"
   },
-  "updated_at": "2026-08-21T08:40:44+00:00"
+  "updated_at": "2026-08-21T09:37:07+00:00"
 }
