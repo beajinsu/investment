@@ -1,38 +1,38 @@
 {
   "TLT": {
-    "price": 82.340004,
+    "price": 82.05,
     "dividend_yield": "4.75%",
     "dividend_rate": "N/A",
     "price_change_percent": "0.00%",
     "real_time_yield": "N/A"
   },
   "알트리아": {
-    "price": 66.09,
+    "price": 68.47,
     "dividend_yield": "6.42%",
     "dividend_rate": 4.24,
-    "price_change_percent": "-1.27%",
-    "real_time_yield": "6.42%"
+    "price_change_percent": "3.60%",
+    "real_time_yield": "6.19%"
   },
   "버라이즌": {
-    "price": 49.45,
+    "price": 50.15,
     "dividend_yield": "5.72%",
     "dividend_rate": 2.83,
-    "price_change_percent": "0.53%",
-    "real_time_yield": "5.72%"
+    "price_change_percent": "1.42%",
+    "real_time_yield": "5.64%"
   },
   "리얼티 인컴": {
-    "price": 62.6,
+    "price": 63.17,
     "dividend_yield": "5.19%",
     "dividend_rate": 3.25,
-    "price_change_percent": "-0.90%",
-    "real_time_yield": "5.19%"
+    "price_change_percent": "0.91%",
+    "real_time_yield": "5.14%"
   },
   "화이자": {
-    "price": 28.07,
+    "price": 27.97,
     "dividend_yield": "6.13%",
     "dividend_rate": 1.72,
-    "price_change_percent": "1.01%",
-    "real_time_yield": "6.13%"
+    "price_change_percent": "-0.36%",
+    "real_time_yield": "6.15%"
   },
   "KODEX 금융고배당": {
     "price": 11500,
@@ -50,7 +50,7 @@
   },
   "케이카": {
     "price": 6100,
-    "dividend_yield": "3.27%",
+    "dividend_yield": "3.28%",
     "dividend_rate": 200,
     "price_change_percent": "-0.33%",
     "real_time_yield": "3.28%"
@@ -99,7 +99,7 @@
   },
   "BNK 금융지주": {
     "price": 14360,
-    "dividend_yield": "4.19%",
+    "dividend_yield": "4.18%",
     "dividend_rate": 600,
     "price_change_percent": "0.35%",
     "real_time_yield": "4.18%"
@@ -127,7 +127,7 @@
   },
   "KT": {
     "price": 52500,
-    "dividend_yield": "4.58%",
+    "dividend_yield": "4.57%",
     "dividend_rate": 2400,
     "price_change_percent": "0.19%",
     "real_time_yield": "4.57%"
@@ -146,5 +146,5 @@
     "price_change_percent": "-8.55%",
     "real_time_yield": "0.79%"
   },
-  "updated_at": "2026-08-24T11:29:19+00:00"
+  "updated_at": "2026-08-24T23:22:36+00:00"
 }
