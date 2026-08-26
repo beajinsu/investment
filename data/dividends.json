@@ -15,7 +15,7 @@
   },
   "버라이즌": {
     "price": 50.25,
-    "dividend_yield": "5.64%",
+    "dividend_yield": "5.63%",
     "dividend_rate": 2.83,
     "price_change_percent": "0.20%",
     "real_time_yield": "5.63%"
@@ -146,5 +146,5 @@
     "price_change_percent": "1.18%",
     "real_time_yield": "0.76%"
   },
-  "updated_at": "2026-08-26T08:44:07+00:00"
+  "updated_at": "2026-08-26T09:42:08+00:00"
 }
