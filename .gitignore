@@ -1,0 +1,7 @@
+# 데이터는 data 브랜치에 있다. main 에 두면 갱신이 안 돼 곧 낡은 값이 된다.
+# 워크플로가 만드는 중간 산출물이므로 추적하지 않는다.
+data/*.json
+
+__pycache__/
+*.pyc
+node_modules/

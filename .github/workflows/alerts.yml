@@ -1,0 +1,80 @@
+name: Market Alerts
+
+# 조건이 맞을 때만 GitHub Issue 를 연다.
+# 데이터를 새로 받지 않고, data 브랜치에 이미 올라온 값을 읽어 판정만 한다.
+# 그래서 코인·배당 워크플로가 끝난 뒤에 도는 게 맞다.
+
+on:
+  schedule:
+    # 3시간마다, 데이터 갱신(정시)보다 20분 늦게
+    - cron: '20 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fetch data from data branch
+        run: |
+          # 데이터는 main 이 아니라 data 브랜치에 있다
+          mkdir -p data
+          for f in crypto.json dividends.json alert_state.json; do
+            curl -sfL -o "data/$f" \
+              "https://raw.githubusercontent.com/${{ github.repository }}/data/$f" \
+              || echo "  $f 없음 (건너뜀)"
+          done
+          ls -la data/
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install yfinance
+        run: pip install --quiet yfinance
+
+      - name: Check thresholds
+        id: check
+        run: python scripts/check_alerts.py
+
+      - name: Open issue
+        if: steps.check.outputs.has_alert == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📈 ${{ steps.check.outputs.title }}`,
+              body: process.env.ALERT_BODY,
+              labels: ['alert'],
+            });
+        env:
+          ALERT_BODY: ${{ steps.check.outputs.body }}
+
+      - name: Save alert state
+        if: always()
+        run: |
+          # 재알림 억제 기록을 data 브랜치에 되돌려 놓는다.
+          # 그러지 않으면 3시간 뒤에 같은 알림이 다시 온다.
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          mkdir -p /tmp/out
+          if git fetch --depth 1 origin data 2>/dev/null; then
+            git archive FETCH_HEAD | tar -x -C /tmp/out || true
+          fi
+          cp data/alert_state.json /tmp/out/ 2>/dev/null || exit 0
+          cd /tmp/out
+          rm -rf .git
+          git init -q
+          git add -A
+          git commit -q -m "data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:data
