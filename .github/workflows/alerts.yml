@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write   # 재알림 억제 기록을 data 브랜치에 되돌려 놓아야 한다
   issues: write
 
 jobs:
