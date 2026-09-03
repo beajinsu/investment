@@ -1,3 +1,7 @@
+// 데이터는 main 이 아니라 data 브랜치에 있다.
+// 갱신마다 커밋이 쌓이는 걸 막으려고 분리했다(커밋 하나를 계속 덮어씀).
+const DATA_BASE = 'https://raw.githubusercontent.com/beajinsu/investment/data';
+
 // js/dividends.js - 배당수익률 관련 기능
 
 class DividendManager {
@@ -36,7 +40,7 @@ class DividendManager {
   
   async loadData() {
     try {
-      const response = await fetch('data/dividends.json');
+      const response = await fetch(`${DATA_BASE}/dividends.json?t=${Date.now()}`);
       if (!response.ok) throw new Error('네트워크 오류');
       
       const data = await response.json();

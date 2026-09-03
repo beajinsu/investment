@@ -2,7 +2,8 @@
 
   on:
     schedule:
-      - cron: '0 23,0-11 * * 1-5'  # 매주 월요일부터 금요일까지, KST 기준으로 오전 8시부터 오후 8시까지 매시간 실행
+        # 평일 3시간마다 (KST 08·11·14·17·20시). cron 은 UTC 기준.
+        - cron: '0 23,2,5,8,11 * * 1-5'
     workflow_dispatch:
 
   permissions:
@@ -32,10 +33,27 @@
             KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
           run: python scripts/fetch_dividends.py
 
-        - name: Commit and push changes
+        - name: Push data to data branch
           run: |
-            git config --global user.name 'beajinsu'
-            git config --global user.email 'your-email@example.com'
-            git add data/dividends.json
-            git commit -m "🔄 자동 업데이트: yfinance 배당 수익률" || echo "No changes"
-            git push
+            # 데이터는 main 이 아니라 data 브랜치에 둔다.
+            # 커밋 하나만 두고 매번 덮어써서 이력이 쌓이지 않게 한다.
+            git config --global user.email "action@github.com"
+            git config --global user.name "GitHub Action"
+
+            # 기존 data 브랜치 내용을 먼저 꺼낸다.
+            # 다른 워크플로가 올린 파일을 지우지 않기 위해서다.
+            mkdir -p /tmp/out
+            if git fetch --depth 1 origin data 2>/dev/null; then
+              git archive FETCH_HEAD | tar -x -C /tmp/out || true
+            fi
+
+            # 이번에 새로 만든 것으로 덮어쓴다
+            cp data/dividends.json /tmp/out/
+
+            # 커밋 하나짜리 브랜치로 통째 교체
+            cd /tmp/out
+            rm -rf .git
+            git init -q
+            git add -A
+            git commit -q -m "data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:data

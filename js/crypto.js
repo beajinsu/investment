@@ -1,3 +1,7 @@
+// 데이터는 main 이 아니라 data 브랜치에 있다.
+// 갱신마다 커밋이 쌓이는 걸 막으려고 분리했다(커밋 하나를 계속 덮어씀).
+const DATA_BASE = 'https://raw.githubusercontent.com/beajinsu/investment/data';
+
 // js/crypto.js - 로컬 JSON 파일 우선 사용
 
 class CryptoManager {
@@ -40,7 +44,7 @@ class CryptoManager {
   async loadData() {
     try {
       // 먼저 로컬 JSON 파일 시도
-      const response = await fetch(`data/crypto.json?t=${Date.now()}`);
+      const response = await fetch(`${DATA_BASE}/crypto.json?t=${Date.now()}`);
       if (!response.ok) {
         throw new Error('JSON 파일을 찾을 수 없습니다');
       }
@@ -49,7 +53,7 @@ class CryptoManager {
       
       // exchange_rate_cache.json도 로드
       try {
-        const cacheResponse = await fetch(`data/exchange_rate_cache.json?t=${Date.now()}`);
+        const cacheResponse = await fetch(`${DATA_BASE}/exchange_rate_cache.json?t=${Date.now()}`);
         if (cacheResponse.ok) {
           const cacheData = await cacheResponse.json();
           data.exchange_rate.cache_timestamp = cacheData.timestamp;
@@ -225,7 +229,7 @@ class CryptoManager {
           <td colspan="6" style="text-align: center; color: #e74c3c; font-weight: bold; padding: 30px;">
             📁 데이터 파일 없음<br>
             <small style="color: #7f8c8d; font-weight: normal;">
-              <code>data/crypto.json</code> 파일이 없습니다.<br>
+              <code>data 브랜치의 crypto.json</code> 파일이 없습니다.<br>
               GitHub Actions를 통해 데이터를 생성하거나<br>
               직접 JSON 파일을 생성해주세요.
             </small><br>

@@ -2,8 +2,9 @@ name: Update Crypto Data
 
 on:
   schedule:
-    # 코인 시세: 10분마다 업데이트
-    - cron: '0,30 * * * *'
+    # 3시간마다. GitHub Actions 는 무료 저장소의 잦은 cron 을 지연·누락시켜
+    # 30분 간격으로 걸어도 실제로는 3~5시간에 한 번 돌았다. 실제에 맞춘다.
+    - cron: '0 */3 * * *'
   workflow_dispatch: # 수동 실행 가능
 
 # 권한 추가
@@ -280,14 +281,27 @@ jobs:
         
         node fetch-crypto.js
         
-    - name: Commit and push if changed
+    - name: Push data to data branch
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add data/crypto.json data/exchange_rate_cache.json
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
-        else
-          git commit -m "Update crypto data - $(date)"
-          git push
+        # 데이터는 main 이 아니라 data 브랜치에 둔다.
+        # 커밋 하나만 두고 매번 덮어써서 이력이 쌓이지 않게 한다.
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+
+        # 기존 data 브랜치 내용을 먼저 꺼낸다.
+        # 다른 워크플로가 올린 파일을 지우지 않기 위해서다.
+        mkdir -p /tmp/out
+        if git fetch --depth 1 origin data 2>/dev/null; then
+          git archive FETCH_HEAD | tar -x -C /tmp/out || true
         fi
+
+        # 이번에 새로 만든 것으로 덮어쓴다
+        cp data/crypto.json data/exchange_rate_cache.json /tmp/out/
+
+        # 커밋 하나짜리 브랜치로 통째 교체
+        cd /tmp/out
+        rm -rf .git
+        git init -q
+        git add -A
+        git commit -q -m "data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+        git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:data
