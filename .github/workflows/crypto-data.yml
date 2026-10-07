@@ -290,9 +290,15 @@ jobs:
         
         fetchCryptoData();
         EOF
-        
-        node fetch-crypto.js
-        
+
+        # 하루 1번이라 한 번 실패하면 하루가 빈다. CoinGecko 는 Actions 러너 IP 에
+        # 가끔 429 를 주므로 2분 간격으로 세 번까지 시도한다. 셋 다 실패하면 단계를 실패로 끝낸다.
+        for i in 1 2 3; do
+          node fetch-crypto.js && exit 0
+          [ "$i" -lt 3 ] && echo "실패 ($i/3). 2분 뒤 다시 시도" && sleep 120
+        done
+        exit 1
+
     - name: Push data to data branch
       run: |
         # 데이터는 main 이 아니라 data 브랜치에 둔다.
