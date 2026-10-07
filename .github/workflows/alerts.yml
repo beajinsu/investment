@@ -6,7 +6,8 @@ name: Market Alerts
 
 on:
   schedule:
-    # 3시간마다, 데이터 갱신(정시)보다 20분 늦게
+    # 3시간마다, 배당 갱신(정시)보다 20분 늦게.
+    # 코인은 하루 1번(22:17 UTC)이라 그다음 회차(23:20)에 판정된다.
     - cron: '20 */3 * * *'
   workflow_dispatch:
 

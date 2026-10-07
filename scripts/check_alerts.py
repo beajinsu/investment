@@ -20,6 +20,7 @@ KIMCHI_ABS   = 3.0    # 김프 ±3% 밖
 COIN_CHANGE  = 5.0    # 코인 하루 ±5% 밖
 STOCK_DROP   = -3.0   # 배당주 하루 -3% 이하
 COOLDOWN_H   = 20     # 같은 항목 재알림까지 최소 시간
+MAX_AGE_H    = 12     # 이보다 오래된 데이터로는 판정하지 않는다 (쿨다운보다 짧아야 한다)
 
 KST = timezone(timedelta(hours=9))
 
@@ -33,6 +34,19 @@ def pct(s):
     """'4.75%' → 4.75, None → None"""
     m = re.match(r'(-?[\d.]+)\s*%', str(s or ""))
     return float(m.group(1)) if m else None
+
+def is_fresh(data, now):
+    """updated_at 이 MAX_AGE_H 시간 안쪽인지.
+
+    갱신이 멈추면 쿨다운이 끝날 때마다 같은 낡은 값으로 다시 알린다
+    (2026-09 에 9/3 값으로 ADA 알림이 한 달 내내 반복됐다).
+    코인은 하루 1번 갱신이라, 쿨다운(20h)이 끝난 뒤 같은 스냅샷을 다시 읽는 것도 이것으로 막는다.
+    """
+    try:
+        t = datetime.fromisoformat(str((data or {}).get("updated_at")).replace("Z", "+00:00"))
+    except Exception:
+        return False
+    return (now - t).total_seconds() < MAX_AGE_H * 3600
 
 def news_for(symbol, n=2):
     """급락 이유의 실마리. 확정된 원인이 아니라 참고용 제목이다."""
@@ -140,6 +154,14 @@ def main():
     STOCKS = read_stocks_map()
 
     now = datetime.now(timezone.utc)
+    if not is_fresh(crypto, now):
+        print("코인 데이터가 %d시간보다 오래돼 판정에서 뺌 (updated_at=%s)"
+              % (MAX_AGE_H, (crypto or {}).get("updated_at")))
+        crypto = {}
+    if not is_fresh(div, now):
+        print("배당 데이터가 %d시간보다 오래돼 판정에서 뺌 (updated_at=%s)"
+              % (MAX_AGE_H, (div or {}).get("updated_at")))
+        div = {}
     hits = check(crypto, div, STOCKS)
     hits, state = filter_recent(hits, state, now)
 

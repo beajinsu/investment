@@ -2,9 +2,10 @@ name: Update Crypto Data
 
 on:
   schedule:
-    # 3시간마다. GitHub Actions 는 무료 저장소의 잦은 cron 을 지연·누락시켜
-    # 30분 간격으로 걸어도 실제로는 3~5시간에 한 번 돌았다. 실제에 맞춘다.
-    - cron: '0 */3 * * *'
+    # 하루 1번, KST 07:17 (UTC 22:17). 리밸런싱 점검에는 일별 값이면 충분하고,
+    # 장중 시세·급변 알림은 거래소 앱에 맡긴다.
+    # 정시는 GitHub Actions 가 몰려 지연되기 쉬워 17분에 건다.
+    - cron: '17 22 * * *'
   workflow_dispatch: # 수동 실행 가능
 
 # 권한 추가
