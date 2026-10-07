@@ -28,7 +28,18 @@ jobs:
       run: |
         npm init -y
         npm pkg set type=module
-        
+
+    - name: Prepare data dir
+      run: |
+        # main 에는 data/ 가 없다 (data 브랜치로 옮김). 없으면 환율 캐시 쓰기가
+        # ENOENT 로 실패하고, 그 오류가 "환율 API 전부 실패"로 삼켜져 1350 기본값이 들어간다.
+        # 이어서 push 단계의 cp 가 캐시 파일을 못 찾아 멈춘다.
+        mkdir -p data
+        # 환율 API 가 모두 실패할 때 1350 대신 지난 환율을 쓰도록 캐시를 가져온다
+        curl -sfL -o data/exchange_rate_cache.json \
+          "https://raw.githubusercontent.com/${{ github.repository }}/data/exchange_rate_cache.json" \
+          || rm -f data/exchange_rate_cache.json
+
     - name: Fetch crypto data
       env:
         # GitHub Secrets를 환경변수로 주입

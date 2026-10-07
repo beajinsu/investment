@@ -1,5 +1,6 @@
 import yfinance as yf
 import json
+import os
 from datetime import datetime, timezone
 
 STOCKS = {
@@ -66,6 +67,8 @@ for name, symbol in STOCKS.items():
 
 # UTC 기준 현재 시각을 ISO 8601 형식으로 만들어 넣습니다.
 results["updated_at"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+# main 에는 data/ 가 없다 (data 브랜치로 옮김). 체크아웃 직후엔 폴더부터 만들어야 한다.
+os.makedirs("data", exist_ok=True)
 with open("data/dividends.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 
