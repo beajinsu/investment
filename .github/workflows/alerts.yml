@@ -1,8 +1,12 @@
 name: Market Alerts
 
-# 조건이 맞을 때만 GitHub Issue 를 연다.
-# 데이터를 새로 받지 않고, data 브랜치에 이미 올라온 값을 읽어 판정만 한다.
-# 그래서 코인·배당 워크플로가 끝난 뒤에 도는 게 맞다.
+# 조건이 맞을 때만 GitHub Issue 를 연다. VIX 돌파는 메일로도 보낸다.
+# 코인·배당은 새로 받지 않고, data 브랜치에 이미 올라온 값을 읽어 판정만 한다.
+# 그래서 코인·배당 워크플로가 끝난 뒤에 도는 게 맞다. VIX 는 판정할 때 바로 받는다.
+#
+# 메일을 받으려면 저장소 Secrets 에 MAIL_USERNAME, MAIL_PASSWORD(구글 앱 비밀번호),
+# MAIL_TO(선택)를 넣는다. 넣은 뒤 Actions → Market Alerts → Run workflow 에서
+# test_email 을 체크해 돌리면 테스트 메일이 온다.
 
 on:
   schedule:
@@ -10,6 +14,11 @@ on:
     # 코인은 하루 1번(22:17 UTC)이라 그다음 회차(23:20)에 판정된다.
     - cron: '20 */3 * * *'
   workflow_dispatch:
+    inputs:
+      test_email:
+        description: '메일 설정 확인용 테스트 메일 보내기'
+        type: boolean
+        default: false
 
 permissions:
   contents: write   # 재알림 억제 기록을 data 브랜치에 되돌려 놓아야 한다
@@ -60,6 +69,31 @@ jobs:
             });
         env:
           ALERT_BODY: ${{ steps.check.outputs.body }}
+
+      - name: Send email
+        # 이슈 열기가 실패해도 메일은 보낸다
+        if: always() && steps.check.outputs.email == 'true'
+        run: python scripts/send_email.py
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_SUBJECT: ${{ steps.check.outputs.email_subject }}
+          MAIL_BODY: ${{ steps.check.outputs.email_body }}
+
+      - name: Send test email
+        if: always() && inputs.test_email
+        run: python scripts/send_email.py
+        env:
+          MAIL_REQUIRED: 'true'
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_SUBJECT: '[테스트] investment 알림 메일'
+          MAIL_BODY: |
+            메일 설정이 됐습니다.
+            지금 VIX: ${{ steps.check.outputs.vix || '받지 못함' }}
+            VIX 가 25 를 넘으면 이 주소로 메일이 옵니다.
 
       - name: Save alert state
         if: always()

@@ -3,14 +3,16 @@
 조건이 맞을 때만 알린다.
 
 대시보드를 매번 열어보지 않아도 되게 하는 것이 목적이다.
-평소엔 아무 일도 하지 않고, 아래 셋 중 하나에 걸릴 때만 GitHub Issue 를 연다.
+평소엔 아무 일도 하지 않고, 아래 중 하나에 걸릴 때만 GitHub Issue 를 연다.
 
   · 김치프리미엄이 ±3% 밖
   · 코인이 하루 ±5% 밖
   · 배당주가 하루 -3% 이상 급락 (배당수익률과 최근 뉴스를 함께 싣는다)
+  · VIX 가 25 를 넘음 (이것은 메일로도 보낸다. scripts/send_email.py)
 
 같은 종목으로 하루에 한 번만 알린다. 3시간마다 같은 알림이 오면
 알림 자체가 무시당하기 때문이다. 기록은 data 브랜치의 alert_state.json 에 둔다.
+VIX 는 25 를 넘는 순간 한 번만 알리고, 23 아래로 내려와야 다시 알릴 준비를 한다.
 """
 import io, json, os, re, sys
 from datetime import datetime, timezone, timedelta
@@ -19,6 +21,8 @@ from datetime import datetime, timezone, timedelta
 KIMCHI_ABS   = 3.0    # 김프 ±3% 밖
 COIN_CHANGE  = 5.0    # 코인 하루 ±5% 밖
 STOCK_DROP   = -3.0   # 배당주 하루 -3% 이하
+VIX_LEVEL    = 25.0   # VIX 가 이 값을 넘으면 알림 + 메일
+VIX_REARM    = 23.0   # 이 아래로 내려와야 다음 돌파를 다시 알린다 (25 근처에서 오르내릴 때 메일이 쏟아지지 않게)
 COOLDOWN_H   = 20     # 같은 항목 재알림까지 최소 시간
 MAX_AGE_H    = 12     # 이보다 오래된 데이터로는 판정하지 않는다 (쿨다운보다 짧아야 한다)
 
@@ -82,8 +86,53 @@ def read_stocks_map():
         pass
     return {}
 
+def fetch_vix():
+    """^VIX 최근 값. 장중이면 그 시점 값, 장 마감 뒤면 종가.
+
+    다른 데이터와 달리 data 브랜치에 쌓지 않고 판정할 때 바로 받는다.
+    받지 못하면 None 이고, 그 회차는 VIX 판정을 건너뛴다.
+    """
+    try:
+        import yfinance as yf
+        closes = yf.Ticker("^VIX").history(period="5d")["Close"].dropna()
+        if closes.empty:
+            return None
+        return {
+            "value": float(closes.iloc[-1]),
+            "prev":  float(closes.iloc[-2]) if len(closes) > 1 else None,
+            "date":  closes.index[-1].strftime("%Y-%m-%d"),   # 미국 거래일
+        }
+    except Exception as e:
+        print("VIX 를 받지 못함: %s" % e)
+        return None
+
 
 # ── 판정 ──────────────────────────────────────────────────
+def check_vix(vix, above):
+    """(알림 또는 None, 지금 25 위에 있다고 볼지).
+
+    above 는 지난 회차까지의 상태다. 25 를 아래에서 위로 넘을 때만 알린다.
+    """
+    if not vix:
+        return None, above
+    v = vix["value"]
+    if v < VIX_REARM:
+        return None, False
+    if v <= VIX_LEVEL or above:
+        return None, above
+    prev = vix.get("prev")
+    lines = ["VIX **%.2f** (기준 %g 초과)" % (v, VIX_LEVEL)]
+    if prev:
+        lines.append("직전 종가 %.2f 대비 %+.2f" % (prev, v - prev))
+    lines.append("미국 %s 거래일 값. 장중에 받았으면 그 시점 값이다" % vix["date"])
+    lines.append("%g 아래로 내려왔다가 다시 %g 를 넘으면 또 알린다" % (VIX_REARM, VIX_LEVEL))
+    return {
+        "key": "vix",
+        "head": "VIX %.2f — %g 돌파" % (v, VIX_LEVEL),
+        "body": "\n".join(lines),
+        "email": True,
+    }, True
+
 def check(crypto, dividends, stocks_map):
     hits = []
 
@@ -163,27 +212,51 @@ def main():
               % (MAX_AGE_H, (div or {}).get("updated_at")))
         div = {}
     hits = check(crypto, div, STOCKS)
+
+    vix = fetch_vix()
+    if vix:
+        print("VIX %.2f (%s)" % (vix["value"], vix["date"]))
+    vix_hit, vix_above = check_vix(vix, bool(state.get("vix_above")))
+    if vix_hit:
+        hits.append(vix_hit)
+
     hits, state = filter_recent(hits, state, now)
+    state["vix_above"] = vix_above
 
     io.open("data/alert_state.json", "w", encoding="utf-8", newline="\n").write(
         json.dumps(state, ensure_ascii=False, indent=2))
+
+    out = os.environ.get("GITHUB_OUTPUT")
+    if out and vix:
+        # 테스트 메일에 지금 값을 싣는다
+        with io.open(out, "a", encoding="utf-8") as f:
+            f.write("vix=%.2f\n" % vix["value"])
 
     if not hits:
         print("조건에 걸린 항목 없음")
         return
 
+    stamp = now.astimezone(KST).strftime("%Y-%m-%d %H:%M")
+    mails = [h for h in hits if h.get("email")]
+    if out and mails:
+        with io.open(out, "a", encoding="utf-8") as f:
+            f.write("email=true\n")
+            f.write("email_subject=%s\n" % " · ".join(h["head"] for h in mails))
+            f.write("email_body<<MAIL_EOF\n%s\n\n확인 시각 %s (KST)\n"
+                    "https://github.com/beajinsu/investment/issues\nMAIL_EOF\n"
+                    % ("\n\n".join(h["body"].replace("**", "") for h in mails), stamp))
+
     title = "%s · %d건" % (now.astimezone(KST).strftime("%m/%d %H:%M"), len(hits))
-    body = ["기준: 김프 ±%s%% · 코인 24h ±%s%% · 배당주 %s%% 이하\n"
-            % (KIMCHI_ABS, COIN_CHANGE, STOCK_DROP)]
+    body = ["기준: 김프 ±%s%% · 코인 24h ±%s%% · 배당주 %s%% 이하 · VIX %g 초과\n"
+            % (KIMCHI_ABS, COIN_CHANGE, STOCK_DROP, VIX_LEVEL)]
     for h in hits:
         body.append("### %s" % h["head"])
         body.append(h["body"])
         body.append("")
     body.append("---")
     body.append("[시장 정보 페이지](https://beajinsu.github.io/investment/) · "
-                "%s (KST)" % now.astimezone(KST).strftime("%Y-%m-%d %H:%M"))
+                "%s (KST)" % stamp)
 
-    out = os.environ.get("GITHUB_OUTPUT")
     if out:
         with io.open(out, "a", encoding="utf-8") as f:
             f.write("has_alert=true\n")
