@@ -115,8 +115,8 @@
   <div id="dividend-column-toggles" class="column-toggles">
     <label><input type="checkbox" data-key="price" checked> 현재가</label>
     <label><input type="checkbox" data-key="dividend_rate" checked> 최근 1년 배당금</label>
-    <label><input type="checkbox" data-key="dividend_yield" checked> 배당수익률 (API)</label>
-    <label><input type="checkbox" data-key="real_time_yield" checked> 실시간 배당수익</label>
+    <label><input type="checkbox" data-key="dividend_yield" checked> 예상 배당수익률 (야후)</label>
+    <label><input type="checkbox" data-key="real_time_yield" checked> 배당수익률 (최근 1년)</label>
     <label><input type="checkbox" data-key="price_change_percent" checked> 1일 수익률</label>
   </div>       
   
@@ -126,8 +126,8 @@
         <th data-key="name">종목명</th>
         <th data-key="price">현재가</th>
         <th data-key="dividend_rate">최근 1년 배당금</th>
-        <th data-key="dividend_yield">배당수익률(API)</th>
-        <th data-key="real_time_yield">실시간 배당수익률</th>
+        <th data-key="dividend_yield" title="야후 값: 가장 최근 배당 × 연간 지급 횟수 ÷ 주가. 특별배당이 있으면 부풀려집니다">예상 배당수익률(야후)</th>
+        <th data-key="real_time_yield" title="최근 365일 실제 배당 합계 ÷ 현재가">배당수익률(최근 1년)</th>
         <th data-key="price_change_percent">1일 수익률</th>
       </tr>
     </thead>

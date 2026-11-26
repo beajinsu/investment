@@ -113,7 +113,8 @@ def check(crypto, dividends, stocks_map):
         chg = pct(v.get("price_change_percent"))
         if chg is None or chg > STOCK_DROP:
             continue
-        y = pct(v.get("dividend_yield"))
+        # 최근 1년 실제 배당 기준 수익률 (야후 예상치는 특별배당 때 부풀려진다)
+        y = pct(v.get("real_time_yield")) or pct(v.get("dividend_yield"))
         sym = stocks_map.get(name, "")
         lines = ["가격 %s (%+.2f%%)" % (v.get("price"), chg)]
         if y is not None:

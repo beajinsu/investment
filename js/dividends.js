@@ -85,7 +85,7 @@ class DividendManager {
       tr.innerHTML = `
         <td>${row.name}</td>
         <td>${this.formatPrice(row.raw.price)}</td>
-        <td>${this.formatPrice(row.raw.dividend_rate)}</td>
+        <td>${this.formatPrice(row.raw.dividend_rate)}${row.raw.special_dividend ? ' <small title="최근 1년 배당에 특별배당이 섞여 있어 내년에는 이만큼 안 나올 수 있습니다">(특별배당 포함)</small>' : ''}</td>
         <td>${this.formatPercentage(row.dividend_yield)}</td>
         <td>${this.formatPercentage(row.real_time_yield)}</td>
         <td>${this.formatChangePercentage(row.raw.price_change_percent)}</td>

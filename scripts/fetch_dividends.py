@@ -1,7 +1,36 @@
 import yfinance as yf
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+
+
+def trailing_dividends(ticker):
+    """최근 365일 동안 실제로 지급(배당락)된 주당 배당금 합계와 건별 내역.
+
+    yfinance 의 info["dividendRate"] 는 '가장 최근 배당 × 연간 지급 횟수'인 예상치라서
+    특별배당이 한 번 나오면 크게 부풀려진다 (예: 삼성전자 2026년 3분기 4,601원 × 4 = 18,404원).
+    그래서 실제 지급 이력(Ticker.dividends)을 더해 쓴다.
+    """
+    divs = ticker.dividends
+    if divs is None or len(divs) == 0:
+        return None, []
+    cutoff = datetime.now(timezone.utc) - timedelta(days=365)
+    idx = divs.index
+    if idx.tz is None:
+        idx = idx.tz_localize("UTC")
+    recent = divs[idx >= cutoff]
+    if len(recent) == 0:
+        return 0.0, []
+    return float(recent.sum()), [float(x) for x in recent.values]
+
+
+def has_special(amounts):
+    """최근 1년 배당 중 중앙값의 3배를 넘는 건이 있으면 특별배당이 섞인 것으로 본다."""
+    if len(amounts) < 2:
+        return False
+    s = sorted(amounts)
+    median = s[len(s) // 2] if len(s) % 2 else (s[len(s) // 2 - 1] + s[len(s) // 2]) / 2
+    return median > 0 and max(amounts) > 3 * median
 
 STOCKS = {
     # [미국 주식]
@@ -40,8 +69,14 @@ for name, symbol in STOCKS.items():
 
         price = info.get("currentPrice") or info.get("previousClose") or None
         prev_close = info.get("previousClose") or None
-        dy = info.get("dividendYield")
-        dr = info.get("dividendRate", "N/A")
+        dy = info.get("dividendYield")              # 야후 예상 수익률 (최근 배당 × 횟수 기준)
+        forward_rate = info.get("dividendRate")
+        try:
+            ttm, amounts = trailing_dividends(ticker)    # 최근 1년 실제 배당 합계
+        except Exception:
+            ttm, amounts = None, []
+        # 이력을 못 받으면 야후 예상치로 대신한다
+        dr = ttm if ttm is not None else (forward_rate if isinstance(forward_rate, (int, float)) else "N/A")
 
         # 수익률 계산
         if price and prev_close and prev_close != 0:
@@ -54,8 +89,12 @@ for name, symbol in STOCKS.items():
             "price": int(price) if symbol.endswith(".KS") and price else price,
             "dividend_yield": f"{dy:.2f}%" if dy else "N/A",
             "dividend_rate": int(dr) if symbol.endswith(".KS") and isinstance(dr, (int, float)) else dr,
+            "forward_dividend_rate": (
+                int(forward_rate) if symbol.endswith(".KS") and isinstance(forward_rate, (int, float)) else forward_rate
+            ),
+            "special_dividend": has_special(amounts),
             "price_change_percent": change_str,
-            # ▶ 실시간 배당수익 = (연간 배당금 ÷ 현재가) × 100
+            # ▶ 실시간 배당수익 = (최근 1년 실제 배당금 합계 ÷ 현재가) × 100
             "real_time_yield": (
                 f"{(dr/price*100):.2f}%"
                 if price and isinstance(dr, (int, float)) and price != 0
