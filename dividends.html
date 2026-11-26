@@ -115,8 +115,9 @@
   <div id="dividend-column-toggles" class="column-toggles">
     <label><input type="checkbox" data-key="price" checked> 현재가</label>
     <label><input type="checkbox" data-key="dividend_rate" checked> 최근 1년 배당금</label>
-    <label><input type="checkbox" data-key="dividend_yield" checked> 배당수익률 (API)</label>
-    <label><input type="checkbox" data-key="real_time_yield" checked> 실시간 배당수익</label>
+    <label><input type="checkbox" data-key="real_time_yield" checked> 배당수익률 (TTM)</label>
+    <label><input type="checkbox" data-key="regular_yield" checked> 정규 배당수익률</label>
+    <label><input type="checkbox" data-key="dividend_yield" checked> 배당수익률 (API 참고)</label>
     <label><input type="checkbox" data-key="price_change_percent" checked> 1일 수익률</label>
   </div>       
   
@@ -125,15 +126,21 @@
       <tr>
         <th data-key="name">종목명</th>
         <th data-key="price">현재가</th>
-        <th data-key="dividend_rate">최근 1년 배당금</th>
-        <th data-key="dividend_yield">배당수익률(API)</th>
-        <th data-key="real_time_yield">실시간 배당수익률</th>
+        <th data-key="dividend_rate" title="최근 365일 동안 배당락된 실제 배당의 합계">최근 1년 배당금</th>
+        <th data-key="real_time_yield" title="최근 1년 배당금 ÷ 현재가 (기준 지표)">배당수익률 (TTM)</th>
+        <th data-key="regular_yield" title="특별배당(평소 배당 중앙값의 3배 초과)을 평소 배당으로 바꿔 계산">정규 배당수익률</th>
+        <th data-key="dividend_yield" title="yfinance info 값. 최근 배당을 연환산하므로 특별배당이 있으면 부풀려진다">배당수익률 (API 참고)</th>
         <th data-key="price_change_percent">1일 수익률</th>
       </tr>
     </thead>
     <tbody id="dividend-table"></tbody>
   </table>
   <p id="dividend-last-updated" class="last-updated">마지막 업데이트: ⏳</p>
+  <p class="last-updated">
+    <b>배당수익률 (TTM)</b> = 최근 365일 실제 지급 배당(배당락일 기준) ÷ 현재가 — 표의 기준 지표입니다.<br>
+    <b>정규 배당수익률</b> = 특별배당(최근 2년 배당 중앙값의 3배 초과, ⚠️ 표시)을 평소 배당으로 바꿔 넣은 값입니다.<br>
+    <b>API 참고</b> = yfinance 가 최근 배당을 연환산한 값으로, 특별배당이 있으면 크게 부풀려집니다.
+  </p>
   <p id="dividend-last-updated" class="last-updated">yfinance를 활용하였습니다. 한국투자증권 API도 활용해보려고 했으나 연간 배당금액을 보여주는 기능이 없어서 활용하지 못했습니다.</p>
 <p id="dividend-last-updated" class="last-updated">https://github.com/sharebook-kr/pykrx 등도 흥미로워 보입니다.</p>
 

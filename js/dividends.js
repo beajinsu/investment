@@ -15,6 +15,7 @@ class DividendManager {
       dividend_yield: 'desc', 
       dividend_rate: 'asc', 
       real_time_yield: 'desc', 
+      regular_yield: 'desc', 
       price_change_percent: 'asc' 
     };
     
@@ -60,6 +61,7 @@ class DividendManager {
       dividend_yield: parseFloat(info.dividend_yield) || 0,
       dividend_rate: info.dividend_rate,
       real_time_yield: parseFloat(info.real_time_yield) || 0,
+      regular_yield: parseFloat(info.regular_yield) || 0,
       price_change_percent: parseFloat(info.price_change_percent) || 0,
       raw: info
     }));
@@ -67,7 +69,7 @@ class DividendManager {
     // 테이블 컨트롤러에 데이터 설정
     this.tableController.setData(tableData);
     
-    // 기본 정렬 (실시간 배당수익률 기준 내림차순)
+    // 기본 정렬 (TTM 배당수익률 기준 내림차순)
     const sortedData = this.tableController.sortBy('real_time_yield');
     this.renderTable(sortedData);
     
@@ -86,8 +88,9 @@ class DividendManager {
         <td>${row.name}</td>
         <td>${this.formatPrice(row.raw.price)}</td>
         <td>${this.formatPrice(row.raw.dividend_rate)}</td>
+        <td>${this.formatPercentage(row.real_time_yield)}${this.specialBadge(row.raw)}</td>
+        <td>${row.raw.yield_basis === 'TTM' ? this.formatPercentage(row.regular_yield) : 'N/A'}</td>
         <td>${this.formatPercentage(row.dividend_yield)}</td>
-        <td>${this.formatPercentage(row.real_time_yield)}</td>
         <td>${this.formatChangePercentage(row.raw.price_change_percent)}</td>
       `;
       fragment.appendChild(tr);
@@ -97,6 +100,14 @@ class DividendManager {
     this.tbody.appendChild(fragment);
   }
   
+  // 특별배당이 TTM 에 들어 있으면 표시한다 (내년엔 반복되지 않을 수 있다)
+  specialBadge(info) {
+    const sp = info.special_dividends || [];
+    if (!sp.length) return '';
+    const tip = sp.map(x => `${x.date} ${Number(x.amount).toLocaleString()}`).join(', ');
+    return ` <span title="특별배당 포함: ${tip}" style="cursor:help;">⚠️</span>`;
+  }
+
   formatPrice(value) {
     return value != null ? value.toLocaleString() : 'N/A';
   }
@@ -132,7 +143,7 @@ class DividendManager {
   
   showError(message) {
     if (this.tbody) {
-      this.tbody.innerHTML = `<tr><td colspan="6">${message}</td></tr>`;
+      this.tbody.innerHTML = `<tr><td colspan="7">${message}</td></tr>`;
     }
     if (this.updatedElem) {
       this.updatedElem.textContent = '업데이트 실패';

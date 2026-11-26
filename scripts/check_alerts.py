@@ -63,6 +63,38 @@ def news_for(symbol, n=2):
     except Exception:
         return []
 
+def yield_lines(v):
+    """알림에 싣는 배당수익률.
+
+    기준은 최근 365일 실제 지급 배당(real_time_yield, TTM)이다.
+    dividend_yield(yfinance info)는 최근 배당 × 4 라서 특별배당이 나오면 부풀려진다
+    (2026-11 삼성전자우가 13% 로 보였다). 그 값은 쓰지 않는다.
+    """
+    out = []
+    if v.get("yield_basis") != "TTM":
+        return out  # 예전 형식의 dividends.json — 부풀려졌을 수 있는 값은 싣지 않는다
+    ttm = pct(v.get("real_time_yield"))
+    reg = pct(v.get("regular_yield"))
+    if ttm is not None:
+        out.append("배당수익률 **%.2f%%** (최근 1년 실제 지급 기준)" % ttm)
+    sp = v.get("special_dividends") or []
+    if sp:
+        out.append("⚠️ 특별배당 포함: %s — 특별배당을 평소 배당으로 바꾸면 %s"
+                   % (", ".join("%s %s" % (x.get("date"), x.get("amount")) for x in sp),
+                      "%.2f%%" % reg if reg is not None else "N/A"))
+    return out
+
+def ex_dividend_drop(v, now):
+    """오늘(KST)이 배당락일이면 배당금이 전일 종가의 몇 % 인지. 아니면 None."""
+    d, amt, price = v.get("last_dividend_date"), v.get("last_dividend"), v.get("price")
+    chg = pct(v.get("price_change_percent"))
+    if not d or not isinstance(amt, (int, float)) or not price or chg is None:
+        return None
+    if d != now.astimezone(KST).date().isoformat():
+        return None
+    prev = price / (1 + chg / 100)
+    return amt / prev * 100 if prev else None
+
 def read_stocks_map():
     """fetch_dividends.py 의 STOCKS 만 읽는다.
 
@@ -84,7 +116,8 @@ def read_stocks_map():
 
 
 # ── 판정 ──────────────────────────────────────────────────
-def check(crypto, dividends, stocks_map):
+def check(crypto, dividends, stocks_map, now=None):
+    now = now or datetime.now(timezone.utc)
     hits = []
 
     for c in (crypto or {}).get("coins", []):
@@ -113,11 +146,17 @@ def check(crypto, dividends, stocks_map):
         chg = pct(v.get("price_change_percent"))
         if chg is None or chg > STOCK_DROP:
             continue
-        y = pct(v.get("dividend_yield"))
         sym = stocks_map.get(name, "")
+        # 배당락일엔 배당금만큼 주가가 빠진다. 그걸 급락으로 알리지 않는다.
+        # (삼성전자우 2026-09 특별배당 4,601원은 주가의 3% 넘게 빠지는 몫이었다)
+        ex = ex_dividend_drop(v, now)
+        if ex is not None and chg + ex > STOCK_DROP:
+            continue
         lines = ["가격 %s (%+.2f%%)" % (v.get("price"), chg)]
-        if y is not None:
-            lines.append("배당수익률 **%.2f%%**" % y)
+        if ex is not None:
+            lines.append("오늘 배당락 %s원 (주가의 %.2f%%) — 그만큼 빼도 %+.2f%%"
+                         % (v.get("last_dividend"), ex, chg + ex))
+        lines.extend(yield_lines(v))
         arts = news_for(sym)
         if arts:
             lines.append("")
@@ -162,7 +201,7 @@ def main():
         print("배당 데이터가 %d시간보다 오래돼 판정에서 뺌 (updated_at=%s)"
               % (MAX_AGE_H, (div or {}).get("updated_at")))
         div = {}
-    hits = check(crypto, div, STOCKS)
+    hits = check(crypto, div, STOCKS, now)
     hits, state = filter_recent(hits, state, now)
 
     io.open("data/alert_state.json", "w", encoding="utf-8", newline="\n").write(
